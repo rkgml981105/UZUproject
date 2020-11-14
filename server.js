@@ -37,7 +37,7 @@ app.engine('ejs', ejs.renderFile);
 app.use("/member", require("./router/memberRouter"));
 app.use("/board", require("./router/boardRouter"));
 
-app.use("/controller", require('./router/controller'));
+app.use("/", require('./router/controller'));
 
 
 app.listen(3000, () => {
