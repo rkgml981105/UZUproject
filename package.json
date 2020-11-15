@@ -18,5 +18,15 @@
     "express-session": "^1.17.1",
     "mongoose": "^5.10.13",
     "qs": "^6.9.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkgml981105/UZUproject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rkgml981105/UZUproject/issues"
+  },
+  "homepage": "https://github.com/rkgml981105/UZUproject#readme",
+  "description": ""
 }

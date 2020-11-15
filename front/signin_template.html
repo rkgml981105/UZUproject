@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin-page</title>
+
+
+    <!--materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+
+    .signin-container {
+        width : 50%;
+        margin-left : 25%;
+    }
+
+    /*header*/
+    #welcome {
+        text-align: center;
+        padding-top : 3em;
+    }
+
+    #welcome h1 {
+        font-size: 3em;
+        margin-bottom : 0;
+        color: #4c14ee;
+        font-weight: bold;
+    }
+
+    #welcome p {
+        margin-top : 8px;
+    }
+
+
+    /*form*/
+    input[type=text].textinput.validate:focus {
+        border-bottom: 2px solid #4c14ee;
+	    -webkit-box-shadow: none;
+	    box-shadow:  none;
+    }
+
+    input[type=text]:not(.browser-default):disabled {
+        border-bottom: 1px solid #9e9e9e;
+        color : #424242;
+    }
+
+    /* label color */
+    .form label {
+        color:#424242;
+        font-size: 13px;
+    }
+
+    #forms {
+        width : 70%;
+        margin : 0 auto;
+    }
+
+    .row.form {
+        margin : 30px 0;
+    }
+
+    @media screen and (max-width:992px) {
+
+        #forms {
+            width : 80%;
+            margin : 0 auto;
+        }
+
+        .signin-container {
+            width : 60%;
+            margin-left : 20%;
+        }
+
+        #dupcheckbtn, #addressbtn {
+             font-size: 13px;
+         }
+
+    }
+
+    @media screen and (max-width:601px) {
+
+        #forms {
+            width : 100%;
+            margin : 0 auto;
+        }
+
+        .signin-container {
+            width : 80%;
+            margin-left : 10%;
+         }
+
+         #dupcheckbtn, #addressbtn {
+             font-size: 12px;
+         }
+    }
+
+    .form .nickname {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    #okbtn {
+        background-color: #4c14ee;
+        color : #ffffff;
+        margin-top : px;
+    } 
+
+
+    #dupcheckbtn, #addressbtn{
+        background-color: #4c14ee;
+        color : #ffffff;
+        margin-top : 30px;
+    }
+
+    #nextbtn {
+        text-align: center;
+        width : 100%;
+        margin : 15% 0;
+        background-color: #4c14ee;
+    }
+
+    /*modal*/
+
+    .modal .modal-content {
+        padding : 30px 0;
+    }
+
+
+    .modal {
+        display: none;
+        z-index : 2;
+        background-color : rgba(0,0,0,0.4);
+        max-height: 100%;
+    }
+
+    .modal-content {
+        position : fixed;
+        left : 50%;
+        top : 50%;
+        margin-left : -200px;
+        margin-top : -100px;
+        background-color: #fefefe;
+        padding : 25px;
+        border-radius: 0.3cm;
+        box-shadow: 2px 2px 7px grey;
+        width : 400px;
+        text-align: center;
+    }
+
+    @media screen and (max-width:401px) {
+        .modal-content {
+        margin-left : -135px;
+        width : 270px;
+    }
+}
+
+    .icon {
+        font-size: 25px;
+        font-weight: bold;
+        color :#4c14ee;
+    }
+
+    .material-icons.nickname.valid,
+    .material-icons.nickname.invalid {
+        color : #4c14ee;
+    }
+
+    .material-icons.nickname.invalid {
+        display : none;
+    }
+
+    .button.close {
+        width : 160px;
+        padding : 5px;
+        margin-top : 15px;
+    }
+
+
+    .modal-content p{    
+        margin : 6px;
+    }
+
+   .modal-content #ok1 {
+        font-size : 15px;
+        font-weight: bold;
+    }
+
+    .modal-content #ok2 {
+        font-size : 12px;
+        color : grey;
+    }
+
+    .modal-content #okbtn {
+        width : 50%;
+        background-color :#4c14ee;
+        border-radius: 0.1cm;
+        font-size : 13px;
+        margin : 15px 0 0 0;
+    }
+
+    
+</style>
+
+<script src="../public/js/duplicationCheck.js" defer></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../public/js/roadAddress.js"></script>
+
+
+
+</head>
+<body>
+          
+    <!--modal-->
+    <div id="dupcheck" class="modal">
+        <div class ="modal-content">
+            <i class="material-icons nickname valid">check_circle</i>
+            <i class="material-icons nickname invalid">check_circle</i>
+            <p id="ok1">사용 가능한 닉네임입니다!</p>
+            <p id="ok2">만나서 반가워요</p>
+            <a class= "waves-effect waves-light btn close" href="#" id="okbtn">확인</a>
+        </div>
+    </div>
+
+    <!--container-->
+    <div class="signin-container">
+        <div id="welcome">
+            <h1>Welcome!</h1>
+            <p>몇 가지만 더 알고 싶어요</p> <br>
+        </div>
+
+        <!--forms-->
+        <div id="forms">
+            <!--nickname form-->
+            <div class="row form nickname">
+                <div class="col s9" id="inputbox">
+                    <label for="nickname">활동할 닉네임을 알려주세요</label>
+                    <input class="textinput validate" type='text' id = "nickname" placeholder = "ex. 우주인">
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" id="dupcheckbtn">중복확인</a>
+            </div>
+
+            <!--address form-->            
+            <div class="row form address">
+                <div class="col s9" id="inputbox">
+                    <label for="address">지역을 설정해주세요</label>
+                    <input disabled class="textinput validate" type='text' id ='roadAddress' placeholder = "도로명주소">
+                    <input class="textinput validate" type='text' id = 'detailAddress' placeholder = "상세주소">
+                    <span id="guide" style="color:#999; display:none"></span>
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" onclick="execDaumPostcode()" id="addressbtn">주소찾기</a>
+            </div>
+
+            <!--finish button-->  
+            <a class= "waves-effect waves-light btn" href="template_main.html" id="nextbtn">완료</a>
+        </div>
+
+
+
+</body>
+</html>
