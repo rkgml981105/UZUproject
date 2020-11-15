@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin-page</title>
+
+
+    <!--materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+
+    .signin-container {
+        width : 50%;
+        margin-left : 25%;
+    }
+
+    /*header*/
+    #welcome {
+        text-align: center;
+        padding-top : 3em;
+    }
+
+    #welcome h1 {
+        font-size: 3em;
+        margin-bottom : 0;
+        color: #4c14ee;
+        font-weight: bold;
+    }
+
+    #welcome p {
+        margin-top : 8px;
+    }
+
+    /*form*/
+    input[type=text].textinput.validate:focus,
+    input[type=email].textinput.validate:focus,
+    input[type=password].textinput.validate:focus {
+        border-bottom: 2px solid #4c14ee;
+	    -webkit-box-shadow: none;
+	    box-shadow:  none;
+    }
+
+    /* label color */
+    .form label {
+        color:#424242;
+        font-size: 13px;
+    }
+
+    #forms {
+        width : 70%;
+        margin : 0 auto;
+    }
+
+    .row.form {
+        margin : 30px 0;
+    }
+
+    .helper-text {
+        font-size: 11px;
+    }
+
+    @media screen and (max-width:992px) {
+
+        #forms {
+            width : 80%;
+            margin : 0 auto;
+        }
+
+        .signin-container {
+            width : 60%;
+            margin-left : 20%;
+        }
+
+        #dupcheckbtn, #addressbtn, #validatebtn {
+             font-size: 13px;
+         }
+
+    }
+
+    @media screen and (max-width:601px) {
+
+        #forms {
+            width : 100%;
+            margin : 0 auto;
+        }
+
+        .signin-container {
+            width : 80%;
+            margin-left : 10%;
+         }
+
+         #dupcheckbtn, #addressbtn, #validatebtn {
+             font-size: 12px;
+         }
+    }
+
+    #inputbox span {
+        font-size : 12px;
+        margin : 0;
+        color : #777777;
+    }
+
+    .col.s3.password {
+        padding : 15px;
+        color : #4c14ee;
+        font-size: 24px;
+    }
+
+
+    .form .nickname {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    #dupcheckbtn, #addressbtn, #validatebtn {
+        background-color: #4c14ee;
+        color : #ffffff;
+        margin-top : 30px;
+    }
+
+    #nextbtn {
+        text-align: center;
+        width : 100%;
+        margin : 15% 0;
+        background-color: #4c14ee;
+    }
+
+    /*modal*/
+    .modal {
+        display: none;
+        position : fixed;
+        z-index : 1;
+        left : 0;
+        top : 0;
+        padding-top : 200px;
+        width : 100%;
+        height : 100%;
+        overflow: auto;
+        background-color : rgb(0,0,0);
+        background-color : rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin : auto;
+        padding : 25px;
+        border-radius: 0.2cm;
+        box-shadow: 2px 2px 7px grey;
+        width : 270px;
+        text-align: center;
+    }
+
+    .icon {
+        font-size: 25px;
+        font-weight: bold;
+        color :#4c14ee;
+    }
+
+    .button.close {
+        width : 160px;
+        padding : 5px;
+        margin-top : 15px;
+    }
+
+
+    #forms .modal-content p{    
+        margin : 6px;
+    }
+
+    #forms .modal-content #ok1 {
+        font-size : 14px;
+        font-weight: bold;
+    }
+
+    #forms .modal-content #ok2 {
+        font-size : 11px;
+        color : grey;
+    }
+    
+</style>
+
+<script src="duplicationCheck.js" defer></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="roadAddress.js"></script>
+
+</head>
+<body>
+    <div class="signin-container">
+        <div id="welcome">
+            <h1>Welcome!</h1>
+            <p>기본 정보를 설정해주세요</p> <br>
+        </div>
+
+        <!--forms-->
+        <div id="forms">
+            <!--email setting form-->
+            <div class="row form email">
+                <div class="col s9" id="inputbox">
+                    <label for="email">사용할 이메일을 적어주세요</label>
+                    <input class="textinput validate" type='email' id = "email" placeholder = "ex. uzu2020@likelion.skku">
+                    <span class="helper-text" data-error="바르지 않은 형식입니다" data-success="바른 형식입니다"></span>
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" id="validatebtn">인증하기</a>
+            </div>
+
+            <!--email validation form-->  
+            <div class="row form email-validation">
+                <div class="col s9" id="inputbox">
+                    <label for="email-validation">전송된 인증번호를 입력하세요</label>
+                    <input class="textinput validate" type='text' id = "email-validation">
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" id="validatebtn">인증확인</a>
+            </div>
+
+
+            <!-- password setting form-->
+            <div class="row form password">
+                <div class="col s12" id="inputbox">
+                    <label for="password">사용할 비밀번호를 적어주세요 <span>(8자 이상/ 특수문자, 숫자, 영문 중 두 가지 이상 포함)</span></label>
+                </div>
+
+                <div class="col s9" id="inputbox">
+                    <input class="textinput validate" type='password' id = "password">
+                    <span class="helper-text" data-error="비밀번호 설정 형식을 확인해주세요"></span>
+                </div>
+
+                <div class="col s3 password invalid">
+                    <i class="material-icons">error</i>
+                    <i class="material-icons">done_all</i>
+                </div>
+            </div>
+
+
+            <!-- password varification form-->
+            <div class="row form password-varification">
+                <div class="col s9" id="inputbox">
+                    <label for="password-varification">다시 적어주세요</label>
+                    <input class="textinput validate" type='password' id = "password">
+                </div>
+            </div>
+
+
+
+            <a class= "waves-effect waves-light btn" href="signin_template.html" id="nextbtn">다음</a>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UZU mainpage</title>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script src="https://kit.fontawesome.com/997c755345.js" crossorigin="anonymous"></script>
+    <script src="masonry.pkgd.min.js"></script>
+    <script>
+        $('.wrapper').masonry({
+        itemSelector: '.itemwrapper',
+        columnWidth: 230,
+        isFitWidth: true
+        });
+    </script>
+    
+    <!--materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        $(document).ready(function() {
+            $(".dropdown-trigger").dropdown();
+
+
+        });
+    </script>
+
+    <style>
+    body {
+        min-width : 300px;
+    }
+
+
+    /*nav bar*/
+    nav {
+        background-color:#ffffff;
+        box-shadow: none;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    nav.nav-extended{
+        margin-top : 30px;
+    }
+
+    .nav-wrapper, .nav-content {
+        background-color:white;
+    }
+
+    #brand-logo {
+        width : 80px;
+    }
+
+    .sidenav-trigger{
+        color:#424242;
+    }
+
+    nav ul a {
+        color: #424242;
+    }
+
+    .tabs.tabs-transparent .tab a.active {
+        background-color: white;
+        border-bottom: 2px solid #4c14ee;
+        color: black;
+        transition: border-bottom .28s ease;
+    }
+
+    .tabs.tabs-transparent .tab a,
+    .tabs.tabs-transparent .tab.disabled a,
+    .tabs.tabs-transparent .tab.disabled a:hover {
+        background-color: white;
+        color:  #424242;
+    }
+
+    .tabs.tabs-transparent .tab.disabled a:hover,
+    .tabs.tabs-transparent .tab a:hover {
+        color : black;
+        border-bottom: 5px solid #ffe96c;
+        transition: border-bottom .28s ease;
+    }
+
+    .row #main_banner {
+        margin-top : 5px;
+        background-color: #878787;
+        height : 450px;
+    }
+
+
+    @media screen and (max-width:601px) {
+        .row #main_banner {
+            background-color: #878787;
+            height : 400px;
+        }
+
+        nav {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+
+
+
+    /*location*/
+    .locContainer{
+        display: inline-block;
+        position : absolute;
+        top : -10px;
+        left : 100%;
+        margin-left : -265px;
+    }
+
+    .location {
+        display : grid;
+        grid-template-columns: auto auto auto;
+        color:#424242;
+        align-items : top;
+    }
+
+    .location .fa-map-marker-alt:before {
+        height :35px;
+        line-height: 2;
+    }
+
+    #location {
+        font-size: 11px;
+        margin : 0 10px;
+        white-space : pre-line;
+        width : 170px;
+    }
+
+    #modibtn {
+        display: inline-block;
+        position : relative;
+        background-color: rgba(0,0,0,0);
+        border-radius: 1cm;
+        border : 1px solid #4c14ee;
+        font-size: 11px;
+        width : 45px;
+        height: 32px;
+        top: 13px;
+    }
+
+    #modibtn:hover  {
+        background-color: #4c14ee;
+        color : white;
+        transition: color .28s ease, background-color .38s ease;
+    }   
+
+    @media screen and (max-width:992px) {
+        .locContainer {
+            display : inline-block;
+            position : relative;
+            background-color: rgb(0,0,0,0);
+            margin-top : 10px;
+        }
+
+    }
+
+    /*footer*/
+    .page-footer {
+        padding-top: 50px;
+        color: black;
+        background-color: white;
+    }
+
+    
+    .page-footer .footer-copyright{
+        color: #424242;
+    }
+    
+    .grey-text.text-lighten-4 {
+        color: #424242 !important
+    }
+
+
+    /*board titles*/
+
+    .collection-title {
+        margin : 1em 0;
+        color:#424242;
+        font-size: 30px ;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+
+    .collection-title .material-icons {
+        font-size: 40px;
+        position : absolute;
+        margin-top : 5px;
+        color:#424242;
+    }
+
+    .movetoboard {
+        font-size: 60%;
+        position : absolute;
+        left : 100%;
+        margin-left: -240px;
+        width : 200px;
+        margin-top : 7px;
+        text-align: right;
+    }
+
+    @media screen and (max-width:601px) {
+
+        .collection-title {
+                font-size: 25px ;
+        }
+
+        .collection-title .material-icons {
+            font-size: 30px;
+        }
+
+    }
+
+
+    /*posting buttons*/
+
+    .posting-container {
+        padding : 6% 30%;
+        text-align: center;
+    }
+
+    @media screen and (max-width : 601px) {
+        .posting-container {
+            padding : 6% 20%;
+        }
+    }
+
+    .posting-container .title {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .posting-container .buttons {
+        display: block;
+    }
+
+    .buttons.row a{
+        margin : 6px;
+        height : 70px;
+        line-height: 70px;
+    }
+
+    .buttons.row a i {
+        font-size: 30px;
+        margin : 0 10px;
+    }
+
+    .buttons.row a span{
+        display: inline-block;
+        font-size: 18px;
+    }
+    </style>
+
+</head>
+<body>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <!-- Dropdown Structure -->
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">계정</a></li>
+                <li><a href="#!">2번째</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">3번째</a></li>
+            </ul>
+            <a href="#" class="brand-logo"><img id='brand-logo' src='../public/img/brand_logo.PNG'></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+            <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+            
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">my<i class="material-icons right">keyboard_arrow_down</i></a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="#test1">짧은글</a></li>
+                <li class="tab"><a class="active" href="#test2">긴글</a></li>
+                <li class="tab"><a href="#test3">Best</a></li>
+            </ul>
+            <div class="locContainer">
+                <div class="location right">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="location">
+                        서울특별시 종로구 성균관로 25-2
+                        성균관대학교 인문사회과학캠퍼스
+                    </span>
+                    <button id="modibtn">수정</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">검색</a></li>
+        <li><a href="badges.html">알림</a></li>
+        <li><a href="collapsible.html">마이페이지</a></li>
+    </ul>
+
+    <div class="posting-container">
+        <div class="title">
+            <p>글쓰기</p>
+        </div>
+        <div class="buttons row"> 
+            <a class = "col s12 waves-effect waves-light btn" id="short-posting"><i class="material-icons ">short_text</i><span>짧은 글 쓰기</span></a>
+            <a class = "col s12 waves-effect waves-light btn" id="long-posting" value="긴글쓰기"><i class="material-icons">reorder</i><span> 글 쓰기</span></a>
+        </div>
+        <div class="backtomain">
+            <a href="#">메인으로 돌아가기</a>
+        </div>
+    </div>
+
+</body>
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+        © 2020 Copyright 
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+</html>
