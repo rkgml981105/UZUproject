@@ -4,7 +4,7 @@ const User = require("../schemas/user");
 const crypto = require("crypto");
 
 //회원가입
-router.post("/join", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     let obj = { email: req.body.email };
 

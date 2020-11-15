@@ -9,15 +9,15 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  name: {
-    type: String,
-    required: true
-  },
-  nickname: {
-      type: String,
-      required: true,
-      unique: true
-  },
+//   name: {
+//     type: String,
+//     required: true
+//   },
+//   nickname: {
+//       type: String,
+//       required: true,
+//       unique: true
+//   },
   password: {
     type: String,
     required: true
@@ -38,11 +38,11 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
-  dateOfBirth: {
-      type: Date,
-      default: Date.now,
-      required: true
-  },
+//   dateOfBirth: {
+//       type: Date,
+//       default: Date.now,
+//       required: true
+//   },
   role: {
     type: Number,
     default: 0
