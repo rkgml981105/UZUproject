@@ -41,7 +41,8 @@ router.post("/register", async (req, res) => {
                 };
                 user = new User(obj);
                 await user.save();
-                res.json({ message: "회원가입 되었습니다!", dupYn: "0" });
+                res.render('register-success.ejs')
+                // res.json({ message: "회원가입 되었습니다!", dupYn: "0" });
               }
             }
           );
