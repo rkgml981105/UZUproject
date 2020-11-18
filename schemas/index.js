@@ -6,7 +6,7 @@ module.exports = () => {
       mongoose.set("debug", true);
     }
     mongoose.connect(
-      "mongodb://localhost:6789/uzu",
+      "mongodb://localhost:27017/uzu",
       {
         dbName: "uzu"
       },

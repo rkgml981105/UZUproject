@@ -137,7 +137,7 @@ router.post("/login", async (req, res) => {
             }
           );
         } else {
-          res.json({ message: "아이디나 패스워드가 일치하지 않습니다." });
+          res.json({ message: "아이디나 패스워드가 일치하지 않습니다. (dfndsnkf)" });
         }
       }
     });

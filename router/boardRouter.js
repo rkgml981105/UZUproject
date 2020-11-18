@@ -51,6 +51,8 @@ router.post("/write", async (req, res) => {
   }
 });
 
+
+
 router.post("/getBoardList", async (req, res) => {
   try {
     const _id = req.body._id;
@@ -64,6 +66,7 @@ router.post("/getBoardList", async (req, res) => {
   }
 });
 
+/*
 router.post("/detail", async (req, res) => {
   try {
     const _id = req.body._id;
@@ -74,5 +77,9 @@ router.post("/detail", async (req, res) => {
     res.json({ message: false });
   }
 });
+*/
+
+
+
 
 module.exports = router;

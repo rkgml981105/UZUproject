@@ -39,11 +39,8 @@ app.use("/board", require("./router/boardRouter"));
 
 app.use("/", require('./router/controller'));
 
-
 app.listen(3000, () => {
   console.log("서버 가동합니당");
 });
-
-
 
 

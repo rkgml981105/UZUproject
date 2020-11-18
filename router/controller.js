@@ -3,7 +3,6 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-
     router.get('/', function(req,res){
         res.render('main.ejs');
     });
@@ -17,13 +16,19 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
         };
         res.render('parameter.ejs', render_data)
     });
-    router.post("/login",function(req,res){
-        const login_data = {
-            id: req.query.id,
-            pw: req.query.pw,
-        };
-        res.render('login.ejs',login_data)
+    router.get("/login",function(req,res){
+        res.render('login.ejs')
     });
+    router.post("/login", function(req, res) {
+        // const login_data = {
+        //     // id: req.query.id,
+        //     // pw: req.query.pw,
+        //  };
+        // const login_info = {
+        //     id = req.query.id,
+        // }
 
+        res.render('/board/long/boardlist.ejs')
+    });
 
 module.exports = router
