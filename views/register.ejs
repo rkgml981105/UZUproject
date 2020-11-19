@@ -3,15 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UZU</title>
+    <title>UZU-register</title>
+
+    <!--materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/register.css">
+
+<script src="/js/duplicationCheck.js" defer></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/js/roadAddress.js"></script>
+
 </head>
 <body>
-    <h1>UZU register page</h1>
-    <form action="member/register" method="POST">
-        <h2>회원가입</h2>
-        이메일 : <input type="text" name="email" /> <br />
-        비밀번호 : <input type="password" name="password" />
-        <button type="submit" value="회원가입">회원가입</button>
-    </form>
+    <div class="signin-container">
+        <div id="welcome">
+            <h1>Welcome!</h1>
+            <p>기본 정보를 설정해주세요</p> <br>
+        </div>
+
+        <!--forms-->
+        <form action="member/register" method="POST">
+        <div id="forms">
+            <!--name-->
+            <div class="row form name">
+                <div class="col s9" id="inputbox">
+                    <label for="name">이름을 적어주세요</label>
+                    <input class="textinput" type='text' id = "text">
+                </div>
+            </div>
+
+            <!--name-->
+            <div class="row form dateOfBirth">
+                <div class="col s9" id="inputbox">
+                    <label for="dateOfBirth">생년월일을 적어주세요</label>
+                    <input class="textinput" type='date' id = "date" value="2000-01-01">
+                </div>
+            </div>
+
+            <!--email setting form-->
+            <div class="row form email">
+                <div class="col s9" id="inputbox">
+                    <label for="email">사용할 이메일을 적어주세요</label>
+                    <input class="textinput validate" type='email' name= "email" id = "email" placeholder = "ex. uzu2020@likelion.skku">
+                    <span class="helper-text" data-error="바르지 않은 형식입니다" data-success="바른 형식입니다"></span>
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" id="validatebtn">인증하기</a>
+            </div>
+
+            <!--email validation form-->  
+            <div class="row form email-validation">
+                <div class="col s9" id="inputbox">
+                    <label for="email-validation">전송된 인증번호를 입력하세요</label>
+                    <input class="textinput validate" type='text' id = "email-validation">
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" id="validatebtn">인증확인</a>
+            </div>
+
+            <!-- password setting form-->
+            <div class="row form password">
+                <div class="col s12" id="inputbox">
+                    <label for="password">사용할 비밀번호를 적어주세요 <span><br>(8자 이상/ 특수문자, 숫자, 영문 중 두 가지 이상 포함)</span></label>
+                </div>
+
+                <div class="col s9" id="inputbox">
+                    <input class="textinput validate" type='password' name= "password" id = "password">
+                    <span class="helper-text" data-error="비밀번호 설정 형식을 확인해주세요"></span>
+                </div>
+
+                <div class="col s3 password invalid">
+                    <i class="material-icons">error</i>
+                    <i class="material-icons">done_all</i>
+                </div>
+            </div>
+
+
+            <!-- password varification form-->
+            <div class="row form password-varification">
+                <div class="col s9" id="inputbox">
+                    <label for="password-varification">다시 적어주세요</label>
+                    <input class="textinput validate" type='password' id = "password">
+                </div>
+            </div>
+
+            <!--modal-->
+            <div id="dupcheck" class="modal">
+                <div class ="modal-content">
+                    <i class="material-icons nickname valid">check_circle</i>
+                    <i class="material-icons nickname invalid">check_circle</i>
+                    <p id="ok1">사용 가능한 닉네임입니다!</p>
+                    <p id="ok2">만나서 반가워요</p>
+                    <a class= "waves-effect waves-light btn close" href="#" id="okbtn">확인</a>
+                </div>
+            </div>
+
+            <!--nickname form-->
+            <div class="row form nickname">
+                <div class="col s9" id="inputbox">
+                    <label for="nickname">활동할 닉네임을 알려주세요</label>
+                    <input class="textinput validate" type='text' id = "nickname" placeholder = "ex. 우주인">
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" id="dupcheckbtn">중복확인</a>
+            </div>
+            <!--address form-->            
+            <div class="row form address">
+                <div class="col s9" id="inputbox">
+                    <label for="address">지역을 설정해주세요</label>
+                    <input disabled class="textinput validate" type='text' id ='roadAddress' placeholder = "도로명주소">
+                    <input class="textinput validate" type='text' id = 'detailAddress' placeholder = "상세주소">
+                    <span id="guide" style="color:#999; display:none"></span>
+                </div>
+                <a class = "col s3 waves-effect waves-light btn" onclick="execDaumPostcode()" id="addressbtn">주소찾기</a>
+            </div>
+
+            <!--finish button-->  
+            <button class= "waves-effect waves-light btn" type="submit" value="회원가입" id="nextbtn">완료</button>
+        </div>
+        </form> 
+    
 </body>
 </html>

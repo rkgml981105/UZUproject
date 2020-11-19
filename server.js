@@ -31,8 +31,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.set("views",__dirname + "/views");
+
 app.set("view engine", "ejs");
 app.engine('ejs', ejs.renderFile);
+
+app.use(express.static(__dirname + "/public"));
 
 app.use("/member", require("./router/memberRouter"));
 app.use("/board", require("./router/boardRouter"));
@@ -42,5 +45,3 @@ app.use("/", require('./router/controller'));
 app.listen(3000, () => {
   console.log("서버 가동합니당");
 });
-
-
