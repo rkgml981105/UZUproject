@@ -5,9 +5,9 @@ const Board = require("../schemas/board_long");
 
 //지은 사이트  https://supdev.tistory.com/37  - boardlist, show, new(&mongo에 insert)
 /* boardlist */
-router.get('/long', function (req, res,next) {
+router.get('/long', function (req, res, next) {
   Board.find({}, function (err, board) {
-      res.render('/board/long/boardlist', { title: 'Board', board: board });
+      res.render('/board/long/boardlist.ejs', { title: 'Board', board: board });
   })
 })
 

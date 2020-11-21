@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+
+    <div class="Board_short-show">
+      <h2>Show</h2>
+      <div>
+        <h3><%= Board_short.title%></h3>
+        <label>writer</label><span><%= Board.writer %></span>
+        <br>
+        <label>content</label><span><%= Board.content %></span>
+      </div>
+      <div class="Board_short-menu">
+        <a href="/short/<%= Board._id %>/edit">Edit</a> <!-- 1 -->
+        <form action="/short/<%= Board._id %>?_method=delete" method="post"> <!-- 2 -->
+          <a href="#" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">Delete</a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

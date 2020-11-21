@@ -1,0 +1,7 @@
+<h1>게시판 목록</h1>
+
+<a href="/short/write.ejs">글쓰기</a><br>
+<% if (Board !== null){
+    for(var i = 0; i < Board.length; i++) { %>
+        <a href="/short/<%= Board[i]._id%>"><h3><%= i+1 %> - <%=Board[i].title%> - <%=Board[i].writer%></h3></a>
+<%  }} %>

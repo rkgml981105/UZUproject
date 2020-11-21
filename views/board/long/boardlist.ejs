@@ -1,9 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../partials/head') %>
   </head>
   <body>
     <%- include('../partials/nav') %>
   </body>
+
+<h1>게시판 목록</h1>
+
+<% if (Board !== null){
+    for(var i = 0; i < Board.length; i++) { %>
+        <a href="/long/<%= Board[i]._id%>"><h3><%= i+1 %> - <%=Board[i].title%> - <%=Board[i].writer%></h3></a>
+<%  }} %>
+
+<input type = "button" a href="/board/long/write.ejs" onclick = function checkLogin()>글쓰기</a><br>
+<script>
+  function checkLogin() {
+      var id = '${_id}'; // 수정 ''처리
+      alert(id);
+      // 수정 ''공백 비교
+      if (id == '') {
+          alert("로그인 후 글쓰기가 가능합니다.");
+          return false;
+      } else {
+          location.href = '/long/write.ejs';
+      }
+  }
+
+</script>
 </html>

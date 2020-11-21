@@ -1,0 +1,33 @@
+<!-- views/board/long/edit.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./../partials/head') %>
+  </head>
+  <body>
+    <%- include('./../partials/nav') %>
+
+    <div class="Board_long-edit">
+      <h2>Edit</h2>
+      <form class="Board_long-form" action="/board/<%= Board._id %>?_method=put" method="post">
+        <div>
+          <label for="title">제목</label>
+          <input type="text" id="title" title="title" value="<%= Board.title %>">
+        </div>
+        <div>
+          <label for="writer">글쓴이</label>
+          <input type="text" id="writer" title="writer" value="<%= Board.writer %>">
+        </div>
+        <div>
+          <label for="content">내용</label>
+          <input type="text" id="content" title="content" value="<%= Board.content %>">
+        </div>
+        <div>
+          <button type="submit">수정</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
+
