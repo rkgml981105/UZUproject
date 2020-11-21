@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UZU</title>
+    <%- include ("../../partials/head") %>
 </head>
 <body>
-    <h1>UZU 긴글 쓰기</h1>
-    <form action="write" method="POST">
-        <h2>글쓰기</h2>
+    <%- include ("../../partials/nav") %>
+    <h4>UZU 긴글 쓰기</h4>
+    <form action="/board/long/write" method="POST">
+        <div>글쓰기</div>
         제목 : <input type="text" name="title" /> <br>
         내용 : <input type="text" name="content" /> <br>
         태그 : <input type="text" name="tags"/>

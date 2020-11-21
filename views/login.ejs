@@ -2,32 +2,6 @@
 <html lang="en">
 <head>
     <%- include ("./partials/head") %>
-    <style>
-       /*login page*/ 
-       .login-container {
-            width : 50%;
-            margin-left : 25%;
-       }
-
-       .login-text{
-            font-size : 2rem;
-            text-align: center;
-            margin : 2.5rem 0;
-       }
-
-       .row.form {
-           max-width : 400px;
-       }
-
-       #loginbtn {
-        text-align: center;
-        width : 100%;
-        margin : 15% 0;
-        background-color: #4c14ee;
-        max-width : 400px;
-    }
-
-    </style>
 </head>
 <body>
     <%- include ("./partials/nav") %>
@@ -55,8 +29,10 @@
                 </div>
 
                 <!--login button-->
-                <div class="col s12">
-                    <button class= "waves-effect waves-light btn" id="loginbtn" type="submit" value="로그인">로그인</button>
+                <div class="row form">
+                    <div class="col s12">
+                        <button class= "waves-effect waves-light btn" id="loginbtn" type="submit" value="로그인">로그인</button>
+                    </div>
                 </div>
             </div>
         </form>

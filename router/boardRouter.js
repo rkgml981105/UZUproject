@@ -51,7 +51,7 @@ router.get('/best/boardlist', function(req, res) {
 
 /* write(new)  */
 router.get('/long/write', function(req, res) {
-    res.render('board/long/write.ejs', { title: '글쓰기' });
+  res.render('board/long/write.ejs', { title: '글쓰기' });
 });
  
 router.get('/short/write', function(req, res, next) {

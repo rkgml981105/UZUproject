@@ -1,3 +1,7 @@
+<script>
+
+</script>
+
 <!-- views/partials/nav.ejs -->
 <nav class="nav-extended">
   <div class="nav-wrapper">
@@ -22,11 +26,14 @@
       </ul>
   </div>
   <div class="nav-content">
-      <ul class="tabs tabs-transparent">
+      <ul class="tabs tabs-transparent" id="navlist">
+          <li class="tab"><a class="active" href="/">홈</a></li>
           <li class="tab"><a href="board/short/write">짧은글</a></li>
-          <li class="tab"><a class="active" href="board/long/write">긴글</a></li>
+          <li class="tab"><a href="board/long/write">긴글</a></li>
           <li class="tab"><a href="board/best/boardlist">Best</a></li>
       </ul>
+      
+    
       <div class="locContainer">
           <div class="location right">
               <i class="material-icons" id="locationmark">location_on</i>
