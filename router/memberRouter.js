@@ -97,11 +97,12 @@ router.post("/login", async (req, res) => {
                     { $set: { loginCnt: 0 } }
                   );
                   req.session.email = user.email;
-                  res.json({
-                    message: "로그인 되었습니다!",
-                    _id: user2._id,
-                    email: user2.email
-                  });
+                  res.render('main.ejs')
+                  // res.json({
+                  //   message: "로그인 되었습니다!",
+                  //   _id: user2._id,
+                  //   email: user2.email
+                  // });
                 } else {
                   //없으면 로그인 실패횟수 추가
                   if (user.loginCnt > 4) {
