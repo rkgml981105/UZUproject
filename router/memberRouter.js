@@ -97,7 +97,7 @@ router.post("/login", async (req, res) => {
                     { $set: { loginCnt: 0 } }
                   );
                   req.session.email = user.email;
-                  res.render('main.ejs')
+                  res.redirect('/')
                   // res.json({
                   //   message: "로그인 되었습니다!",
                   //   _id: user2._id,
