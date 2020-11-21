@@ -1,0 +1,112 @@
+.landing-container {
+    width : 50%;
+    margin-left : 25%;
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.loginbox {
+    width : 300px;
+    position : relative;
+    margin : 0 20px;
+}
+
+.login-container {
+    position : absolute;
+    width : 100%;
+    padding : 15px;
+    top : 25%;
+}
+
+.imgbox {
+    display : inline-block;
+    position : relative;
+}
+
+.login-container .row {
+    margin : 0;
+}
+
+.login-container .row .input-field.col.s12 {
+    margin : 5px 0 15px 0;
+}
+
+
+@media screen and (max-width:420px) {
+    .landing-container{
+        margin : 0;
+        display : block;
+        width : 100%;
+        left : 0;
+    }
+
+    .loginbox {
+        display: inherit;
+        width: 100%;
+        left: 0%;
+        margin-top: 30%;
+        margin-left: 0;
+    }
+
+    .login-container {
+        position : absolute;
+        width : 70%;
+        left : 15%;
+        padding : 15px;
+    }
+
+    .imgbox {
+        display : none;
+    }
+}
+
+
+  /* label underline focus color */
+.input-field.col.s12  input[type=email]:focus,
+.input-field.col.s12  input[type=password]:focus {
+ border-bottom: 1px solid #4214ee;
+ box-shadow: 0 1px 0 0 #4214ee;
+}
+
+.input-field.col.s12 label {
+    color : #424242;
+}
+
+
+.input-field.col.s12 input[type=email]:focus + label,
+.input-field.col.s12 input[type=password]:focus + label {
+ color: #4214ee;
+}
+
+#loginbtn {
+    width : 100%;
+    background-color: #4c14ee;
+    margin-bottom: 10px;
+}
+
+.tosignin {
+    font-size: 13px;
+    text-align: center;
+}
+
+.tosignin a {
+    color : #4c14ee;
+}
+
+.or {
+    text-align: center;
+    margin : 30px 0;
+    font-size: 13px;
+}
+
+#loginbtn, #g-loginbtn {
+    font-size: 14px;
+}
+
+#g-loginbtn {
+    width : 100%;
+    background-color: #ffffff;
+    color : #424242;
+    border : 1px solid #4c14ee;
+    text-transform: none;
+}

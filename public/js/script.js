@@ -1,23 +1,5 @@
 // public/js/script.js
 
-// Get the container element
-const navContainer = document.getElementById("navlist");
-
-// Get all buttons with class="btn" inside the container
-const tabs = navContainer.getElementsByClassName("tab");
-
-// Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < tabs.length; i++) {
-  tabs[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-
-
-
-
 $(document).ready(function() {
 
   $(function(){
