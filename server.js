@@ -34,6 +34,8 @@ app.set("views",__dirname + "/views");
 app.set("view engine", "ejs");
 app.engine('ejs', ejs.renderFile);
 
+app.use(express.static(__dirname + '/public'));
+
 app.use("/member", require("./router/memberRouter"));
 app.use("/board", require("./router/boardRouter"));
 

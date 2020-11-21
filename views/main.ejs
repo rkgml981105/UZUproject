@@ -4,10 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UZU</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script src="https://kit.fontawesome.com/997c755345.js" crossorigin="anonymous"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script>
+        $('.wrapper').masonry({
+        itemSelector: '.itemwrapper',
+        columnWidth: 230,
+        isFitWidth: true
+        });
+    </script>
+    
+    <!--materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+  
+  
+
+    <script>
+        $(document).ready(function() {
+            $(".dropdown-trigger").dropdown();
+
+            /*text-box*/
+            let inputfield = $(".input-field");
+            let divider = $('.divider');
+            let helper_text = $(".helper-text");
+            let share_cancel = $(".share-cancel");
+
+            $('#cancelbtn').click(function() {
+                $(".divider").hide();
+                $(".helper-text").hide();
+                $(".share-cancel").hide();
+                $(".materialize-textarea").height("50px");
+            });
+
+            inputfield.focusin(function() {
+                $(".divider").show();
+                $(".helper-text").show();
+                $(".share-cancel").show();
+                inputfield.height("auto");
+            });
+
+                /*text-box input resize*/
+                M.textareaAutoResize($('#textarea'));
+                $('textarea#textarea').characterCounter();
+
+
+            /*location*/
+            let location = $("#location");
+            let locationmark = $('#locationmark');
+            let modibtn = $('#modibtn');
+            let locContainer = $('.locContainer');
+            let loc_display = 0; //초기값 : 보이기(0)
+
+
+            locationmark.click(function() {
+                if($(window).width() <= 700) {
+                    if(loc_display === 0) {
+                        loc_display = 1;
+
+                        modibtn.hide();
+                        location.hide();
+                        locContainer.css("margin-left","-5%");
+
+                    } else if (loc_display === 1) {
+                        modibtn.show();
+                        location.show();
+                        locContainer.css("margin-left","-265px");
+                        loc_display = 0;
+                    }
+                } else{
+                    modibtn.show();
+                    location.show();
+                    locContainer.css("margin-left","-265px");
+                }
+            });
+        });
+    </script>
+
+
 </head>
 <body>
-    <h1>UZU main page</h1>
-        <h3>어서오세요, UZU입니다!</h3>
-        <a href="/register">회원가입</a>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <!-- Dropdown Structure -->
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">계정</a></li>
+                <li><a href="#!">2번째</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">3번째</a></li>
+            </ul>
+            <a href="main.ejs" class="brand-logo"><img id='brand-logo' src='/image/brand_logo.png'></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html"><i class="material-icons">create</i></a></li>
+                <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+                
+                <!-- Dropdown Trigger -->
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">my<i class="material-icons right">keyboard_arrow_down</i></a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="#test1">짧은글</a></li>
+                <li class="tab"><a class="active" href="#test2">긴글</a></li>
+                <li class="tab"><a href="#test3">Best</a></li>
+            </ul>
+            <div class="locContainer">
+                <div class="location right">
+                    <i class="material-icons" id="locationmark">location_on</i>
+                    <span id="location">
+                        서울특별시 종로구 성균관로 25-2
+                        성균관대학교 인문사회과학캠퍼스
+                    </span>
+                    <button id="modibtn">수정</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">검색</a></li>
+        <li><a href="badges.html">알림</a></li>
+        <!--마이페이지는 로그인 성공시에만 render-->
+        <li><a href="collapsible.html">마이페이지</a></li>
+    </ul>
+
+
+    <div class="row">
+        <div id="main_banner" class="col s12">Test 1</div>
+    </div>
+
+    <div class='textContainer'>
+        <div class='input-field'>
+            <textarea class="materialize-textarea" id="textarea" data-length="300" placeholder="여기를 눌러 이야기를 공유해보세요."></textarea>
+            <div class="divider"></div>
+            <span class="helper-text" data-error="너무 길어요! (최대 글자 수 : 300자)"></span>
+            <div class="share-cancel">
+                <a href="#" id="sharebtn">공유</a>
+                <a href="#" id="cancelbtn">취소</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="collection-title">
+        <span>title 1</span>
+        <a><i class="material-icons">chevron_right</i></a>
+        <a href="#" class="movetoboard">전체 게시판 보기</a>
+    </div>
+
 </body>
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+        © 2020 Copyright 
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+
 </html> 

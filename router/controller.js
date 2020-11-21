@@ -18,11 +18,11 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
         res.render('parameter.ejs', render_data)
     });
     router.post("/login",function(req,res){
-        const login_data = {
-            id: req.query.id,
-            pw: req.query.pw,
-        };
-        res.render('login.ejs',login_data)
+        // const login_data = {
+        //     id: req.query.id,
+        //     pw: req.query.pw,
+        // };
+        res.render('login.ejs')
     });
 
 

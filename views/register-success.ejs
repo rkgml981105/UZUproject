@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register success</title>
+
+      <!--materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/register.css">
+
+    <script src="/js/register-success.js"></script>
+
+    <style>
+        html body{
+            min-height: 500px;
+        }
+        .register-confirmed {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            
+        }
+        .welcometext{
+            font-weight: 500;
+            font-size: 32px;
+            text-align: center;
+            padding: 40px;
+            display: block;
+            border: solid 3px #4c14ee;
+            border-radius: 4px;
+            max-width: 50%;
+        }
+        .homebtn{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+        }
+        #homebtn{
+            background-color: #4c14ee;
+            color: #ffffff;
+            margin-top: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-confirmed">
+       <div class="welcometext">회원가입을 축하드립니다!</div> 
+    </div>
+    <div class="homebtn">
+        <form action="/" method="GET">
+        <button type="submit" class= "waves-effect waves-light btn" id="homebtn" value="homebtn">메인으로 가기</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+   
