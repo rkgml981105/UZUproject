@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UZU</title>
+    <%- include ("./partials/head") %>
+    <style>
+       /*login page*/ 
+       .login-container {
+            width : 50%;
+            margin-left : 25%;
+       }
+
+       .login-text{
+            font-size : 2rem;
+            text-align: center;
+            margin : 2.5rem 0;
+       }
+
+       .row.form {
+           max-width : 400px;
+       }
+
+       #loginbtn {
+        text-align: center;
+        width : 100%;
+        margin : 15% 0;
+        background-color: #4c14ee;
+        max-width : 400px;
+    }
+
+    </style>
 </head>
 <body>
-    <h1>UZU login page</h1>
-    <form action="login" method="POST">
-        <h2>로그인</h2>
-        이메일 : <input type="text" name="id" /> <br />
-        비밀번호 : <input type="password" name="pw" />
-        <button type="submit" value="로그인">로그인</button>
-    </form>
+    <%- include ("./partials/nav") %>
+    <div class="login-container">
+        <div class="login-text">
+            <div><br>로그인</div>
+        </div>
+
+        <form action="login" method="POST">
+            <div id="forms">
+                <!--email-->
+                <div class="row form email">
+                    <div class="col s12" id="inputbox">
+                        <label for="email">이메일</label>
+                        <input class="textinput" type='email' id = "email">
+                    </div>
+                </div>
+
+                <!--password-->
+                <div class="row form password">
+                    <div class="col s12" id="inputbox">
+                        <label for="password">비밀번호</label>
+                        <input class="textinput" type='password' id = "password">
+                    </div>
+                </div>
+
+                <!--login button-->
+                <div class="col s12">
+                    <button class= "waves-effect waves-light btn" id="loginbtn" type="submit" value="로그인">로그인</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
