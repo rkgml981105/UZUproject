@@ -7,14 +7,14 @@ const Board = require("../schemas/board_long");
 /* boardlist */
 router.get('/long', function (req, res,next) {
   Board.find({}, function (err, board) {
-      res.render('/board/long/boardlist', { title: 'Board', board: board });
+      res.render('board/long/boardlist', { title: 'Board', board: board });
   })
 })
 
 
 router.get('/short', function (req, res,next) {
   Board.find({}, function (err, board) {
-      res.render('/board/short/boardlist.ejs', { title: 'Board', board: board });
+      res.render('board/short/boardlist.ejs', { title: 'Board', board: board });
   })
 })
 
@@ -38,7 +38,7 @@ router.get('/long/show/:id', function (req, res) {
 router.get('/short/show/:id', function (req, res) {
   Board.findOne({_id: req.params.id}, function (err, board) {
       if(err) return res.json(err);
-      res.render('/board/short/show', { title: 'Board', board: board });
+      res.render('board/short/show', { title: 'Board', board: board });
   })
 });
 
