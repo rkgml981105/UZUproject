@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UZU</title>
+    <%- include ("../../partials/head") %>
+    <style>
+        /*board - short - write*/
+
+        .boardtitle{
+            text-align: center;
+            font-size: 25px;
+            margin : 2.5rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>UZU 짧은글 쓰기</h1>
-    <form action="write" method="POST">
-        <h2>글쓰기</h2>
-        제목 : <input type="text" name="id" /> <br>
-        내용 : <input type="text" name="content" />
-        <button type="submit" value="게시"></button>
-    </form>
+    <%- include ("../../partials/nav") %>
+    <div class= "container">
+        <div class="boardtitle">
+            <div>UZU 짧은글 쓰기</div>
+        </div>
+
+        <form action="/board/short/write" method="POST">
+            제목 <input type="text" name="title" /> <br>
+            내용 <input type="textarea" name="content" /> <br>
+            태그 <input type="text" name="tags"/>
+            <button type="submit" value="게시">게시</button>
+        </form>
+    </div>
 </body>
 </html>

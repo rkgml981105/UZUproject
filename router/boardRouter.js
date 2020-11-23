@@ -5,16 +5,17 @@ const Board = require("../schemas/board_long");
 
 //지은 사이트  https://supdev.tistory.com/37  - boardlist, show, new(&mongo에 insert)
 /* boardlist */
+
 router.get('/long', function (req, res, next) {
   Board.find({}, function (err, board) {
-      res.render('/board/long/boardlist.ejs', { title: 'Board', board: board });
+      res.render('board/long/boardlist.ejs', { title: 'Board', board: board });
   })
 })
 
 
 router.get('/short', function (req, res,next) {
   Board.find({}, function (err, board) {
-      res.render('/board/short/boardlist.ejs', { title: 'Board', board: board });
+      res.render('board/short/boardlist.ejs', { title: 'Board', board: board });
   })
 })
 
@@ -30,7 +31,7 @@ router.get('/best', function (req, res,next) {
 router.get('/long/show/:id', function (req, res) {
   Board.findOne({_id: req.params.id}, function (err, board) {
       if(err) return res.json(err);
-      res.render('/board/long/show', { title: 'Board', board: board });
+      res.render('board/long/show', { title: 'Board', board: board });
   })
 });
 
@@ -38,7 +39,7 @@ router.get('/long/show/:id', function (req, res) {
 router.get('/short/show/:id', function (req, res) {
   Board.findOne({_id: req.params.id}, function (err, board) {
       if(err) return res.json(err);
-      res.render('/board/short/show', { title: 'Board', board: board });
+      res.render('board/short/show', { title: 'Board', board: board });
   })
 });
 

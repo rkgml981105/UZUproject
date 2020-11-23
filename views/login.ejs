@@ -1,65 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include ("./partials/head") %>
-    <style>
-       /*login page*/ 
-       .login-container {
-            width : 50%;
-            margin-left : 25%;
-       }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landing-page</title>
 
-       .login-text{
-            font-size : 2rem;
-            text-align: center;
-            margin : 2.5rem 0;
-       }
 
-       .row.form {
-           max-width : 400px;
-       }
+    <!--materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-       #loginbtn {
-        text-align: center;
-        width : 100%;
-        margin : 15% 0;
-        background-color: #4c14ee;
-        max-width : 400px;
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <link rel="stylesheet" href="/css/login.css">
+
+
+<script>
+
+$(document).ready(function() {
+
+    var startwidth = 1080;  
+    var startheight = 611;
+    var ratio = startwidth/startheight;
+
+    var browserwidth = $(window).width();
+    var browserheight = $(window).height();
+
+    $('#landingimg').height(browserheight);
+
+    window.onresize = function(event) {
+        var browserheight = $(window).height();
+
+        if (browserheight >= 670) {
+            $('#landingimg').height(browserheight);
+        } else {
+            $('#landingimg').css.height("700px");
+        }
     }
+});
 
-    </style>
+</script>
+
 </head>
+
+
 <body>
-    <%- include ("./partials/nav") %>
-    <div class="login-container">
-        <div class="login-text">
-            <div><br>로그인</div>
-        </div>
-
-        <form action="login" method="POST">
-            <div id="forms">
-                <!--email-->
-                <div class="row form email">
-                    <div class="col s12" id="inputbox">
-                        <label for="email">이메일</label>
-                        <input class="textinput" type='email' id = "email">
+    <div class="landing-container">   
+        <div class="loginbox">
+            <div class="login-container">
+                <form action="member/login" method="POST">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="id-email" type="email" name="email">
+                            <label for="id-email">아이디/이메일</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="password" type="password" name="password">
+                            <label for="password">비밀번호</label>
+                        </div>
                     </div>
-                </div>
+                    <button class="waves-effect waves-light btn" type="submit" value="로그인" id="loginbtn">로그인</button>
+                </form>       
+                <div class="tosignin">회원이 아니신가요? <a href="register.ejs">회원가입</a></div>
+                <div class="or">혹은</div>
 
-                <!--password-->
-                <div class="row form password">
-                    <div class="col s12" id="inputbox">
-                        <label for="password">비밀번호</label>
-                        <input class="textinput" type='password' id = "password">
-                    </div>
-                </div>
-
-                <!--login button-->
-                <div class="col s12">
-                    <button class= "waves-effect waves-light btn" id="loginbtn" type="submit" value="로그인">로그인</button>
-                </div>
+                <a class="waves-effect waves-light btn" id="g-loginbtn">Google로 로그인</a>
             </div>
-        </form>
+        </div>
+        <div class="imgbox">
+            <img id="landingimg" src="/image/uzu_main.jpg">
+        </div>  
     </div>
 </body>
 </html>

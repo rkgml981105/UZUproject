@@ -52,7 +52,6 @@ const userSchema = new Schema({
 module.exports = mongoose.model("User", userSchema);
 
 
-
 // const mongoose = require('mongoose');
 // const bcrypt = require('bcrypt');
 // const saltRounds = 10;

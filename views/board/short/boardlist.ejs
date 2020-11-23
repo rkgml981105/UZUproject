@@ -1,7 +1,12 @@
-<h1>게시판 목록</h1>
-
-<a href="/short/write.ejs">글쓰기</a><br>
-<% if (Board !== null){
-    for(var i = 0; i < Board.length; i++) { %>
-        <a href="/short/<%= Board[i]._id%>"><h3><%= i+1 %> - <%=Board[i].title%> - <%=Board[i].writer%></h3></a>
-<%  }} %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../../partials/head') %>
+  </head>
+  <body>
+    <%- include('../../partials/nav') %>
+    <h1>짧은 글 게시판 목록</h1>
+  </body>
+</html>
