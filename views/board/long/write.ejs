@@ -16,14 +16,13 @@
     <%- include ("../../partials/nav") %>
     <div class= "container">
         <div class="boardtitle">
-            <div>UZU 긴 글 쓰기</div>
+            UZU 긴 글 쓰기
         </div>
-
         <form action="/board/short/write" method="POST">
+            글쓴이 <input type="text" name="writer"/>
             제목 <input type="text" name="title" /> <br>
             내용 <input type="textarea" name="content" /> <br>
-            태그 <input type="text" name="tags"/>
-            <button type="submit" value="게시">게시</button>
+            <button type="submit">게시</button>
         </form>
     </div>
 </body>

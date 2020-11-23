@@ -4,7 +4,9 @@ const cors = require("cors");
 const session = require("express-session");
 const ejs = require("ejs");
 const connect = require("./schemas");
-
+const bodyParser = require('body-parser'); // 1
+app.use(bodyParser.json()); // 2
+app.use(bodyParser.urlencoded({extended:true})); // 3
 
 connect();
 

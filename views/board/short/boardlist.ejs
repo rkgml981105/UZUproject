@@ -7,6 +7,16 @@
   </head>
   <body>
     <%- include('../../partials/nav') %>
-    <h1>짧은 글 게시판 목록</h1>
+    <h3>짧은 글 게시판 목록</h3>
+    <div class="contact contact-index">
+      <h3>Index</h3>
+      <ul>
+        <% boards.forEach(function(Board) { %> <!-- 3 -->
+          <li>
+            <%= Board.title %>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
   </body>
 </html>
