@@ -3,7 +3,9 @@ const app = express();
 const cors = require("cors");
 const session = require("express-session");
 const ejs = require("ejs");
+const cookieParser = require('cookie-parser');
 const connect = require("./schemas");
+const { signedCookie } = require("cookie-parser");
 
 
 connect();
@@ -20,7 +22,8 @@ app.use(
     secret: "uzu",
     cookie: {
       httpOnly: true,
-      secure: false
+      secure: false,
+      maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
     }
   })
 );
@@ -29,6 +32,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.set("views",__dirname + "/views");
 

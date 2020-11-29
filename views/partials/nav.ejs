@@ -11,25 +11,33 @@
       </ul>
       <a href="/" class="brand-logo"><img id='brand-logo' src='/image/brand_logo.png'></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="login">로그인</a></li>
-          <li><a href="register">회원가입</a></li>
-          <li><a href="sass.html"><i class="material-icons">create</i></a></li>
-          <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-          <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
-          
-          <!-- Dropdown Trigger -->
+
+      <% if(session.email){ %>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="login" style="display:none">로그인</a></li>
+            <li><a href="register" style="display:none">회원가입</a></li>
+            <li><a href="sass.html"><i class="material-icons">create</i></a></li>
+            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+            <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+
+            <!-- Dropdown Trigger -->
           <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">my<i class="material-icons right">keyboard_arrow_down</i></a></li>
-      </ul>
+        </ul>
+    <% } else{ %>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="login">로그인</a></li>
+            <li><a href="register">회원가입</a></li>
+            <li><a href="sass.html"><i class="material-icons">create</i></a></li>
+            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+            <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+          
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">my<i class="material-icons right">keyboard_arrow_down</i></a></li>
+        </ul>
+    <% } %>
+    
   </div>
   <div class="nav-content">
-      <!-- <ul class="tabs tabs-transparent" id="navlist">
-          <li class="tab"><a class="active" href="/">홈</a></li>
-          <li class="tab"><a href="/board/short/write">짧은글</a></li>
-          <li class="tab"><a href="/board/long/write">긴글</a></li>
-          <li class="tab"><a href="/board/best/boardlist">Best</a></li>
-        </ul> -->
-        
         <ul class="tabs tabs-transparent" id="navlist">
             <li class="tab"> <% if (active === '/') { %>
                 <a class="active" href="/">홈</a> 
