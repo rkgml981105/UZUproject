@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const Board = require("../schemas/board_long");
-
+const Board = require("../schemas/board");
+const LongBoard = require("../schemas/board_long");
 
 //지은 사이트  https://supdev.tistory.com/37  - boardlist, show, new(&mongo에 insert)
 /* boardlist */
 
+
 router.get('/long', function (req, res) {
-  Board.find({}, function (err, boards) {
+  LongBoard.find({}, function (err, boards) {
     if(err) return res.json(err);
     res.render('board/long/boardlist.ejs', { boards: boards });
   })
@@ -30,7 +31,7 @@ router.get('/best', function (req, res,next) {
 
 /* board find by id - show */
 router.get('/long/show/:id', function (req, res) {
-  Board.findOne({_id: req.params.id}, function (err, boards) {
+  LongBoard.findOne({_id: req.params.id}, function (err, boards) {
       if(err) return res.json(err);
       res.render('board/long/show', { title: 'Board', boards: boards });
   })
@@ -53,16 +54,16 @@ router.get('/best/boardlist', function(req, res) {
 
 /* write(new)  */
 router.get('/long/write', function(req, res) {
-    res.render('board/long/write.ejs', { title: '글쓰기' });
+    res.render('board/long/write.ejs');
 });
  
 router.get('/short/write', function(req, res) {
-  res.render('board/short/write.ejs'), { title: '글쓰기' };
+  res.render('board/short/write.ejs');
 });
 
 
 router.post('/long/write', function(req, res){
-  Board.create(req.body, function(err, board){
+  LongBoard.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/long');
   });
@@ -83,7 +84,7 @@ router.post('/short/write', function(req, res){
 
 /* edit */
 router.get('/long/:id/edit', function(req, res){
-  Board.findOne({_id:req.params.id}, function(err, boards){
+  LongBoard.findOne({_id:req.params.id}, function(err, boards){
     if(err) return res.json(err);
     res.render('/board/long/edit', {boards: boards});
   });
@@ -98,7 +99,7 @@ router.get('/short/:id/edit', function(req, res){
 
 //update insert mongo  //  
 router.put('/long/:id', function(req, res){
-  Board.findOneAndUpdate({_id:req.params.id}, req.body, function(err, boards){
+  LongBoard.findOneAndUpdate({_id:req.params.id}, req.body, function(err, boards){
     if(err) return res.json(err);
     res.redirect('/board/long'+req.params.id);
   });
@@ -113,7 +114,7 @@ router.put('/short/:id', function(req, res){
 
 // destroy //
 router.delete('/long/:id', function(req, res){
-  Board.deleteOne({_id:req.params.id}, function(err){
+  LongBoard.deleteOne({_id:req.params.id}, function(err){
     if(err) return res.json(err);
     res.redirect('/board/long');
   });
