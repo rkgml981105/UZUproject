@@ -325,3 +325,10 @@ input[type=password]:not(.browser-default).textinput:focus{
     }
     
 }
+
+/*board - general*/
+.boardtitle{
+    text-align: center;
+    font-size: 25px;
+    margin : 2.5rem;
+}
