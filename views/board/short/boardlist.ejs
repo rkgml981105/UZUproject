@@ -28,16 +28,44 @@
         color : #ffffff;
     }
 
-    .spcontainer .spfooter{
+    .sptable {
+        width : inherit;
+    }
+
+    .sptitle {
+        margin : 0;
+        font-weight: bold;
+        max-width: 300px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .spcontent {
+        margin : 0;
+        max-width : 50%;
+        overflow: hidden;
+    }
+
+    .spfooter{
         text-align: right;
+        font-size: 11px;
     }
 
-    .spcontainer .sptitle {
-        margin : 0;
+    .spfooter i{
+        font-size: 14px;
     }
 
-    .spcontainer .spcontent {
-        margin : 0;
+    .splike, .spcomment {
+        margin : 0 3px;
+    }
+
+    @media screen and (max-width:840px) {
+
+        .spcontent {
+            margin : 0;
+            max-width : 50%;
+        }
     }
 
     </style>
@@ -61,7 +89,7 @@
         </div>
 
         <div class="spcontainer">
-            <table>
+            <table class="sptable">
             <tr>
                 <td>
                     <div class="spheader">
@@ -70,10 +98,10 @@
                         <span class="sptime">17분 전</span>
                     </div>
                     <p class="sptitle">제목 자리</p>
-                    <p class="spcontent">gerwvwenjndknknc</p>
+                    <p class="spcontent">gerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknknc</p>
                     <div class="spfooter">
-                        <span class="splike">17</span>
-                        <span class="spcomment">6</span>
+                        <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                        <i class="material-icons">comment</i><span class="spcomment">6</span>
                     </div>
                 </td>
             </tr>
