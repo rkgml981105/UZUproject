@@ -34,30 +34,6 @@ router.get('/best', function (req, res,next) {
 })
 
 
-
-/* board find by id - show */
-router.get('/long/show/:id', function (req, res) {
-  LongBoard.findOne({_id: req.params.id}, function (err, boards) {
-      if(err) return res.json(err);
-      res.render('board/long/show', { title: 'Board', boards: boards });
-  })
-});
-
-
-router.get('/short/show/:id', function (req, res) {
-  Board.findOne({_id: req.params.id}, function (err, boards) {
-      if(err) return res.json(err);
-      res.render('board/short/show', {boards: boards });
-  })
-});
-
-
-/*show board*/
-router.get('/best/boardlist', function(req, res) {
-  res.render('board/best/boardlist.ejs', { title: '글쓰기' });
-});
-
-
 /* write(new)  */
 router.get('/long/write', function(req, res) {
     res.render('board/long/write.ejs');
@@ -83,6 +59,30 @@ router.post('/short/write', function(req, res){
   });
 });
 
+
+
+/* board find by id - show */
+router.get('/long/:id', function (req, res) {
+  LongBoard.findOne({_id: req.params.id}, function (err, boards) {
+      if(err) return res.json(err);
+      res.render('board/long/show', { title: 'Board', boards: boards });
+  })
+});
+
+
+router.get('/short/:id', function (req, res) {
+  Board.findOne({_id: req.params.id}, function (err, boards) {
+      if(err) return res.json(err);
+      res.render('board/short/show', {boards: boards });
+  })
+});
+
+
+
+/*show board*/
+router.get('/best/boardlist', function(req, res) {
+  res.render('board/best/boardlist.ejs', { title: '글쓰기' });
+});
 
 
 //원경 사이트 https://www.a-mean-blog.com/ko/blog/Node-JS-%EC%B2%AB%EA%B1%B8%EC%9D%8C/%EC%A3%BC%EC%86%8C%EB%A1%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0/%EC%A3%BC%EC%86%8C%EB%A1%9D-Show-Edit-Update-Destroy
