@@ -5,10 +5,10 @@ const session = require("express-session");
 const ejs = require("ejs");
 const connect = require("./schemas");
 const bodyParser = require('body-parser'); // 1
-const methodOverride = require('method-override'); //1
+const methodOverride = require('method-override'); // delete, update 
 
 app.use(bodyParser.json()); // 2
-app.use(methodOverride('_method')); // 2
+app.use(methodOverride('_method')); // delete, update 
 app.use(bodyParser.urlencoded({extended:true})); // 3
 
 connect();
