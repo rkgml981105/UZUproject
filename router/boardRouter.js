@@ -36,18 +36,18 @@ router.get('/best', function (req, res,next) {
 
 
 /* board find by id - show */
-router.get('/long/:id', function (req, res) {
+router.get('/long/show/:id', function (req, res) {
   LongBoard.findOne({_id: req.params.id}, function (err, boards) {
       if(err) return res.json(err);
-      res.render('board/long/show', { boards: boards });
+      res.render('board/long/show', { title: 'Board', boards: boards });
   })
 });
 
 
-router.get('/short/:id', function (req, res) {
+router.get('/short/show/:id', function (req, res) {
   Board.findOne({_id: req.params.id}, function (err, boards) {
       if(err) return res.json(err);
-      res.render('board/short/show', { boards: boards });
+      res.render('board/short/show', {boards: boards });
   })
 });
 
