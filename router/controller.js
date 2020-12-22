@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-
+const User = require("../schemas/user");
+const Board = require("../schemas/board");
 
     router.get('/', function(req,res){
         res.render('main.ejs');
@@ -17,13 +18,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
         };
         res.render('parameter.ejs', render_data)
     });
-    router.post("/login",function(req,res){
-        // const login_data = {
-        //     id: req.query.id,
-        //     pw: req.query.pw,
-        // };
+    router.get("/login",function(req,res){
         res.render('login.ejs')
     });
-
 
 module.exports = router
