@@ -8,25 +8,30 @@ const LongBoard = require("../schemas/board_long");
 
 
 router.get('/long', function (req, res) {
-  LongBoard.find({}, function (err, boards) {
+  LongBoard.find({})
+  .sort('-createdAt')            // 1
+  .exec(function (err, boards) {
     if(err) return res.json(err);
     res.render('board/long/boardlist.ejs', { boards: boards });
-  })
-})
+  });
+});
 
 router.get('/short', function (req, res) {
-  Board.find({}, function (err, boards) {
+  Board.find({})
+  .sort('-createdAt')
+  .exec(function (err, boards) {
     if(err) return res.json(err);
     res.render('board/short/boardlist.ejs', { boards: boards });
   })
 })
 
 router.get('/best', function (req, res,next) {
-  Board.find({}, function (err, boards) {
+  Board.find({})
+  .sort('likeCnt')
+  .exec(function (err, boards) {
       res.render('board/best/boardlist.ejs', { title: 'Board', boards: boards });
   })
 })
-
 
 
 /* board find by id - show */

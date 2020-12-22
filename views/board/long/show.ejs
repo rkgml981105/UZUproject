@@ -9,14 +9,14 @@
     <div class="Board_long-show">
       <h2>Show</h2>
       <div>
-        <h3><%= Board.title%></h3>
-        <label>writer</label><span><%= Board.writer %></span>
+        <h3><%= LongBoard.title%></h3>
+        <label>writer</label><span><%= LongBoard.writer %></span>
         <br>
-        <label>content</label><span><%= Board.content %></span>
+        <label>content</label><span><%= LongBoard.content %></span>
       </div>
       <div class="Board_long-menu">
-        <a href="/long/<%= Board._id %>/edit">Edit</a> <!-- 1 -->
-        <form action="/long/<%= Board._id %>?_method=delete" method="post"> <!-- 2 -->
+        <a href="/board/long/<%= LongBoard._id %>/edit">Edit</a> <!-- 1 -->
+        <form action="/board/long/<%= LongBoard._id %>?_method=delete" method="post"> <!-- 2 -->
           <a href="#" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">Delete</a>
         </form>
       </div>

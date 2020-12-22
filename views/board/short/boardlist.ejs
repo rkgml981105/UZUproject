@@ -7,16 +7,44 @@
   </head>
   <body>
     <%- include('../../partials/nav') %>
-    <h3>짧은 글 게시판 목록</h3>
-    <div class="contact contact-index">
-      <h3>Index</h3>
-      <ul>
-        <% boards.forEach(function(Board) { %> <!-- 3 -->
-          <li>
-            <%= Board.title %>
-          </li>
-        <% }) %>
-      </ul>
+
+    <div class="container mb-3">
+
+      <h2 class="mb-3">짧은 글 게시판 목록</h2>
+
+      <table class="board-table table table-sm border-bottom">
+
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col" class="content">Content</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if(boards == null || boards.length == 0){ %>
+            <tr>
+              <td colspan=2> There is no data to show :( </td>
+            </tr>
+          <% } %>
+          <% boards.forEach(function(board) { %>
+            <tr>
+              <td>
+                <a href="/board/short/<%= board._id %>"><div class="ellipsis"><%= board.title %></div></a>
+              </td>
+              </td>
+              <td class="content">
+               <span data-date><%= board.content %></span> <!-- 1 -->
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+
+      </table>
+      <br>
+      <div>
+        <a class="btn btn-primary" href="/board/short/write">글쓰기</a>
+      </div>
     </div>
   </body>
 </html>
