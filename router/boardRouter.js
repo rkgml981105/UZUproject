@@ -4,12 +4,12 @@ const Board = require("../schemas/board");
 const LongBoard = require("../schemas/board_long");
 
 //지은 사이트  https://supdev.tistory.com/37  - boardlist, show, new(&mongo에 insert)
-/* boardlist */
 
+/* boardlist */
 
 router.get('/long', function (req, res) {
   LongBoard.find({})
-  .sort('-createdAt')            // 1
+  .sort('-createdAt')            // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
     res.render('board/long/boardlist.ejs', { boards: boards });
@@ -18,7 +18,7 @@ router.get('/long', function (req, res) {
 
 router.get('/short', function (req, res) {
   Board.find({})
-  .sort('-createdAt')
+  .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
     res.render('board/short/boardlist.ejs', { boards: boards });
@@ -27,26 +27,27 @@ router.get('/short', function (req, res) {
 
 router.get('/best', function (req, res,next) {
   Board.find({})
-  .sort('likeCnt')
+  .sort('likeCnt')    // 좋아요 순으로 내림차순
   .exec(function (err, boards) {
       res.render('board/best/boardlist.ejs', { title: 'Board', boards: boards });
   })
 })
 
 
+
 /* board find by id - show */
-router.get('/long/show/:id', function (req, res) {
+router.get('/long/:id', function (req, res) {
   LongBoard.findOne({_id: req.params.id}, function (err, boards) {
       if(err) return res.json(err);
-      res.render('board/long/show', { title: 'Board', boards: boards });
+      res.render('board/long/show', { boards: boards });
   })
 });
 
 
-router.get('/short/show/:id', function (req, res) {
+router.get('/short/:id', function (req, res) {
   Board.findOne({_id: req.params.id}, function (err, boards) {
       if(err) return res.json(err);
-      res.render('board/short/show', { title: 'Board', boards: boards });
+      res.render('board/short/show', { boards: boards });
   })
 });
 
