@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Board = require("../schemas/board");
-const LongBoard = require("../schemas/board_long");
+const Board_long = require("../schemas/board_long");
 
 //지은 사이트  https://supdev.tistory.com/37  - boardlist, show, new(&mongo에 insert)
 
 /* boardlist */
 
 router.get('/long', function (req, res) {
-  LongBoard.find({})
+  Board_long.find({})
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -45,7 +45,7 @@ router.get('/short/write', function(req, res) {
 
 
 router.post('/long/write', function(req, res){
-  LongBoard.create(req.body, function(err, board){
+  Board_long.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/long');
   });
@@ -61,11 +61,11 @@ router.post('/short/write', function(req, res){
 
 
 
-/* board find by id - show */
+/* board find by id - show : short는 되는데 long은 안됨,,,왜???*/  
 router.get('/long/:id', function (req, res) {
-  LongBoard.findOne({_id: req.params.id}, function (err, boards) {
+  Board_long.findOne({_id: req.params.id}, function (err, board_long) {
       if(err) return res.json(err);
-      res.render('board/long/show', { title: 'Board', boards: boards });
+      res.render('board/long/show', { board_long: board_long });
   })
 });
 
@@ -78,10 +78,11 @@ router.get('/short/:id', function (req, res) {
 });
 
 
-
-/*show board*/
-router.get('/best/boardlist', function(req, res) {
-  res.render('board/best/boardlist.ejs', { title: '글쓰기' });
+router.get('/best/:id', function (req, res) {
+  Board.findOne({_id: req.params.id}, function (err, boards) {
+      if(err) return res.json(err);
+      res.render('board/best/show', {boards: boards });
+  })
 });
 
 
@@ -90,37 +91,37 @@ router.get('/best/boardlist', function(req, res) {
 
 /* edit */
 router.get('/long/:id/edit', function(req, res){
-  LongBoard.findOne({_id:req.params.id}, function(err, boards){
+  Board_long.findOne({_id:req.params.id}, function(err, boards){
     if(err) return res.json(err);
-    res.render('/board/long/edit', {boards: boards});
+    res.render('board/long/edit', {boards: boards});
   });
 });
 
 router.get('/short/:id/edit', function(req, res){
   Board.findOne({_id:req.params.id}, function(err, boards){
     if(err) return res.json(err);
-    res.render('/board/short/edit', {boards: boards});
+    res.render('board/short/edit', {boards: boards});
   });
 });
 
 //update insert mongo  //  
 router.put('/long/:id', function(req, res){
-  LongBoard.findOneAndUpdate({_id:req.params.id}, req.body, function(err, boards){
+  Board_long.findOneAndUpdate({_id:req.params.id}, req.body, function(err, boards){
     if(err) return res.json(err);
-    res.redirect('/board/long'+req.params.id);
+    res.redirect('/board/long/'+req.params.id);
   });
 });
 
 router.put('/short/:id', function(req, res){
   Board.findOneAndUpdate({_id:req.params.id}, req.body, function(err, boards){
     if(err) return res.json(err);
-    res.redirect('/board/short'+req.params.id);
+    res.redirect('/board/short/'+req.params.id);
   });
 });
 
 // destroy //
 router.delete('/long/:id', function(req, res){
-  LongBoard.deleteOne({_id:req.params.id}, function(err){
+  Board_long.deleteOne({_id:req.params.id}, function(err){
     if(err) return res.json(err);
     res.redirect('/board/long');
   });

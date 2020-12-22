@@ -1,5 +1,3 @@
-<!-- views/board/long/edit.ejs -->
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,26 +6,27 @@
   <body>
     <%- include('../../partials/nav') %>
 
-    <div class="Board_long-edit">
-      <h2>Edit</h2>
-      <form class="Board_long-form" action="/board/long/<%= LongBoard._id %>?_method=put" method="post">
-        <div>
-          <label for="title">제목</label>
-          <input type="text" id="title" title="title" value="<%= LongBoard.title %>">
+    <div class="container mb-3">
+
+      <form action="/board/long/<%= board_longs._id %>?_method=put" method="post">
+
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" value="<%= board_longs.title %>" class="form-control">
         </div>
-        <div>
-          <label for="writer">글쓴이</label>
-          <input type="text" id="writer" title="writer" value="<%= LongBoard.writer %>">
+
+        <div class="form-group">
+          <label for="content">Body</label>
+            <textarea id="content" name="content" rows="5" class="form-control"><%= board_longs.content %></textarea>
         </div>
+
         <div>
-          <label for="content">내용</label>
-          <input type="text" id="content" title="content" value="<%= LongBoard.content %>">
+          <a class="btn btn-primary" href="/board/long>">뒤로 가기</a>
+          <button type="submit" class="btn btn-primary">게시</button>
         </div>
-        <div>
-          <button type="submit">수정</button>
-        </div>
-      </div>
-    </form>
+
+      </form>
+
+    </div>
   </body>
 </html>
-
