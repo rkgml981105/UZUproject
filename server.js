@@ -3,10 +3,15 @@ const app = express();
 const cors = require("cors");
 const session = require("express-session");
 const ejs = require("ejs");
+const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const connect = require("./schemas");
+const methodOverride = require("method-override");
 const { signedCookie } = require("cookie-parser");
 
+app.use(bodyParser.json()); // 2
+app.use(bodyParser.urlencoded({extended:true})); // 3
+app.use(methodOverride('_method')); // delete, update 
 
 connect();
 

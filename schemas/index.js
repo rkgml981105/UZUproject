@@ -8,6 +8,8 @@ module.exports = () => {
     mongoose.connect(
       "mongodb://localhost:27017/uzu",
       {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
         dbName: "uzu"
       },
       error => {
@@ -30,3 +32,4 @@ module.exports = () => {
   require("./user");
   require("./board");
 };
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../../partials/head') %>
+  </head>
+  <body>
+    <%- include('../../partials/nav') %>
+
+    <div class="container mb-3">
+
+      <form action="/board/short/<%= boards._id %>?_method=put" method="post">
+
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" value="<%= boards.title %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="content">Body</label>
+            <textarea id="content" name="content" rows="5" class="form-control"><%= boards.content %></textarea>
+        </div>
+
+        <div>
+          <a class="btn btn-primary" href="/board/short>">뒤로 가기</a>
+          <button type="submit" class="btn btn-primary">게시</button>
+        </div>
+
+      </form>
+
+    </div>
+  </body>
+</html>

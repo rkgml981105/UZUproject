@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <%- include ("../../partials/head") %>
+<<<<<<< HEAD
 </head>
 <body>
     <%- include ("../../partials/nav") %>
@@ -13,5 +14,43 @@
         태그 : <input type="text" name="tags"/>
         <button type="submit" value="게시">게시</button>
     </form>
+=======
+    <style>
+        /*board - long - write*/
+        .boardtitle{
+            text-align: center;
+            font-size: 25px;
+            margin : 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <%- include ("../../partials/nav") %>
+    <div class="container mb-3">
+        <form action="/board/long/write" method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="writer">Writer</label>
+                <input type="text" id="writer" name="writer" value="" class="form-control">
+              </div>
+              
+              <div class="form-group">
+                <label for="content">Body</label>
+                <textarea id="content" name="content" rows="5" class="form-control"></textarea>
+              </div>
+      
+              <div>
+                <a class="btn btn-primary" href="/board/long">뒤로 가기</a>
+                <button type="submit" class="btn btn-primary">게시</button>
+              </div>
+      
+            </form>
+      
+          </div>
+>>>>>>> 984197817b8da17dd876c0a0a66bd9c7d3937e5c
 </body>
 </html>
