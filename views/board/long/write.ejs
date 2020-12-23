@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
     <%- include ("../../partials/head") %>
-<<<<<<< HEAD
+    <style>
+        /*board - long - write*/
+        .boardtitle{
+            text-align: center;
+            font-size: 25px;
+            margin : 2.5rem;
+        }
+    </style>
 </head>
+
 <body>
     <%- include ("../../partials/nav") %>
     <h4>UZU 긴글 쓰기</h4>
@@ -14,18 +22,8 @@
         태그 : <input type="text" name="tags"/>
         <button type="submit" value="게시">게시</button>
     </form>
-=======
-    <style>
-        /*board - long - write*/
-        .boardtitle{
-            text-align: center;
-            font-size: 25px;
-            margin : 2.5rem;
-        }
-    </style>
-</head>
-<body>
-    <%- include ("../../partials/nav") %>
+
+
     <div class="container mb-3">
         <form action="/board/long/write" method="POST">
             <div class="form-group">
@@ -51,6 +49,9 @@
             </form>
       
           </div>
+<<<<<<< HEAD
 >>>>>>> 984197817b8da17dd876c0a0a66bd9c7d3937e5c
+=======
+>>>>>>> 86ef3dc3248cc1a10dca88d083c85c82462e7273
 </body>
 </html>

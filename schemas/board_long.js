@@ -5,11 +5,11 @@ const {
   Types: { ObjectId }
 } = Schema;
 const board_longSchema = new Schema({
-  // writer: {
-  //   type: ObjectId,
-  //   required: true,
-  //   ref: "User"
-  // },
+   writer: {
+     type: ObjectId,
+     required: true,
+     ref: "User"
+   },
   title: {
     type: String,
     required: true

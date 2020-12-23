@@ -3,11 +3,11 @@ const app = express();
 const cors = require("cors");
 const session = require("express-session");
 const ejs = require("ejs");
-const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const connect = require("./schemas");
-const methodOverride = require("method-override");
 const { signedCookie } = require("cookie-parser");
+const bodyParser = require('body-parser'); // 1
+const methodOverride = require('method-override'); // delete, update 
 
 app.use(bodyParser.json()); // 2
 app.use(bodyParser.urlencoded({extended:true})); // 3
@@ -40,7 +40,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.set("views",__dirname + "/views");
-
 app.set("view engine", "ejs");
 app.engine('ejs', ejs.renderFile);
 
