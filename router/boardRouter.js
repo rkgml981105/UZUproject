@@ -44,17 +44,25 @@ router.get('/short/show/:id', function (req, res) {
 
 /*show board*/
 router.get('/best/boardlist', function(req, res) {
-  res.render('board/best/boardlist.ejs', { title: '글쓰기' });
+  res.render('board/best/boardlist', { title: '글쓰기' });
+});
+
+router.get('/long/boardlist', function(req, res) {
+  res.render('board/long/boardlist.ejs', { title: '글쓰기' });
+});
+
+router.get('/short/boardlist', function(req, res) {
+  res.render('board/short/boardlist.ejs', { title: '글쓰기' });
 });
 
 
 /* write(new)  */
 router.get('/long/write', function(req, res) {
-  res.render('board/long/write.ejs', { title: '글쓰기' });
+  res.render('/board/long/write.ejs', { title: '글쓰기' });
 });
  
 router.get('/short/write', function(req, res, next) {
-  res.render('board/short/write.ejs', { title: '글쓰기' });
+  res.render('/board/short/write.ejs', { title: '글쓰기' });
 });
 
 
