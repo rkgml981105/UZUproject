@@ -1,6 +1,3 @@
-<script>
-
-</script>
 
 <!-- views/partials/nav.ejs -->
 <nav class="nav-extended">
@@ -26,12 +23,36 @@
       </ul>
   </div>
   <div class="nav-content">
-      <ul class="tabs tabs-transparent" id="navlist">
+      <!-- <ul class="tabs tabs-transparent" id="navlist">
           <li class="tab"><a class="active" href="/">홈</a></li>
-          <li class="tab"><a href="/board/short">짧은글</a></li>
-          <li class="tab"><a href="/board/long">긴글</a></li>
-          <li class="tab"><a href="/board/best">Best</a></li>
-      </ul>
+          <li class="tab"><a href="/board/short/write">짧은글</a></li>
+          <li class="tab"><a href="/board/long/write">긴글</a></li>
+          <li class="tab"><a href="/board/best/boardlist">Best</a></li>
+        </ul> -->
+        
+        <ul class="tabs tabs-transparent" id="navlist">
+            <li class="tab"> <% if (active === '/') { %>
+                <a class="active" href="/">홈</a> 
+                <% } %> 
+                <a href="/">홈</a>
+            </li>
+            <li class="tab"> <% if (active === '/board/short/write') { %>
+                <a class= "active" href="/board/short/write">짧은글</a> 
+                <% } %> 
+                <a href="/board/short/write">짧은글</a>
+            </li>
+            <li class="tab"> <% if (active === '/board/long/write') { %>
+                <a class="active" href="/board/long/write">긴글</a>
+                <% } %> 
+                <a href="/board/long/write">긴글</a>
+            </li>
+            <li class="tab"> <% if (active === '/board/best/boardlist') { %>
+                <a class="active" href="/board/best/boardlist">Best</a>
+                <% } %> 
+                <a href="/board/best/boardlist">Best</a>
+            </li> 
+        </ul>
+
     
       <div class="locContainer">
           <div class="location right">
