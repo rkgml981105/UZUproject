@@ -1,50 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%- include('../../partials/head') %>
-  </head>
-  <body>
-    <%- include('../../partials/nav') %>
+<head>
+    <%- include ("../../partials/head") %>
 
-    <div class="container mb-3">
+    <style>
+    .tag-container{
+        text-align: center;
+        margin : 10px 0 ;
+    }
 
-      <h3 class="mb-3">짧은 글 게시판 목록</h3>
+    .tag-container .tag{
+        font-size: 15px;
+        border : 1px solid #4c1cee;
+        padding : 5px 15px;
+        border-radius: 1cm;
+        margin : 0 0.5rem;
+    }
 
-      <table class="board-table table table-sm border-bottom">
+    .tag-container .tag.active{
+        background-color: #4c1cee;
+        color : #ffffff;
+    }
 
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col" class="content">Content</th>
-          </tr>
-        </thead>
+    .tag-container .tag:hover {
+        transition : background-color 0.38s ease, color 0.38s ease;
+        background-color: #4c1cee;
+        color : #ffffff;
+    }
 
-        <tbody>
-          <% if(boards == null || boards.length == 0){ %>
-            <tr>
-              <td colspan=2> There is no data to show :( </td>
-            </tr>
-          <% } %>
-          <% boards.forEach(function(board) { %>
-            <tr>
-              <td>
-                <a href="/board/short/<%= board._id %>"><div class="ellipsis"><%= board.title %></div></a>
-              </td>
-              </td>
-              <td class="content">
-               <span data-date><%= board.content %></span> <!-- 1 -->
-              </td>
-            </tr>
-          <% }) %>
-        </tbody>
+    .spcontainer {
+        width : 100%;
+    }
 
-      </table>
-      <br>
-      <div>
-        <a class="btn btn-primary" href="/board/short/write">글쓰기</a>
-      </div>
+    .sptable {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .sptd{
+        width : 500px;
+    }
+
+    .spheader {
+        width : 300px;
+    }
+
+    .sptitle {
+        margin : 0;
+        font-weight: bold;
+        max-width: 300px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .spcontent {
+        margin : 0;
+        max-width : 50%;
+        overflow: hidden;
+    }
+
+    .spfooter{
+        text-align: right;
+        font-size: 11px;
+    }
+
+    .spfooter i{
+        font-size: 14px;
+    }
+
+    .splike, .spcomment {
+        margin : 0 3px;
+    }
+
+    @media screen and (max-width:840px) {
+
+        .spcontent {
+            margin : 0;
+            max-width : 50%;
+        }
+    }
+
+    </style>
+
+</head>
+<body>
+    <%- include ("../../partials/nav") %>
+
+    <div class= "container">
+        <div class="boardtitle">
+            <div>UZU 짧은글 목록</div>
+        </div>
+
+        <div class="tag-container">
+            <span class="tag all active">all</span>
+            <span class="tag t1 all">#111</span>
+            <span class="tag t2 all">#222</span>
+            <span class="tag t3 all">#333</span>
+            <span class="tag t4 all">#444</span>
+            <span class="tag t5 all">#555</span>
+        </div>
+
+        <div class="spcontainer">
+            <table class="sptable">
+                <tbody class="sptbody">
+                    <tr>
+                        <td class="sptd">
+                            <div class="spheader">
+                                <span class=item-profile></span>
+                                <span class="spwriter">글쓴이</span>
+                                <span class="sptime">17분 전</span>
+                            </div>
+                            <p class="sptitle">제목 자리</p>
+                            <p class="spcontent">gerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknknc</p>
+                            <div class="spfooter">
+                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                <i class="material-icons">comment</i><span class="spcomment">6</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="sptd">
+                            <div class="spheader">
+                                <span class=item-profile></span>
+                                <span class="spwriter">글쓴이</span>
+                                <span class="sptime">17분 전</span>
+                            </div>
+                            <p class="sptitle">제목 자리</p>
+                            <p class="spcontent">gerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknknc</p>
+                            <div class="spfooter">
+                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                <i class="material-icons">comment</i><span class="spcomment">6</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="sptd">
+                            <div class="spheader">
+                                <span class=item-profile></span>
+                                <span class="spwriter">글쓴이</span>
+                                <span class="sptime">17분 전</span>
+                            </div>
+                            <p class="sptitle">제목 자리dnfnslkenwifnencinweknklenwclinienwjkndlkejnknlkwenrweiunkfnrlkjnernf</p>
+                            <p class="spcontent">gerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjnnkerwvwenjnnkerwvwenjnnkerwvwenjnnkerwvwenjnnkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknknc</p>
+                            <div class="spfooter">
+                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                <i class="material-icons">comment</i><span class="spcomment">6</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </body>
+</body>
 </html>

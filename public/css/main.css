@@ -147,7 +147,6 @@ nav li a {
 
 /*footer*/
 .page-footer {
-    padding-top: 50px;
     color: black;
     background-color: white;
 }
@@ -240,7 +239,6 @@ span.character-counter {
     }
 }
 
-
 /*board titles*/
 
 .collection-title {
@@ -324,4 +322,11 @@ input[type=password]:not(.browser-default).textinput:focus{
         margin : 1rem 0;
     }
     
+}
+
+/*board - general*/
+.boardtitle{
+    text-align: center;
+    font-size: 25px;
+    margin : 2.5rem;
 }
