@@ -147,7 +147,6 @@ nav li a {
 
 /*footer*/
 .page-footer {
-    padding-top: 50px;
     color: black;
     background-color: white;
 }
@@ -239,7 +238,6 @@ span.character-counter {
         margin-left : -5px;        
     }
 }
-
 
 /*board titles*/
 
