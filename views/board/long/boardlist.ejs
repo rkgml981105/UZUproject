@@ -36,7 +36,7 @@
                     </div>
                     <p class="lpcontent"><span data-date><%= board.content %></span></p>
                     <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span> 
+                        <span class="lpwriter"><%= board.writer ? board.writer.nickname : "" %></span> 
                         <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
                         <i class="material-icons">comment</i><span class="lpcomment">6</span>
                     </div>

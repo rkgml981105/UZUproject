@@ -9,6 +9,7 @@ const Board_long = require("../schemas/board_long");
 
 router.get('/long', function (req, res) {
   Board_long.find({})
+  .populate('writer')
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -18,6 +19,7 @@ router.get('/long', function (req, res) {
 
 router.get('/short', function (req, res) {
   Board.find({})
+  
   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -45,6 +47,7 @@ router.get('/short/write', function(req, res) {
 
 
 router.post('/long/write', function(req, res){
+  req.body.writer = req.user._id;
   Board_long.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/long');
@@ -53,6 +56,7 @@ router.post('/long/write', function(req, res){
 
 
 router.post('/short/write', function(req, res){
+  req.body.writer = req.user._id;
   Board.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/short');
@@ -63,7 +67,9 @@ router.post('/short/write', function(req, res){
 
 /* board find by id - show */  
 router.get('/long/:id', function (req, res) {
-  Board_long.findOne({_id: req.params.id}, function (err, board_longs) {
+  Board_long.findOne({_id: req.params.id})
+    .populate('user')             // 3
+    .exec(function(err, board_longs){
       if(err) return res.json(err);
       res.render('board/long/show', { board_longs: board_longs });
   })
