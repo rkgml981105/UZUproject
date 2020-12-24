@@ -66,11 +66,11 @@ router.post('/short/write', function(req, res){
 
 
 
-/* board find by id - show : short는 되는데 long은 안됨,,,왜???*/  
+/* board find by id - show */  
 router.get('/long/:id', function (req, res) {
-  Board_long.findOne({_id: req.params.id}, function (err, board_long) {
+  Board_long.findOne({_id: req.params.id}, function (err, board_longs) {
       if(err) return res.json(err);
-      res.render('board/long/show', { board_long: board_long });
+      res.render('board/long/show', { board_longs: board_longs });
   })
 });
 
@@ -91,15 +91,11 @@ router.get('/best/:id', function (req, res) {
   })
 });
 
-
-//원경 사이트 https://www.a-mean-blog.com/ko/blog/Node-JS-%EC%B2%AB%EA%B1%B8%EC%9D%8C/%EC%A3%BC%EC%86%8C%EB%A1%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0/%EC%A3%BC%EC%86%8C%EB%A1%9D-Show-Edit-Update-Destroy
-//edit(&mongo에 update),  destroy(삭제)
-
 /* edit */
 router.get('/long/:id/edit', function(req, res){
-  Board_long.findOne({_id:req.params.id}, function(err, boards){
+  Board_long.findOne({_id:req.params.id}, function(err, board_longs){
     if(err) return res.json(err);
-    res.render('board/long/edit', {boards: boards});
+    res.render('board/long/edit', {board_longs: board_longs});
   });
 });
 

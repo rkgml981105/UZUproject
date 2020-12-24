@@ -1,0 +1,342 @@
+/*common*/
+
+/*tag*/
+.tag-container{
+    text-align: center;
+    margin : 10px 0 ;
+}
+
+.tag-container .tag{
+    font-size: 15px;
+    border : 1px solid #4c1cee;
+    padding : 5px 15px;
+    border-radius: 1cm;
+    margin : 0 0.5rem;
+}
+
+.tag-container .tag.active{
+    background-color: #4c1cee;
+    color : #ffffff;
+}
+
+.tag-container .tag:hover {
+    transition : background-color 0.38s ease, color 0.38s ease;
+    background-color: #4c1cee;
+    color : #ffffff;
+}
+
+.btn-container {
+    width : 80%;
+    margin : 2rem auto 1rem auto;
+    text-align: right;
+}
+
+.btn.default {
+    background-color: rgb(216, 216, 216);
+    color : black;
+    box-shadow: none;
+}
+
+.btn.default:hover {
+    transition : 1s;
+    background-color: rgb(238, 238, 238);
+}
+
+/*=========== short board ============*/
+
+/*boardlist*/
+
+.spcontainer {
+    width : 100%;
+}
+
+.sptable {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.sptitle {
+    margin : 0;
+    font-weight: bold;
+    max-width: 300px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sptitle a {
+    color : black;
+}
+
+.spcontent {
+    margin : 0;
+    max-width : 50%;
+    overflow: hidden;
+}
+
+.spfooter{
+    text-align: right;
+    font-size: 11px;
+}
+
+.spfooter i{
+    font-size: 14px;
+}
+
+.splike, .spcomment {
+    margin : 0 3px;
+}
+
+@media screen and (max-width:840px) {
+    .spcontent {
+        margin : 0;
+        max-width : 50%;
+    }
+}
+
+
+/*show*/
+.post-container {
+    margin : 4rem auto;
+    padding : 1rem;
+    width : 60%;
+    }
+
+    .sptitle-show {
+    font-size: 20px;
+    }
+
+    .sp.info {
+    display : grid;
+    grid-template-columns: auto auto;
+    padding-right: 5px;
+    }
+
+    .spwriter-show {
+    color : gray;
+    }
+
+    .g1 {
+    text-align: left;
+    }
+
+    .g2 {
+    text-align : right;
+    }
+
+    .line {
+    border-bottom: 1px solid gray;
+    margin : 5px 0 15px 0;
+    }
+    
+    .spcontent-show {
+    min-height: 100px;
+    }
+
+    .splike-show .material-icons{
+    font-size: 18px;
+    margin-right : 2px;
+    }
+
+    .splike-show {
+    font-size: 18px;
+    }
+
+    form {
+    display : inline-block;
+    }
+
+    .btn-container.ud {
+    width : 100%;
+    }
+
+
+/*write*/
+    .material-icons.back {
+        color : #4c1cee;
+    }
+
+  .input-container {
+    margin : 4rem auto;
+    width : 60%;
+  }
+
+  .spinput {
+    display :block;
+  }
+
+  .sptitleinput input[type=text]:not(.browser-default) {
+    background-color: transparent;
+  }
+  
+  textarea.materialize-textarea:focus:not([readonly]) ,
+  .sptitleinput input[type=text]:not(.browser-default):focus:not([readonly]),
+  .spwriterinput input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #ffe96c;
+    box-shadow: 0 1px 0 0 #ffe96c;
+  }
+
+  .spcontentinput textarea {
+    min-height : 200px;
+  }
+
+  .btn-container.submit {
+    width : 100%;
+  }
+
+  .btn-container.back {
+    display: inline-block;
+    text-align: left;
+    margin : 0;
+    position: absolute;
+    left : 25%;
+    width : 50px;
+  }
+
+  .input-field {
+    margin: 0;
+  }
+
+  @media only screen and (max-width: 992px) {
+    .spinput {
+      margin : 3rem auto;
+    }
+
+    .btn-container.back {
+      left : 10%;
+    }
+
+    .input-container {
+        margin: 3rem auto;
+        width: 70%;
+    }
+  }
+
+/*=========== long board ============*/
+
+/*boardlist*/
+.tag-container{
+    text-align: center;
+    margin : 10px 0 ;
+}
+
+.tag-container .tag{
+    font-size: 15px;
+    border : 1px solid #4c1cee;
+    padding : 5px 15px;
+    border-radius: 1cm;
+    margin : 0 0.5rem;
+}
+
+.tag-container .tag.active{
+    background-color: #4c1cee;
+    color : #ffffff;
+}
+
+.tag-container .tag:hover {
+    transition : background-color 0.38s ease, color 0.38s ease;
+    background-color: #4c1cee;
+    color : #ffffff;
+}
+
+.spcontainer .spfooter{
+    text-align: right;
+}
+
+.spcontainer .sptitle {
+    margin : 0;
+}
+
+.spcontainer .spcontent {
+    margin : 0;
+}
+
+
+/* ---- grid ---- */
+
+.grid-post {
+width : 100%;
+background: #EEE;
+align-items: center;
+}
+
+/* clearfix */
+.grid:after {
+content: '';
+display: block;
+clear: both;
+}
+
+/* ---- grid-item ---- */
+
+.grid-item {
+width: 30%;
+float: left;
+background: #ffffff;
+box-shadow: 2px 2px 5px rgb(216, 216, 216);
+border-radius: 5px;
+margin : 15px 1.6%;
+padding : 10px;
+}
+
+.image-source {
+width : 100%;
+height : auto;
+border-radius: 0.1cm;
+}
+
+.lpcontent {
+margin: 5px 0;
+height: 60px;
+overflow: hidden;
+font-size: 13px;
+text-overflow: ellipsis;
+}
+
+.lptitle {
+display : inline-block;
+margin : 0;
+font-weight: bold;
+max-width: 200px;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+}
+
+
+.lpfooter{
+text-align: right;
+font-size: 12px;
+}
+
+.lpfooter i{
+font-size: 14px;
+}
+
+.lpwriter, .lplike, .lpcomment {
+margin : 0 3px;
+}
+
+@media screen and (max-width: 830px){
+.grid-item {
+    width: 45%;
+    margin : 15px 2.5%;
+}
+
+.lptitle {
+    max-width: 150px;
+}
+
+.lpcontent {
+    margin: 5px 0;
+    height: 40px;
+}
+
+}
+
+@media screen and (max-width: 420px){
+.grid-item {
+    width: 100%;
+    margin : 15px 0;
+}
+}
