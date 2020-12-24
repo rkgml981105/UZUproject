@@ -17,6 +17,7 @@
     "express-session": "^1.17.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.13",
+    "nodemon": "^2.0.6",
     "qs": "^6.9.4"
   },
   "devDependencies": {},
@@ -27,6 +28,5 @@
   "bugs": {
     "url": "https://github.com/rkgml981105/UZUproject/issues"
   },
-  "homepage": "https://github.com/rkgml981105/UZUproject#readme",
-  "description": ""
+  "homepage": "https://github.com/rkgml981105/UZUproject#readme"
 }

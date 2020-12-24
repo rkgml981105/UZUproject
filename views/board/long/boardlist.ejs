@@ -148,15 +148,19 @@
             <span class="tag t5 all">#555</span>
         </div>
         <div class="grid-post">
+            <% if(boards == null || boards.length == 0){ %>
+                <div>No data !!!</div>
+            <% } %>
+            <% boards.forEach(function(board) { %>
             <article class="grid-item">
                 <div class="grid-item-image">
                     <img class="image-source" src="/image/sample.jpg">
                 </div>
                 <div class="grid-item-content">
                     <div class="lpheader">
-                        <p class="lptitle">제목블라블라블라블라블라블라블라</p>
+                        <p class="lptitle"><a href="/board/short/<%= board._id %>"><%= board.title %></a></p>
                     </div>
-                    <p class="lpcontent">gggg여기엔 이런 내용이 들어갈 예정입니다. 긴 글 쓰기 하면 여기에 보일거에용 얼마나 긴 글을 써야되나!!</p>
+                    <p class="lpcontent"><span data-date><%= board.content %></span></p>
                     <div class="lpfooter">
                         <span class="lpwriter">글쓴이</span> 
                         <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
@@ -164,102 +168,7 @@
                     </div>
                 </div>
             </article>
-            <article class="grid-item">
-                <div class="grid-item-image">
-                    <img class="image-source" src="/image/sample.jpg">
-                </div>
-                <div class="grid-item-content">
-                    <div class="lpheader">
-                        <p class="lptitle">제목블라블라블라블라블라블라블라</p>
-                    </div>
-                    <p class="lpcontent">여기엔 이런 내용이 들어갈 예정입니다. 긴 글 쓰기 하면 여기에 보일거에용 얼마나 긴 글을 써야되나!!</p>
-                    <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span> 
-                        <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
-                        <i class="material-icons">comment</i><span class="lpcomment">6</span>
-                    </div>
-                </div>
-            </article>
-            <article class="grid-item">
-                <div class="grid-item-image">
-                    <img class="image-source" src="/image/sample.jpg">
-                </div>
-                <div class="grid-item-content">
-                    <div class="lpheader">
-                        <p class="lptitle">제목블라블라블라블라블라블라블라</p>
-                    </div>
-                    <p class="lpcontent">여기엔 이런 내용이 들어갈 예정입니다. 긴 글 쓰기 하면 여기에 보일거에용 얼마나 긴 글을 써야되나!!</p>
-                    <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span> 
-                        <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
-                        <i class="material-icons">comment</i><span class="lpcomment">6</span>
-                    </div>
-                </div>
-            </article>
-            <article class="grid-item">
-                <div class="grid-item-image">
-                    <img class="image-source" src="/image/sample.jpg">
-                </div>
-                <div class="grid-item-content">
-                    <div class="lpheader">
-                        <p class="lptitle">제목블라블라블라블라블라블라블라</p>
-                    </div>
-                    <p class="lpcontent">여기엔 이런 내용이 들어갈 예정입니다. 긴 글 쓰기 하면 여기에 보일거에용 얼마나 긴 글을 써야되나!!</p>
-                    <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span> 
-                        <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
-                        <i class="material-icons">comment</i><span class="lpcomment">6</span>
-                    </div>
-                </div>
-            </article>
-            <article class="grid-item">
-                <div class="grid-item-image">
-                    <img class="image-source" src="/image/sample.jpg">
-                </div>
-                <div class="grid-item-content">
-                    <div class="lpheader">
-                        <p class="lptitle">제목블라블라블라블라블라블라블라</p>
-                    </div>
-                    <p class="lpcontent">여기엔 이런 내용이 들어갈 예정입니다. 긴 글 쓰기 하면 여기에 보일거에용 얼마나 긴 글을 써야되나!!</p>
-                    <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span> 
-                        <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
-                        <i class="material-icons">comment</i><span class="lpcomment">6</span>
-                    </div>
-                </div>
-            </article>
-            <article class="grid-item">
-                <div class="grid-item-image">
-                    <img class="image-source" src="/image/sample.jpg">
-                </div>
-                <div class="grid-item-content">
-                    <div class="lpheader">
-                        <p class="lptitle">제목블라블라블라블라블라블라블라</p>
-                    </div>
-                    <p class="lpcontent">여기엔 이런 내용이 들어갈 예정입니다. 긴 글 쓰기 하면 여기에 보일거에용 얼마나 긴 글을 써야되나!!</p>
-                    <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span> 
-                        <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
-                        <i class="material-icons">comment</i><span class="lpcomment">6</span>
-                    </div>
-                </div>
-            </article>
-            <article class="grid-item">
-                <div class="grid-item-image">
-                    <img class="image-source" src="/image/sample.jpg">
-                </div>
-                <div class="grid-item-content">
-                    <div class="lpheader">
-                        <p class="lptitle">제목블라블라블라블라블라블라블라</p>
-                    </div>
-                    <p class="lpcontent">여기엔 이런 내용이 들어갈 예정입니다. 긴 글 쓰기 하면 여기에 보일거에용 얼마나 긴 글을 써야되나!!</p>
-                    <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span> 
-                        <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
-                        <i class="material-icons">comment</i><span class="lpcomment">6</span>
-                    </div>
-                </div>
-            </article>
+            <% }) %>
         </div> 
     </div>
 </body>

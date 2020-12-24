@@ -4,7 +4,12 @@ const cors = require("cors");
 const session = require("express-session");
 const ejs = require("ejs");
 const connect = require("./schemas");
+const bodyParser = require('body-parser'); // 1
+const methodOverride = require('method-override'); // delete, update 
 
+app.use(bodyParser.json()); // 2
+app.use(bodyParser.urlencoded({extended:true})); // 3
+app.use(methodOverride('_method')); // delete, update 
 
 connect();
 
@@ -31,7 +36,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.set("views",__dirname + "/views");
-
 app.set("view engine", "ejs");
 app.engine('ejs', ejs.renderFile);
 
