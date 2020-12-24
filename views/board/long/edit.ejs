@@ -4,29 +4,35 @@
     <%- include('../../partials/head') %>
   </head>
   <body>
-    <%- include('../../partials/nav') %>
-
-    <div class="container mb-3">
-
-      <form action="/board/long/<%= board_longs._id %>?_method=put" method="post">
-
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" id="title" name="title" value="<%= board_longs.title %>" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="content">Body</label>
-            <textarea id="content" name="content" rows="5" class="form-control"><%= board_longs.content %></textarea>
-        </div>
-
-        <div>
-          <a class="btn btn-primary" href="/board/long>">뒤로 가기</a>
-          <button type="submit" class="btn btn-primary">게시</button>
-        </div>
-
-      </form>
-
+    <%- include ("../../partials/nav") %>
+    <div class="container">
+      <div class = "btn-container back">
+        <a href="/board/long"><i class="material-icons back">arrow_back</i></a>
+      </div>
+      <div class="input-container">
+        <form  class = "spinput" action="/board/long/<%= board_longs._id %>?_method=put" method="post">
+          <div class="sptitleinput">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" value="<%= board_longs.title %>" autocomplete="off">
+          </div>
+          <div class="spwriterinput">
+            <label for="writer">글쓴이</label>
+            <input type="text" id="writer" name="writer" value="<%= board_longs.writer %>"  autocomplete="off">
+          </div>
+          <label for="content">내용</label>
+          <div class="spcontentinput input-field">
+            <textarea class="materialize-textarea" id="content" name="content"><%= board_longs.content %></textarea>
+          </div>
+          <div class = "btn-container submit">
+            <button class="btn default" type="submit">게시</button>
+          </div>
+        </form>
+       </div>
     </div>
+    <script>
+        M.textareaAutoResize($('#content'));
+    </script>
   </body>
+  <%- include ("../../partials/footer") %>
 </html>
+

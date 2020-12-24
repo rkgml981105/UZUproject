@@ -61,11 +61,11 @@ router.post('/short/write', function(req, res){
 
 
 
-/* board find by id - show : short는 되는데 long은 안됨,,,왜???*/  
+/* board find by id - show */  
 router.get('/long/:id', function (req, res) {
-  Board_long.findOne({_id: req.params.id}, function (err, board_long) {
+  Board_long.findOne({_id: req.params.id}, function (err, board_longs) {
       if(err) return res.json(err);
-      res.render('board/long/show', { board_long: board_long });
+      res.render('board/long/show', { board_longs: board_longs });
   })
 });
 
@@ -87,9 +87,9 @@ router.get('/best/:id', function (req, res) {
 
 /* edit */
 router.get('/long/:id/edit', function(req, res){
-  Board_long.findOne({_id:req.params.id}, function(err, boards){
+  Board_long.findOne({_id:req.params.id}, function(err, board_longs){
     if(err) return res.json(err);
-    res.render('board/long/edit', {boards: boards});
+    res.render('board/long/edit', {board_longs: board_longs});
   });
 });
 
