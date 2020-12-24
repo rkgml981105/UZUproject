@@ -6,7 +6,7 @@ const {
 } = Schema;
 const boardSchema = new Schema({
   writer: {
-    type: ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "User"
   },

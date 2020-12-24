@@ -36,6 +36,7 @@ router.post("/register", async (req, res) => {
                 obj = {
                   email: req.body.email,
                   name: req.body.name,
+                  // nickname: req.body.nickname,
                   password: key.toString("base64"),
                   salt: buf.toString("base64")
                 };
@@ -55,7 +56,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//로그인
+  
+// 로그인
 router.post("/login", async (req, res) => {
   try {
     //이메일 값으로 아이디가 존재하는지 확인
@@ -89,7 +91,7 @@ router.post("/login", async (req, res) => {
                 console.log(user2);
                 if (user2) {
                   // 있으면 로그인 처리
-                  // console.log(req.body._id);
+                  console.log(req.body._id);
                   await User.updateOne(
                     {
                       email: req.body.email
@@ -98,7 +100,7 @@ router.post("/login", async (req, res) => {
                   );
                   //세션설정
                   req.session.email = user.email;
-                  res.redirect('/')
+                  res.redirect('/');
                 } else {
                   //없으면 로그인 실패횟수 추가
                   if (user.loginCnt > 4) {
@@ -148,7 +150,7 @@ router.post("/login", async (req, res) => {
 router.get("/logout", (req, res) => {
   console.log("/logout" + req.sessionID);
   req.session.destroy(() => {
-    res.json({ message: true });
+    res.redirect('/');
   });
 });
 

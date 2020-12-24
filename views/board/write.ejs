@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include ("../partials/head") %>
+        <style>
+            html, body{
+                height: 100%;
+            }
+            .container{
+                height: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-left: 10%;
+            }
+            .title {
+                justify-content: center;
+                align-self: center;
+                font-weight: 600;
+                font-size: 20px;
+            }
+            .buttons{
+                justify-content: center;
+                align-self: center;
+            }
+            button{
+                margin: 10px;
+                width: 300%;
+            }
+            .btn {
+                background-color: #4c14ee;
+            }
+            .btn:hover {
+                background-color: #bbabeb;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include ("../partials/nav") %>
+        <div class="container">
+            <div class="title">글쓰기</div>
+            <div class="buttons"> 
+                <form action="/board/short/write" method="GET">
+                    <button type="submit" class="btn btn-primary">짧은글 쓰기</button>
+                </form>
+                <form action="/board/long/write" method="GET">
+                    <button type="submit" class="btn btn-primary">긴글 쓰기</button>
+                </form>
+            </div>
+    </div>      
+    </body>
+</html>

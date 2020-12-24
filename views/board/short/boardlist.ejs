@@ -104,21 +104,28 @@
         <div class="spcontainer">
             <table class="sptable">
                 <tbody class="sptbody">
-                    <tr>
-                        <td class="sptd">
-                            <div class="spheader">
-                                <span class=item-profile></span>
-                                <span class="spwriter">글쓴이</span>
-                                <span class="sptime">17분 전</span>
-                            </div>
-                            <p class="sptitle">제목 자리</p>
-                            <p class="spcontent">gerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknknc</p>
-                            <div class="spfooter">
-                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                <i class="material-icons">comment</i><span class="spcomment">6</span>
-                            </div>
-                        </td>
-                    </tr>
+                    <% if(boards == null || boards.length == 0){ %>
+                        <tr>
+                          <td colspan=100> 첫번째 글을 작성해보세요! </td>
+                        </tr>
+                    <% } %>
+                    <% boards.forEach(function(board) { %>
+                        <tr>
+                            <td class="sptd">
+                                <div class="spheader">
+                                    <span class=item-profile></span>
+                                    <span class="spwriter"><%= board.writer ? board.writer.nickname : "" %></span>
+                                    <span class="sptime" data-date="<%= post.createdAt %>"><%= post.createdAt %>17분 전</span>
+                                </div>
+                                <a href="/board/short/<%= board._id %>"><p class="sptitle"><%= board.title %></p></a>
+                                <p class="spcontent">gerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknkerwvwenjndknknc</p>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
+                                </div>
+                            </td>
+                        </tr>
+                    <% }) %>
                     <tr>
                         <td class="sptd">
                             <div class="spheader">
