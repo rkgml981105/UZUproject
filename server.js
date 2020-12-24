@@ -43,8 +43,10 @@ app.set("views",__dirname + "/views");
 app.set("view engine", "ejs");
 app.engine('ejs', ejs.renderFile);
 
+// Custom Middlewares // 
 app.use(function(req, res, next){
-  res.locals.active = req.path // [0] will be empty since routes start with '/'
+  res.locals.active = req.path; // [0] will be empty since routes start with '/'
+  res.locals.session = req.session;
   next();
 });
 
