@@ -49,6 +49,53 @@ const userSchema = new Schema({
     },
 });
 
+// virtuals // 2
+userSchema.virtual('passwordConfirmation')
+  .get(function(){ return this._passwordConfirmation; })
+  .set(function(value){ this._passwordConfirmation=value; });
+
+userSchema.virtual('originalPassword')
+  .get(function(){ return this._originalPassword; })
+  .set(function(value){ this._originalPassword=value; });
+
+userSchema.virtual('currentPassword')
+  .get(function(){ return this._currentPassword; })
+  .set(function(value){ this._currentPassword=value; });
+
+userSchema.virtual('newPassword')
+  .get(function(){ return this._newPassword; })
+  .set(function(value){ this._newPassword=value; });
+
+// password validation // 
+userSchema.path('password').validate(function(v) {
+  var user = this; 
+
+  // create user // 회원가입 단계
+  if(user.isNew){ // password validation이 '회원가입' 단계인지, 아니면 '회원 정보 수정'단계인지
+    if(!user.passwordConfirmation){
+      user.invalidate('passwordConfirmation', 'Password Confirmation is required.');
+    }
+
+    if(user.password !== user.passwordConfirmation) {
+      user.invalidate('passwordConfirmation', 'Password Confirmation does not matched!');
+    }
+  }
+
+  // update user // 회원 정보 수정 단계
+  if(!user.isNew){
+    if(!user.currentPassword){ //current password값이 없는 경우
+      user.invalidate('currentPassword', 'Current Password is required!');
+    }
+    else if(user.currentPassword != user.originalPassword){ //current password값이 original password값과 다른 경우
+      user.invalidate('currentPassword', 'Current Password is invalid!');
+    }
+
+    if(user.newPassword !== user.passwordConfirmation) {  //new password값과 password confirmation값이 다른 경우
+      user.invalidate('passwordConfirmation', 'Password Confirmation does not matched!');
+    }
+  }
+});
+
 module.exports = mongoose.model("User", userSchema);
 
 

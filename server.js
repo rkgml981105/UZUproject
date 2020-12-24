@@ -3,7 +3,9 @@ const app = express();
 const cors = require("cors");
 const session = require("express-session");
 const ejs = require("ejs");
+const cookieParser = require('cookie-parser');
 const connect = require("./schemas");
+const { signedCookie } = require("cookie-parser");
 const bodyParser = require('body-parser'); // 1
 const methodOverride = require('method-override'); // delete, update 
 
@@ -26,6 +28,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false
+      // maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
     }
   })
 );
@@ -34,15 +37,19 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.set("views",__dirname + "/views");
 app.set("view engine", "ejs");
 app.engine('ejs', ejs.renderFile);
 
+// Custom Middlewares // 
 app.use(function(req, res, next){
-  res.locals.active = req.path // [0] will be empty since routes start with '/'
+  res.locals.active = req.path; // [0] will be empty since routes start with '/'
+  res.locals.session = req.session;
   next();
 });
+
 
 app.use(express.static(__dirname + "/public"));
 

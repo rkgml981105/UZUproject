@@ -37,6 +37,11 @@ router.get('/best', function (req, res,next) {
 
 
 /* write(new)  */
+//전체 글쓰기
+router.get('/write', function (req, res) {
+  res.render('board/write.ejs');
+})
+
 router.get('/long/write', function(req, res) {
     res.render('board/long/write.ejs');
 });
