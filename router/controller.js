@@ -7,10 +7,13 @@ const Board = require("../schemas/board");
 const session = require("express-session");
 
     router.get('/', function(req,res){
-        res.render('main.ejs');
+        let session = req.session;
+        res.render('main.ejs', {
+            session : session
+        });
     });
     router.get('/register', function (req,res) {
-        res.render('register.ejs')
+        res.render('register.ejs');
     })
     router.get("/parameter", function(req,res){
         const render_data = {
@@ -20,7 +23,8 @@ const session = require("express-session");
         res.render('parameter.ejs', render_data)
     });
     router.get("/login",function(req,res){
-        res.render('login.ejs')
+       
+        res.render('login.ejs');
     });
 
     router.get("/logout",function(req,res){

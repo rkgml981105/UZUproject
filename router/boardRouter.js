@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../schemas/user");
 const Board = require("../schemas/board");
 const Board_long = require("../schemas/board_long");
 
@@ -82,7 +83,8 @@ router.get('/long/:id', function (req, res) {
 
 
 router.get('/short/:id', function (req, res) {
-  Board.findOne({_id: req.params.id}, function (err, boards) {
+  Board.findOne({_id: req.params.id}, 
+  function (err, boards) {  
       if(err) return res.json(err);
       res.render('board/short/show', {boards: boards });
   })

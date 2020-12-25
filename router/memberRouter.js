@@ -36,6 +36,7 @@ router.post("/register", async (req, res) => {
                 obj = {
                   email: req.body.email,
                   name: req.body.name,
+                  // nickname: req.body.nickname,
                   password: key.toString("base64"),
                   salt: buf.toString("base64")
                 };
@@ -55,7 +56,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//로그인
+  
+// 로그인
 router.post("/login", async (req, res) => {
   try {
     //이메일 값으로 아이디가 존재하는지 확인
@@ -89,20 +91,16 @@ router.post("/login", async (req, res) => {
                 console.log(user2);
                 if (user2) {
                   // 있으면 로그인 처리
-                  // console.log(req.body._id);
+                  console.log(req.body._id);
                   await User.updateOne(
                     {
                       email: req.body.email
                     },
                     { $set: { loginCnt: 0 } }
                   );
+                  //세션설정
                   req.session.email = user.email;
-                  res.redirect('/')
-                  // res.json({
-                  //   message: "로그인 되었습니다!",
-                  //   _id: user2._id,
-                  //   email: user2.email
-                  // });
+                  res.redirect('/');
                 } else {
                   //없으면 로그인 실패횟수 추가
                   if (user.loginCnt > 4) {
@@ -152,7 +150,7 @@ router.post("/login", async (req, res) => {
 router.get("/logout", (req, res) => {
   console.log("/logout" + req.sessionID);
   req.session.destroy(() => {
-    res.json({ message: true });
+    res.redirect('/');
   });
 });
 
@@ -163,18 +161,27 @@ router.delete('/:id', function(req, res){
   });
 });
 
-router.post("/update", async (req, res) => {
-  try {
-    await User.update({
-      _id: req.body._id,
-      name: req.body.name
-    });
-    res.json({ message: true });
-  } catch (err) {
-    console.log(err);
-    res.json({ message: false });
-  }
+// update // 
+router.put('/:id', function(req, res, next){
+  User.findOne({_id:req.params.id}) 
+    .exec(function(err, user){
+      if(err) return res.json(err);
+
+      // update user object
+      user.originalPassword = user.password;
+      user.password = req.body.newPassword? req.body.newPassword : user.password; // password를 업데이트 하는 경우와, password를 업데이트 하지 않는 경우에 따라 user.password의 값이 바뀜
+      for(var p in req.body){   //user는 DB에서 읽어온 data이고, req.body가 실제 form으로 입력된 값이므로 각 항목을 덮어 쓰는 부분
+        user[p] = req.body[p];
+      }
+
+      // save updated user
+      user.save(function(err, user){
+        if(err) return res.json(err);
+        res.redirect('/users/'+user.username);
+      });
+  });
 });
+
 
 router.post("/add", async (req, res) => {
   try {
@@ -196,5 +203,25 @@ router.post("/getAllMember", async (req, res) => {
     res.json({ message: false });
   }
 });
+
+
+
+  // show
+  router.get('/:id', function(req, res){
+    User.findOne({_id: req.params.id}, function(err, user){
+      if(err) return res.json(err);
+      res.render('user/show.ejs', {user:user});
+    });
+  });
+  
+
+// edit
+router.get('/:id/edit', function(req, res){
+  User.findOne({_id: req.params.id}, function(err, user){
+    if(err) return res.json(err);
+    res.render('users/edit.ejs', {user:user});
+  });
+});
+
 
 module.exports = router;
