@@ -2,6 +2,43 @@ const express = require("express");
 const router = express.Router();
 const User = require("../schemas/user");
 const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+
+//노드메일러
+router.post('/sendemail', async (req, res) => {
+  
+  let user_email = req.body.email;
+  console.log(user_email);
+  console.log('메일 발송 성공~');
+
+  //메일 발송 함수
+  let transporter = nodemailer.createTransport({
+    service : 'gmail',
+    auth : {
+      user : 'k2h0395@gmail.com',
+      pass : 'dnjswjd!'
+    }
+  });
+
+  let mailOptions = {
+    from : 'k2h0395@gmail.com',
+    to : user_email,
+    subject : '안녕하세요',
+    text : 'ㅁㄴㅇㄹ'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error){
+      console.log(error);
+    }
+    else {
+      console.log('Email sent: ',info.response);
+    }
+  });
+
+
+})
+
 
 //회원가입
 router.post("/register", async (req, res) => {
