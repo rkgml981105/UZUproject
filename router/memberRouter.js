@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require("../schemas/user");
 const crypto = require("crypto");
 
-
 //회원가입
 router.post("/register", async (req, res) => {
   try {
@@ -158,34 +157,30 @@ router.get("/logout", (req, res) => {
   });
 });
 
-router.delete('/:id', function(req, res){
-  User.deleteOne({_id:req.params.id}, function(err){
-    if(err) return res.json(err);
-    res.redirect('/');
-  });
+router.post("/delete", async (req, res) => {
+  try {
+    await User.remove({
+      _id: req.body._id
+    });
+    res.json({ message: true });
+  } catch (err) {
+    console.log(err);
+    res.json({ message: false });
+  }
 });
 
-// update // 
-router.put('/:id', function(req, res, next){
-  User.findOne({_id:req.params.id}) 
-    .exec(function(err, user){
-      if(err) return res.json(err);
-
-      // update user object
-      user.originalPassword = user.password;
-      user.password = req.body.newPassword? req.body.newPassword : user.password; // password를 업데이트 하는 경우와, password를 업데이트 하지 않는 경우에 따라 user.password의 값이 바뀜
-      for(var p in req.body){   //user는 DB에서 읽어온 data이고, req.body가 실제 form으로 입력된 값이므로 각 항목을 덮어 쓰는 부분
-        user[p] = req.body[p];
-      }
-
-      // save updated user
-      user.save(function(err, user){
-        if(err) return res.json(err);
-        res.redirect('/users/'+user.username);
-      });
-  });
+router.post("/update", async (req, res) => {
+  try {
+    await User.update({
+      _id: req.body._id,
+      name: req.body.name
+    });
+    res.json({ message: true });
+  } catch (err) {
+    console.log(err);
+    res.json({ message: false });
+  }
 });
-
 
 router.post("/add", async (req, res) => {
   try {
@@ -207,25 +202,5 @@ router.post("/getAllMember", async (req, res) => {
     res.json({ message: false });
   }
 });
-
-
-
-  // show
-  router.get('/:id', function(req, res){
-    User.findOne({_id: req.params.id}, function(err, user){
-      if(err) return res.json(err);
-      res.render('user/show.ejs', {user:user});
-    });
-  });
-  
-
-// edit
-router.get('/:id/edit', function(req, res){
-  User.findOne({_id: req.params.id}, function(err, user){
-    if(err) return res.json(err);
-    res.render('users/edit.ejs', {user:user});
-  });
-});
-
 
 module.exports = router;

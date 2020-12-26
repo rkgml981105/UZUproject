@@ -27,8 +27,8 @@ app.use(
     secret: "uzu",
     cookie: {
       httpOnly: true,
-      secure: false
-      // maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
+      secure: false,
+      maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
     }
   })
 );
@@ -51,7 +51,6 @@ app.use(function(req, res, next){
   res.locals.nickname = req.session.nickname;
   next()
 });
-
 
 app.use(express.static(__dirname + "/public"));
 
