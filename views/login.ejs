@@ -21,21 +21,15 @@
 
 
 <script>
-
 $(document).ready(function() {
-
     var startwidth = 1080;  
     var startheight = 611;
     var ratio = startwidth/startheight;
-
     var browserwidth = $(window).width();
     var browserheight = $(window).height();
-
     $('#landingimg').height(browserheight);
-
     window.onresize = function(event) {
         var browserheight = $(window).height();
-
         if (browserheight >= 670) {
             $('#landingimg').height(browserheight);
         } else {
@@ -43,7 +37,6 @@ $(document).ready(function() {
         }
     }
 });
-
 </script>
 
 </head>

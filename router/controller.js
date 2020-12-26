@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const User = require("../schemas/user");
-const Board = require("../schemas/board");
 const { route } = require("./memberRouter");
+const session = require("express-session");
 
     router.get('/', function(req,res){
         let session = req.session;
@@ -23,4 +22,9 @@ const { route } = require("./memberRouter");
         res.render('user/mypage.ejs')
     })
 
-module.exports = router
+    router.get("/logout",function(req,res){
+        req.session.destory(); 
+        
+    });
+
+module.exports = router;
