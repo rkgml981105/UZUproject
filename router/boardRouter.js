@@ -13,7 +13,7 @@ router.get('/long', function (req, res) {
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
-    res.render('board/long/boardlist.ejs', { boards: boards });
+    res.render('board/long/boardlist.ejs', { board_longs: board_longs });
   });
 });
 

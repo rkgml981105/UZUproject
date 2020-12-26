@@ -22,7 +22,7 @@
             <a class="btn default" href="/board/long/write">글쓰기</a>
           </div>
         <div class="grid-post">
-            <% if(boards == null || boards.length == 0){ %>
+            <% if(board_longs == null || board_longs.length == 0){ %>
                 <div>No data !!!</div>
             <% } %>
             <% boards.forEach(function(board) { %>
@@ -32,9 +32,9 @@
                 </div>
                 <div class="grid-item-content">
                     <div class="lpheader">
-                        <p class="lptitle"><a href="/board/long/<%= board._id %>"><%= board.title %></a></p>
+                        <p class="lptitle"><a href="/board/long/<%= board_long._id %>"><%= board.title %></a></p>
                     </div>
-                    <p class="lpcontent"><span data-date><%= board.content %></span></p>
+                    <p class="lpcontent"><span data-date><%= board_long.content %></span></p>
                     <div class="lpfooter">
                         <span class="lpwriter">글쓴이</span> 
                         <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
