@@ -3,7 +3,6 @@
 <head>
     <%- include ("../../partials/head") %>
 </head>
-
 <body>
   <%- include ("../../partials/nav") %>
   <div class="container">
@@ -11,7 +10,7 @@
       <a href="/board/long"><i class="material-icons back">arrow_back</i></a>
     </div>
     <div class="input-container">
-      <form class = "spinput" action="/board/short/write" method="POST">
+      <form class = "spinput" action="/board/long/write" method="POST">
         <div class="sptitleinput">
           <label for="title">제목</label>
           <input type="text" id="title" name="title" value="" autocomplete="off">
