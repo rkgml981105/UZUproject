@@ -3,8 +3,6 @@ const router = express.Router();
 const Board = require("../schemas/board");
 const Board_long = require("../schemas/board_long");
 
-//지은 사이트  https://supdev.tistory.com/37  - boardlist, show, new(&mongo에 insert)
-
 /* boardlist */
 
 router.get('/long', function (req, res) {
@@ -37,16 +35,25 @@ router.get('/best', function (req, res,next) {
 /* write(new)  */
 //전체 글쓰기
 router.get('/write', function (req, res) {
-  res.render('board/write.ejs');
+  if(req.session) {
+    res.render('board/write.ejs',{isLogin:"Logout"})}
+  //로그인하지 않은 사용자 접근 차단
+  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')}
 })
 
 
 router.get('/long/write', function(req, res) {
-    res.render('board/long/write.ejs');
+  if(req.session) {
+    res.render('board/long/write.ejs')}
+  //로그인하지 않은 사용자 접근 차단
+  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/board/long"; </script>')}
 });
  
 router.get('/short/write', function(req, res) {
-  res.render('board/short/write.ejs');
+  if(req.session) {
+    res.render('board/short/write.ejs')}
+  //로그인하지 않은 사용자 접근 차단
+  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/board/short"; </script>')}
 });
 
 

@@ -8,7 +8,7 @@ const board_longSchema = new Schema({
    writer: {
      type: ObjectId,
      required: true,
-     ref: "User"
+     ref: "user"
    },
   title: {
     type: String,
