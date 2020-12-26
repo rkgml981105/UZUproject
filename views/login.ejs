@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>landing-page</title>
+    <title>UZU-login</title>
 
 
     <!--materialize-->
@@ -50,10 +50,13 @@ $(document).ready(function() {
 
 
 <body>
+    <% if (password == false) { %>
+        <script>alert('아이디 혹은 비밀번호가 올바르지 않습니다')</script>
+    <% } %> 
     <div class="landing-container">   
         <div class="loginbox">
             <div class="login-container">
-                <form action="member/login" method="POST">
+                <form action="/member/login" method="POST">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="id-email" type="email" name="email">
@@ -65,8 +68,8 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <button class="waves-effect waves-light btn" type="submit" value="로그인" id="loginbtn">로그인</button>
-                </form>       
-                <div class="tosignin">회원이 아니신가요? <a href="register.ejs">회원가입</a></div>
+                </form>     
+                <div class="tosignin">회원이 아니신가요? <a href="/register">회원가입</a></div>
                 <div class="or">혹은</div>
 
                 <a class="waves-effect waves-light btn" id="g-loginbtn">Google로 로그인</a>

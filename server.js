@@ -47,7 +47,9 @@ app.engine('ejs', ejs.renderFile);
 app.use(function(req, res, next){
   res.locals.active = req.path; // [0] will be empty since routes start with '/'
   res.locals.session = req.session;
-  next();
+  res.locals.password = req.password;
+  res.locals.nickname = req.session.nickname;
+  next()
 });
 
 app.use(express.static(__dirname + "/public"));
@@ -59,4 +61,5 @@ app.use("/", require('./router/controller'));
 
 app.listen(3000, () => {
   console.log("서버 가동합니당");
+  setTimeout(() => console.log("서버 살아 있지롱"), 5000)
 });

@@ -68,7 +68,8 @@ $(document).ready(function() {
   /*nav-dropdown*/
   $(document).ready(function() {
     $(".dropdown-trigger").dropdown();
-
+  });
+  
   /*location*/
   let location = $("#location");
   let locationmark = $('#locationmark');
@@ -98,14 +99,11 @@ $(document).ready(function() {
       }
   });
 
-/*masonry*/ 
-$('.wrapper').masonry({
-  itemSelector: '.itemwrapper',
-  columnWidth: 230,
-  isFitWidth: true
-  });
-
-});
-
+  /*masonry*/ 
+  $('.wrapper').masonry({
+    itemSelector: '.itemwrapper',
+    columnWidth: 230,
+    isFitWidth: true
+    });
 
 });
