@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../schemas/user");
 const Board = require("../schemas/board");
 const Board_long = require("../schemas/board_long");
 
@@ -10,7 +9,6 @@ const Board_long = require("../schemas/board_long");
 
 router.get('/long', function (req, res) {
   Board_long.find({})
-  .populate('writer')
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -20,7 +18,6 @@ router.get('/long', function (req, res) {
 
 router.get('/short', function (req, res) {
   Board.find({})
-  
   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -38,11 +35,6 @@ router.get('/best', function (req, res,next) {
 
 
 /* write(new)  */
-//전체 글쓰기
-router.get('/write', function (req, res) {
-  res.render('board/write.ejs');
-})
-
 router.get('/long/write', function(req, res) {
     res.render('board/long/write.ejs');
 });
@@ -53,7 +45,6 @@ router.get('/short/write', function(req, res) {
 
 
 router.post('/long/write', function(req, res){
-  req.body.writer = req.user._id;
   Board_long.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/long');
@@ -62,7 +53,6 @@ router.post('/long/write', function(req, res){
 
 
 router.post('/short/write', function(req, res){
-  req.body.writer = req.user._id;
   Board.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/short');
@@ -71,20 +61,17 @@ router.post('/short/write', function(req, res){
 
 
 
-/* board find by id - show */  
+/* board find by id - show : short는 되는데 long은 안됨,,,왜???*/  
 router.get('/long/:id', function (req, res) {
-  Board_long.findOne({_id: req.params.id})
-    .populate('user')             // 3
-    .exec(function(err, board_longs){
+  Board_long.findOne({_id: req.params.id}, function (err, board_long) {
       if(err) return res.json(err);
-      res.render('board/long/show', { board_longs: board_longs });
+      res.render('board/long/show', { board_long: board_long });
   })
 });
 
 
 router.get('/short/:id', function (req, res) {
-  Board.findOne({_id: req.params.id}, 
-  function (err, boards) {  
+  Board.findOne({_id: req.params.id}, function (err, boards) {
       if(err) return res.json(err);
       res.render('board/short/show', {boards: boards });
   })
@@ -98,11 +85,15 @@ router.get('/best/:id', function (req, res) {
   })
 });
 
+
+//원경 사이트 https://www.a-mean-blog.com/ko/blog/Node-JS-%EC%B2%AB%EA%B1%B8%EC%9D%8C/%EC%A3%BC%EC%86%8C%EB%A1%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0/%EC%A3%BC%EC%86%8C%EB%A1%9D-Show-Edit-Update-Destroy
+//edit(&mongo에 update),  destroy(삭제)
+
 /* edit */
 router.get('/long/:id/edit', function(req, res){
-  Board_long.findOne({_id:req.params.id}, function(err, board_longs){
+  Board_long.findOne({_id:req.params.id}, function(err, boards){
     if(err) return res.json(err);
-    res.render('board/long/edit', {board_longs: board_longs});
+    res.render('board/long/edit', {boards: boards});
   });
 });
 
