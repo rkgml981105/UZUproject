@@ -14,7 +14,7 @@
           <div class="sptitle-show"><%= board_longs.title %></div>
           <div class="sp info">
             <div class = "g1">
-              <span class="spwriter-show"><%= board_longs.writer %></span>
+              <span class="spwriter-show"><%= board_longs.writer.nickname %></span>
               <span> - </span>
               <span class="sptime-show"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(board_longs.createdAt) %></span>
             </div>

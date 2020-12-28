@@ -2,6 +2,30 @@
 
 $(document).ready(function() {
 
+  /*text-box*/
+  let inputfield = $(".input-field");
+  let divider = $('.divider');
+  let helper_text = $(".helper-text");
+  let share_cancel = $(".share-cancel");
+
+  $('#cancelbtn').click(function() {
+      divider.hide();
+      $(".helper-text").hide();
+      $(".share-cancel").hide();
+      $(".materialize-textarea").height("50px");
+  });
+
+  inputfield.focusin(function() {
+      $(".divider").show();
+      $(".helper-text").show();
+      $(".share-cancel").show();
+      inputfield.height("auto");
+  });
+
+    /*text-box input resize*/
+    M.textareaAutoResize($('#textarea'));
+    $('textarea#textarea').characterCounter();
+
   $(function(){
     function get2digits (num){
       return ('0' + num).slice(-2);

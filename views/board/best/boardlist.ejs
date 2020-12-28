@@ -5,9 +5,26 @@
 </head>
 <body>
     <%- include ("../../partials/nav") %>
-    <div class= "container">
-        <div class="boardtitle">
-            <div>UZU 베스트 글 목록</div>
+    <div class="row">
+        <div id="main_banner" class="col s12">Test 1</div>
+    </div>
+
+    <div class='textContainer'>
+        <div class='input-field'>
+            <textarea class="materialize-textarea" id="textarea" data-length="300" placeholder="여기를 눌러 이야기를 공유해보세요."></textarea>
+            <div class="divider"></div>
+            <span class="helper-text" data-error="너무 길어요! (최대 글자 수 : 300자)"></span>
+            <div class="share-cancel">
+                <a href="#" id="sharebtn">공유</a>
+                <a href="#" id="cancelbtn">취소</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="collection-title">
+            <span class="coltitle">title 1<a><i class="material-icons">chevron_right</i></a></span>
+            <a href="#" class="movetoboard">전체 게시판 보기</a>
         </div>
     </div>
 </body>

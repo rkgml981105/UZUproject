@@ -33,7 +33,7 @@
                         <td class="sptd">
                             <div class="spheader">
                                 <span class=item-profile></span>
-                                <span class="spwriter"><%= board.writer %></span>
+                                <span class="spwriter"><%= board.writer.nickname %></span>
                                 <span> ``` </span>
                                 <span class="sptime"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(boards.createdAt) %></span>
                             </div>

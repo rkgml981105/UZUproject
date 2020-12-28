@@ -3,28 +3,25 @@ const router = express.Router();
 const Board = require("../schemas/board");
 const Board_long = require("../schemas/board_long");
 const session = require("express-session");
-var islogin = require('islogin');
 
 /* boardlist */
 router.get('/', (req, res) => {
-  if(req.session.email) {
-      res.render('board',{isLogin:"Logout"})}
-  else{res.render('board',{isLogin:"Login"})}
+      res.render('board')
 });
 
 router.get('/long', function (req, res) {
   Board_long.find({})
-  .populate("writer", { _id:0, nickname: 1 })
+  .populate("writer")
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
-    res.render('board/long/boardlist.ejs', { boards: boards });
+    res.render('board/long/boardlist.ejs', { boards: boards});
   });
 });
 
 router.get('/short', function (req, res) {
   Board.find({})
-  .populate("writer", { _id:0, nickname: 1 })
+  .populate("writer")
   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -45,7 +42,7 @@ router.get('/best', function (req, res,next) {
 //전체 글쓰기
 router.get('/write', function (req, res) {
   if(req.session.email) {
-    res.render('board/write.ejs',{isLogin:"Logout"})}
+    res.render('board/write.ejs')}
   //로그인하지 않은 사용자 접근 차단
   else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')}
 })
@@ -53,7 +50,7 @@ router.get('/write', function (req, res) {
 
 router.get('/long/write', function(req, res) {
   if(req.session.email) {
-    res.render('board/long/write.ejs',{isLogin:"Logout"})}
+    res.render('board/long/write.ejs')}
   //로그인하지 않은 사용자 접근 차단
   else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/board/long"; </script>')}
 });
@@ -67,6 +64,7 @@ router.get('/short/write', function(req, res) {
 
 
 router.post('/long/write', function(req, res){
+  // req.body.writer = req.user._id;
   Board_long.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/long');
@@ -75,7 +73,7 @@ router.post('/long/write', function(req, res){
 
 
 router.post('/short/write', function(req, res){
-  req.body.writer = req.user.nickname;
+  //req.body.writer = req.user.nickname;
   Board.create(req.body, function(err, board){
     if(err) return res.json(err);
     res.redirect('/board/short');
@@ -86,15 +84,20 @@ router.post('/short/write', function(req, res){
 
 /* board find by board id - show */  
 router.get('/long/:id', function (req, res) {
-  Board_long.findOne({_id: req.params.id}, function (err, board_longs) {
+  Board_long.findOne({_id: req.params.id})
+    .populate('writer')             // 3
+    .exec(function(err, board_longs){
       if(err) return res.json(err);
       res.render('board/long/show', {board_longs: board_longs});
   })
 });
 
 
+
 router.get('/short/:id', function (req, res) {
-  Board.findOne({_id: req.params.id}, function (err, boards) {
+  Board.findOne({_id: req.params.id})
+    .populate('writer')
+    .exec(function (err, boards) {
       if(err) return res.json(err);
       res.render('board/short/show', {boards: boards });
   })
