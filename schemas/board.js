@@ -8,15 +8,15 @@ const boardSchema = new Schema({
   writer: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "User"
+    ref: "user"
   },
   title: {
     type: String,
-    required: true
+    required: [true,'제목을 입력해주세요.']
   },
   content: {
     type: String,
-    required: true
+    required: [true,'내용을 입력해주세요.']
   },
   imgPath: {
     type: String

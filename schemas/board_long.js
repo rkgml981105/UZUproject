@@ -12,11 +12,11 @@ const board_longSchema = new Schema({
    },
   title: {
     type: String,
-    required: true
+    required: [true,'제목을 입력해주세요.']
   },
   content: {
     type: String,
-    required: true
+    required: [true,'내용을 입력해주세요.']
   },
   imgPath: {
     type: String
