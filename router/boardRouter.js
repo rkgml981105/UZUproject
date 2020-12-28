@@ -5,10 +5,6 @@ const Board_long = require("../schemas/board_long");
 const session = require("express-session");
 
 /* boardlist */
-router.get('/', (req, res) => {
-      res.render('board')
-});
-
 router.get('/long', function (req, res) {
   Board_long.find({})
   .populate("writer")
