@@ -4,8 +4,200 @@
     <%- include ("../partials/head") %>
 </head>
 <body>
-    <div>MY PAGE</div>
-    <span><%= nickname%></span>
-    <span>Lv. 동네새내기</span>
+    <%- include ("../partials/nav") %>
+    <div class="container">
+        <div class="row myCon">
+            <div class="col s4" id="myinfoCon">
+                <div class="myinfo">
+                    <div class="mybasic">
+                        <span class="myname"><%=nickname%></span>
+                        <span class="mylv">Lv. 새내기</span>
+                    </div>
+                    <div class="myaccount">
+                        <span class="myemail">lwk9819@naver.com</span>
+                        <span><button class="u-myinfo">수정</button></span>
+                    </div>
+                </div>
+                <div class="history">
+                    <div class="mynum">
+                        <div class="myplanet">
+                            <i class="material-icons">blur_circular</i>
+                            <div class="label">내 소행성</div>
+                            <div class="count">3</div>
+                        </div>
+                        <div class="myposts">
+                            <i class="material-icons">create</i>
+                            <div class="label">내가 쓴 글</div>
+                            <div class="count">4</div>
+                        </div>
+                        <div class="mylikes">
+                            <i class="material-icons">favorite_border</i>
+                            <div class="label">찜한 장소/글</div>
+                            <div class="count">16</div>
+                        </div>
+                    </div>
+                    <div class="mybenefit">
+                        <div class="mypoint label">내 포인트</div>
+                        <div class="mypoint">3000P</div>
+                        <div class="mycoupon label">내 쿠폰</div>
+                        <div class="mycoupon">12장</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s8" id="myboardCon">
+                <div class="myacts post">
+                    <div class="mytitle">내가 쓴 글</div>
+                    <div class="my grid-post hideContent">
+                        <article class="my grid-item">
+                            <div class="grid-item-image">
+                                <img class="image-source" src="/image/sample.jpg">
+                            </div>
+                            <div class="grid-item-content">
+                                <div class="lpheader">
+                                    <p class="lptitle"><a href="/board/long">드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
+                                </div>
+                                <div class="lpfooter">
+                                    <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
+                                    <i class="material-icons">comment</i><span class="lpcomment">6</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="my grid-item">
+                            <div class="grid-item-image">
+                                <img class="image-source" src="/image/sample.jpg">
+                            </div>
+                            <div class="grid-item-content">
+                                <div class="lpheader">
+                                    <p class="lptitle"><a href="/board/long">드디어 우리 동네에도 고구마 붕어빵이 생겼다 팥붕슈붕뭐가좋아?</a></p>
+                                </div>
+                                <div class="lpfooter">
+                                    <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
+                                    <i class="material-icons">comment</i><span class="lpcomment">6</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="my grid-item">
+                            <div class="grid-item-image">
+                                <img class="image-source" src="/image/sample.jpg">
+                            </div>
+                            <div class="grid-item-content">
+                                <div class="lpheader">
+                                    <p class="lptitle"><a href="/board/long">타이틀</a></p>
+                                </div>
+                                <div class="lpfooter">
+                                    <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
+                                    <i class="material-icons">comment</i><span class="lpcomment">6</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="my grid-item">
+                            <div class="grid-item-image">
+                                <img class="image-source" src="/image/sample.jpg">
+                            </div>
+                            <div class="grid-item-content">
+                                <div class="lpheader">
+                                    <p class="lptitle"><a href="/board/long">타이틀</a></p>
+                                </div>
+                                <div class="lpfooter">
+                                    <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
+                                    <i class="material-icons">comment</i><span class="lpcomment">6</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="show-more"><a>Show more</a></div>
+
+                    <div class="my short grid-post hideContent">
+                        <article class="my short grid-item">
+                            <div class="grid-item-content">
+                                <div class="spheader">
+                                    <p class="sptitle"><a href="/board/short">드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
+                                    <div class="grid-item-image">
+                                        <img class="image-source" src="/image/sample.jpg">
+                                    </div>
+                                </div>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="my short grid-item">
+                            <div class="grid-item-content">
+                                <div class="spheader">
+                                    <p class="sptitle"><a href="/board/short">드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
+                                    <div class="grid-item-image">
+                                        <img class="image-source" src="/image/sample.jpg">
+                                    </div>
+                                </div>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="my short grid-item">
+                            <div class="grid-item-content">
+                                <div class="spheader">
+                                    <p class="sptitle"><a href="/board/short">드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
+                                    <div class="grid-item-image">
+                                        <img class="image-source" src="/image/sample.jpg">
+                                    </div>
+                                </div>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="show-more short"><a>Show more</a></div>
+
+                </div>
+                <div class="myacts">
+                    <div class="mytitle">찜한 장소</div>
+                </div>
+                <div class="myacts">
+                    <div class="mytitle">찜한 글</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const showmore = document.querySelector('.show-more');
+        const showmore_s = document.querySelector('.show-more.short');
+
+        showmore.onclick= () => {
+            const showlink = showmore.firstChild;
+            const gridpost = document.querySelector('.my.grid-post');
+            let linkText = showlink.text.toUpperCase();
+
+            if(linkText === "SHOW MORE"){
+                linkText = "Show less";
+                gridpost.className = "my grid-post showContent";
+            } else {
+                linkText = "Show more";
+                gridpost.className = "my grid-post hideContent";
+            };
+            showlink.text=linkText;
+        };
+
+        showmore_s.onclick= () => {
+            const showlink = showmore_s.firstChild;
+            const gridpost = document.querySelector('.my.short.grid-post');
+            let linkText = showlink.text.toUpperCase();
+
+            if(linkText === "SHOW MORE"){
+                linkText = "Show less";
+                gridpost.className = "my short grid-post showContent";
+            } else {
+                linkText = "Show more";
+                gridpost.className = "my short grid-post hideContent";
+            };
+            showlink.text=linkText;
+        };
+    </script>
 </body>
+<%- include ("../partials/footer") %>
 </html>

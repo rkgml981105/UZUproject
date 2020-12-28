@@ -106,8 +106,4 @@ $(document).ready(function() {
     isFitWidth: true
     });
 
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 1d94551b4febca3048b7756ae83e992369e69a07
