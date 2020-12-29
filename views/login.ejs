@@ -1,74 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UZU-login</title>
+    <%- include ("./partials/head") %>
+    <script>
+        $(document).ready(function() {
+            var browserwidth = $(window).width();
+            var browserheight = $(window).height();
+            
+            const resizeBg = () => {
+                $('.bg').width(browserwidth);
+                $('.bg').height(browserheight);
+            }
 
-
-    <!--materialize-->
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+            resizeBg();
+        });
+    </script>
     <link rel="stylesheet" href="/css/login.css">
-
-
-<script>
-$(document).ready(function() {
-    var startwidth = 1080;  
-    var startheight = 611;
-    var ratio = startwidth/startheight;
-    var browserwidth = $(window).width();
-    var browserheight = $(window).height();
-    $('#landingimg').height(browserheight);
-    window.onresize = function(event) {
-        var browserheight = $(window).height();
-        if (browserheight >= 670) {
-            $('#landingimg').height(browserheight);
-        } else {
-            $('#landingimg').css.height("700px");
-        }
-    }
-});
-</script>
 </head>
-
 <body>
-    <% if (password == false) { %>
-        <script>alert('아이디 혹은 비밀번호가 올바르지 않습니다')</script>
-    <% } %> 
-    <div class="landing-container">   
-        <div class="loginbox">
-            <div class="login-container">
-                <form action="/member/login" method="POST">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="id-email" type="email" name="email">
-                            <label for="id-email">아이디/이메일</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <input id="password" type="password" name="password">
-                            <label for="password">비밀번호</label>
-                        </div>
-                    </div>
-                    <button class="waves-effect waves-light btn" type="submit" value="로그인" id="loginbtn">로그인</button>
-                </form>     
-                <div class="tosignin">회원이 아니신가요? <a href="/register">회원가입</a></div>
-                <div class="or">혹은</div>
-
-                <a class="waves-effect waves-light btn" id="g-loginbtn">Google로 로그인</a>
+    <div class="bg"></div>
+    <div class="m-bg"><img src = "/image/uzu_bg.jpg"></div>
+    <div class="main-logo">
+        <img src="image/brand_logo.png">
+    </div>
+    <div class="loginCon z-depth-3">
+        <% if (password == false) { %>
+            <script>alert('아이디 혹은 비밀번호가 올바르지 않습니다')</script>
+        <% } %> 
+        <form action="/member/login" method="POST" id="loginform">
+            <div>
+                <input id="id-email" type="email" name="email">
+                <label for="id-email">아이디/이메일</label>
             </div>
-        </div>
-        <div class="imgbox">
-            <img id="landingimg" src="/image/uzu_main.jpg">
-        </div>  
+            <div>
+                <input id="password" type="password" name="password">
+                <label for="password">비밀번호</label>
+            </div>
+            <button class="loginbtn waves-light btn" type="submit">로그인</button>
+        </form>     
+        <div class="tosignin">회원이 아니신가요? <a href="/register">회원가입</a></div>
+        <div class="or">혹은</div>
+        <button class="g loginbtn waves-light btn" type="submit">Google로 로그인</button>
     </div>
 </body>
 </html>
