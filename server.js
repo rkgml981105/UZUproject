@@ -49,7 +49,6 @@ app.use(function(req, res, next){
   res.locals.session = req.session;
   res.locals.password = req.password;
   res.locals.nickname = req.session.nickname;
-  res.locals._id = req.session._id;
   next()
 });
 
