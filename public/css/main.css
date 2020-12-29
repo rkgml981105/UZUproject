@@ -60,14 +60,13 @@ nav li a {
 
 .row #main_banner {
     margin-top : 5px;
-    background-color: #878787;
     height : 450px;
+    object-fit: cover;
+    padding: 0;
 }
-
 
 @media screen and (max-width:601px) {
     .row #main_banner {
-        background-color: #878787;
         height : 400px;
     }
 
@@ -76,8 +75,6 @@ nav li a {
         padding-right: 20px;
     }
 }
-
-
 
 /*location*/
 .locContainer{
@@ -160,128 +157,3 @@ nav li a {
     color: #424242 !important
 }
 
-
-/*main textbox*/
-.textContainer {
-    background-color:#ffffff;
-    position : relative;
-    width : 60%;
-    left : 20%;
-    top : -50px;
-    padding : 5px 10px;
-    border-radius: 0.1cm;
-    border : none;
-    box-shadow: 2px 2px 5px rgb(216, 216, 216);
-}
-
-.textContainer .materialize-textarea {
-    display: inline-block;
-    position : relative;
-    width : 90%;
-    background-color: #ffffff;
-    margin-top : 8px;
-    border-bottom: none;
-    padding: 0;
-    transition: height .3s ease;
-}
-
-.input-field{
-    margin : 5px;
-}
-
-.textContainer .input-field .materialize-textarea:focus {
-    border-bottom: none;
-    -webkit-box-shadow: none;
-    box-shadow: none
-}
-
-.input-field input[type=text]:focus {
- border-bottom: 1px solid #000;
- box-shadow: 0 1px 0 0 #000;
-}
-
-.textContainer .material-icons {
-    color:#424242;
-    position: absolute;
-    top : 20px;
-    right: 10px;
-}
-
-.input-field .divider {
-    margin : 0 0 10px 0;
-}
-
-span.character-counter {
-    display: none;
-}
-
-.divider {
-    display : none;
-}
-
-.share-cancel {
-    display : none;
-    text-align: right;
-    margin: -10px 0 15px 0;
-}
-
-.share-cancel a{
-    color:slateblue ;
-    margin : 0 12px;
-}
-
-@media screen and (max-width:601px) {
-
-    .input-field {
-        width : 80%;
-        left : 10%;
-        margin-left : -5px;        
-    }
-}
-
-/*board titles*/
-
-.collection-title {
-    margin : 1em 0;
-    color:#424242;
-    font-size: 30px ;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-
-.collection-title .material-icons {
-    font-size: 40px;
-    position : absolute;
-    margin-top : 5px;
-    color:#424242;
-}
-
-
-.movetoboard {
-    font-size: 60%;
-    position : absolute;
-    left : 100%;
-    margin-left: -240px;
-    width : 200px;
-    margin-top : 7px;
-    text-align: right;
-}
-
-@media screen and (max-width:601px) {
-
-    .collection-title {
-            font-size: 25px ;
-    }
-
-    .collection-title .material-icons {
-        font-size: 30px;
-    }
-}
-
-/*board - general*/
-.boardtitle{
-    text-align: center;
-    font-size: 25px;
-    margin : 2.5rem;
-}
