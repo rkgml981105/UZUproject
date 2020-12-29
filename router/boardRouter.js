@@ -51,6 +51,7 @@ router.get('/long/write', function(req, res) {
   else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/board/long"; </script>')}
 });
  
+
 router.get('/short/write', function(req, res) {
   if(req.session.email) {
     res.render('board/short/write.ejs')}
@@ -60,19 +61,39 @@ router.get('/short/write', function(req, res) {
 
 
 router.post('/long/write', function(req, res){
-  // req.body.writer = req.user._id;
-  Board_long.create(req.body, function(err, board){
-    if(err) return res.json(err);
-    res.redirect('/board/long');
+  const board_long = new Board_long({
+    writer: req.session._id,
+    title: req.body.title,
+    content: req.body.content
   });
-});
+  board_long
+  .save()
+  .then(result => {
+    console.log(result);
+    res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/long"; </script>');
+})
+  .catch(err => {
+      console.log(err);
+      res.send('<script type="text/javascript">alert("작성이 실패하였습니다."); window.location="/board/long/write"; </script>');
+  });
+ });
 
 
 router.post('/short/write', function(req, res){
-  //req.body.writer = req.user.nickname;
-  Board.create(req.body, function(err, board){
-    if(err) return res.json(err);
-    res.redirect('/board/short');
+  const board = new Board({
+    writer: req.session._id,
+    title: req.body.title,
+    content: req.body.content
+  });
+  board
+  .save()
+  .then(result => {
+    console.log(result);
+    res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
+})
+  .catch(err => {
+      console.log(err);
+      res.send('<script type="text/javascript">alert("작성이 실패하였습니다."); window.location="/board/short/write"; </script>');
   });
 });
 
@@ -114,7 +135,10 @@ router.get('/best/:id', function (req, res) {
 router.get('/long/:id/edit', function(req, res){
   Board_long.findOne({_id:req.params.id}, function(err, board_longs){
     if(err) return res.json(err);
-    res.render('board/long/edit', {board_longs: board_longs});
+    if(req.session && req.session.nickname===board_longs.writer){res.render('board/long/edit', {board_longs: board_longs,edit:"yes"})}
+        else if(req.session && req.session.nickname!==board_longs.writer) {res.render('board/long/edit', {board_longs: board_longs,edit:"no"})}
+        else{res.render('board/long/edit', {board_longs: board_longs,edit:"no"})}
+    
   });
 });
 
