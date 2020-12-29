@@ -24,12 +24,15 @@
           </div>
           <div class="line"></div>
           <div class="spcontent-show"><%= board_longs.content %></div>
+
+          <% if(session.email && session.nickname===board_longs.writer.nickname){ %>
           <div class="btn-container ud">
             <a class="btn default update" href="/board/long/<%= board_longs._id %>/edit">수정</a>
             <form action="/board/long/<%= board_longs._id %>?_method=delete" method="POST">
               <a class="btn default delete" href="javascript:void(0)" onclick="confirm('삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
             </form>
           </div>
+          <% } %>
       </div>
     </div>
   </body>

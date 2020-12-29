@@ -63,6 +63,7 @@ router.get('/short/write', function(req, res) {
 router.post('/long/write', function(req, res){
   const board_long = new Board_long({
     writer: req.session._id,
+    nickname:req.session.nickname,
     title: req.body.title,
     content: req.body.content
   });
@@ -133,18 +134,19 @@ router.get('/best/:id', function (req, res) {
 //edit(&mongo에 update),  destroy(삭제)
 /* edit */
 router.get('/long/:id/edit', function(req, res){
-  Board_long.findOne({_id:req.params.id}, function(err, board_longs){
+  Board_long.findOne({_id:req.params.id})
+  .populate('writer')
+  .exec(function(err, board_longs){
     if(err) return res.json(err);
-    if(req.session && req.session.nickname===board_longs.writer){res.render('board/long/edit', {board_longs: board_longs,edit:"yes"})}
-        else if(req.session && req.session.nickname!==board_longs.writer) {res.render('board/long/edit', {board_longs: board_longs,edit:"no"})}
-        else{res.render('board/long/edit', {board_longs: board_longs,edit:"no"})}
-    
+    res.render('board/long/edit', {board_longs: board_longs});
   });
 });
 
 
 router.get('/short/:id/edit', function(req, res){
-  Board.findOne({_id:req.params.id}, function(err, boards){
+  Board.findOne({_id:req.params.id})
+  .populate('writer')
+  .exec(function(err, boards){
     if(err) return res.json(err);
     res.render('board/short/edit', {boards: boards});
   });
