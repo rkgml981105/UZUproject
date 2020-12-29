@@ -2,24 +2,31 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const User = require("../schemas/user");
+const { route } = require("./memberRouter");
+const session = require("express-session");
+
 const Board = require("../schemas/board");
+const Board_long = require("../schemas/board_long");
 
     router.get('/', function(req,res){
-        res.render('main.ejs');
+        let session = req.session;
+        res.render('main.ejs', {
+            session : session
+        });
     });
     router.get('/register', function (req,res) {
-        res.render('register.ejs')
+        res.render('register.ejs');
     })
-    router.get("/parameter", function(req,res){
-        const render_data = {
-            data1: req.query.data1,
-            data2: req.query.data2,
-        };
-        res.render('parameter.ejs', render_data)
-    });
     router.get("/login",function(req,res){
-        res.render('login.ejs')
+        res.render('login.ejs');
+    });
+    router.get("/mypage", function (req,res) {
+        res.render('user/mypage.ejs');
+    })
+
+    router.get("/logout",function(req,res){
+        req.session.destory(); 
+        
     });
 
-module.exports = router
+module.exports = router;

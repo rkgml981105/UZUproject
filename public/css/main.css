@@ -21,6 +21,7 @@ nav.nav-extended{
 
 #brand-logo {
     width : 80px;
+    margin-left: 22px;
 }
 
 .sidenav-trigger{
@@ -147,7 +148,6 @@ nav li a {
 
 /*footer*/
 .page-footer {
-    padding-top: 50px;
     color: black;
     background-color: white;
 }
@@ -240,7 +240,6 @@ span.character-counter {
     }
 }
 
-
 /*board titles*/
 
 .collection-title {
@@ -280,4 +279,55 @@ span.character-counter {
         font-size: 30px;
     }
 
+}
+
+/*login page*/ 
+.login-container {
+    width : 50%;
+    margin-left : 25%;
+}
+
+.login-text{
+    font-size : 2rem;
+    text-align: center;
+    margin : 2.5rem 0;
+}
+
+.row.form {
+   max-width : 400px;
+}
+
+#loginbtn {
+    text-align: center;
+    width : 100%;
+    background-color: #4c14ee;
+    max-width : 400px;
+    margin : 2em 0;
+}
+
+input[type=email]:not(.browser-default).textinput:focus,
+input[type=password]:not(.browser-default).textinput:focus{
+    border-bottom: 2px solid #4c14ee;
+    -webkit-box-shadow: none;
+    box-shadow:  none;
+}
+
+@media screen and (max-width:601px) {
+
+    .login-container {
+        width : 80%;
+        margin-left : 10%;
+    }
+    
+    .login-text{
+        margin : 1rem 0;
+    }
+    
+}
+
+/*board - general*/
+.boardtitle{
+    text-align: center;
+    font-size: 25px;
+    margin : 2.5rem;
 }

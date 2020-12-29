@@ -36,6 +36,7 @@ router.post("/register", async (req, res) => {
                 obj = {
                   email: req.body.email,
                   name: req.body.name,
+                  nickname: req.body.nickname,
                   password: key.toString("base64"),
                   salt: buf.toString("base64")
                 };
@@ -55,7 +56,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//로그인
+  
+// 로그인
 router.post("/login", async (req, res) => {
   try {
     //이메일 값으로 아이디가 존재하는지 확인
@@ -89,20 +91,17 @@ router.post("/login", async (req, res) => {
                 console.log(user2);
                 if (user2) {
                   // 있으면 로그인 처리
-                  // console.log(req.body._id);
+                  console.log(req.body._id);
                   await User.updateOne(
                     {
                       email: req.body.email
                     },
                     { $set: { loginCnt: 0 } }
                   );
+                  //세션설정
                   req.session.email = user.email;
-                  res.redirect('/')
-                  // res.json({
-                  //   message: "로그인 되었습니다!",
-                  //   _id: user2._id,
-                  //   email: user2.email
-                  // });
+                  req.session.nickname = user.nickname;
+                  res.redirect('/');
                 } else {
                   //없으면 로그인 실패횟수 추가
                   if (user.loginCnt > 4) {
@@ -129,9 +128,10 @@ router.post("/login", async (req, res) => {
                           "아이디나 패스워드가 5회 이상 일치하지 않아 잠겼습니다.\n고객센터에 문의 바랍니다."
                       });
                     } else {
-                      res.json({
-                        message: "아이디나 패스워드가 일치하지 않습니다."
-                      });
+                      // res.json({
+                      //   message: "아이디나 패스워드가 일치하지 않습니다."
+                      // });
+                      res.render('login.ejs', {title: '비밀번호 조회', password: false});
                     }
                   }
                 }
@@ -139,7 +139,8 @@ router.post("/login", async (req, res) => {
             }
           );
         } else {
-          res.json({ message: "아이디나 패스워드가 일치하지 않습니다." });
+          // res.json({ message: "아이디나 패스워드가 일치하지 않습니다." });
+          res.render('login.ejs', {title: '비밀번호 조회', password: false});
         }
       }
     });
@@ -152,7 +153,7 @@ router.post("/login", async (req, res) => {
 router.get("/logout", (req, res) => {
   console.log("/logout" + req.sessionID);
   req.session.destroy(() => {
-    res.json({ message: true });
+    res.redirect('/');
   });
 });
 

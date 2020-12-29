@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%- include('../../partials/head') %>
-  </head>
-  <body>
-    <%- include('../../partials/nav') %>
-
-    <div class="container mb-3">
-
-      <h3 class="mb-3">짧은 글 게시판 목록</h3>
-
-      <table class="board-table table table-sm border-bottom">
-
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col" class="content">Content</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% if(boards == null || boards.length == 0){ %>
-            <tr>
-              <td colspan=2> There is no data to show :( </td>
-            </tr>
-          <% } %>
-          <% boards.forEach(function(board) { %>
-            <tr>
-              <td>
-                <a href="/board/short/<%= board._id %>"><div class="ellipsis"><%= board.title %></div></a>
-              </td>
-              </td>
-              <td class="content">
-               <span data-date><%= board.content %></span> <!-- 1 -->
-              </td>
-            </tr>
-          <% }) %>
-        </tbody>
-
-      </table>
-      <br>
-      <div>
-        <a class="btn btn-primary" href="/board/short/write">글쓰기</a>
-      </div>
+<head>
+    <%- include ("../../partials/head") %>
+</head>
+<body>
+    <%- include ("../../partials/nav") %>
+    <div class= "container">
+        <div class="boardtitle">
+            <div>UZU 짧은글 목록</div>
+        </div>
+        <div class="tag-container">
+            <span class="tag all active">all</span>
+            <span class="tag t1 all">#111</span>
+            <span class="tag t2 all">#222</span>
+            <span class="tag t3 all">#333</span>
+            <span class="tag t4 all">#444</span>
+            <span class="tag t5 all">#555</span>
+        </div>
+        <div class="btn-container">
+          <a class="btn default" href="/board/short/write">글쓰기</a>
+        </div>
+        <div class="spcontainer">
+            <table class="sptable">
+                <tbody class="sptbody">
+                  <% if(boards == null || boards.length == 0){ %>
+                    <tr>
+                      <td colspan=2> There is no data to show :( </td>
+                    </tr>
+                  <% } %>
+                  <% boards.forEach(function(board) { %>
+                    <tr>
+                        <td class="sptd">
+                            <div class="spheader">
+                                <span class=item-profile></span>
+                                <span class="spwriter"><%= board.writer %></span>
+                                <span> ``` </span>
+                                <span class="sptime"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(boards.createdAt) %></span>
+                            </div>
+                            <p class="sptitle"><a href="/board/short/<%= board._id %>"><%= board.title %></a></p>
+                            <p class="spcontent"><span data-date><%= board.content %></span></p>
+                            <div class="spfooter">
+                                <i class="material-icons">favorite_border</i><span class="splike"><%= board.likeCnt %></span> 
+                                <i class="material-icons">comment</i><span class="spcomment">6</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </body>
+</body>
+<%- include ("../../partials/footer") %>
 </html>

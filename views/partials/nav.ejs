@@ -1,55 +1,77 @@
-<script>
-
-</script>
-
 <!-- views/partials/nav.ejs -->
 <nav class="nav-extended">
   <div class="nav-wrapper">
       <!-- Dropdown Structure -->
       <ul id="dropdown1" class="dropdown-content">
-          <li><a href="#!">계정</a></li>
-          <li><a href="#!">2번째</a></li>
+          <li><a href="/mypage">마이페이지</a></li>
           <li class="divider"></li>
-          <li><a href="#!">3번째</a></li>
+          <li><a href="/member/logout">로그아웃</a></li>
       </ul>
       <a href="/" class="brand-logo"><img id='brand-logo' src='/image/brand_logo.png'></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="login">로그인</a></li>
-          <li><a href="register">회원가입</a></li>
-          <li><a href="sass.html"><i class="material-icons">create</i></a></li>
-          <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-          <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
-          
-          <!-- Dropdown Trigger -->
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">my<i class="material-icons right">keyboard_arrow_down</i></a></li>
-      </ul>
-  </div>
-  <div class="nav-content">
-      <ul class="tabs tabs-transparent" id="navlist">
-          <li class="tab"><a class="active" href="/">홈</a></li>
-          <li class="tab"><a href="/board/short">짧은글</a></li>
-          <li class="tab"><a href="/board/long">긴글</a></li>
-          <li class="tab"><a href="/board/best">Best</a></li>
-      </ul>
-      
-    
-      <div class="locContainer">
-          <div class="location right">
-              <i class="material-icons" id="locationmark">location_on</i>
-              <span id="location">
-                  서울특별시 종로구 성균관로 25-2
-                  성균관대학교 인문사회과학캠퍼스
-              </span>
-              <button id="modibtn">수정</button>
-          </div>
-      </div>
-  </div>
-</nav>
 
-<ul class="sidenav" id="mobile-demo">
-  <li><a href="sass.html">검색</a></li>
-  <li><a href="badges.html">알림</a></li>
-  <!--마이페이지는 로그인 성공시에만 render-->
-  <li><a href="collapsible.html">마이페이지</a></li>
-</ul>
+        <% if(session.email){ %>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/login" style="display:none">로그인</a></li>
+                <li><a href="/register" style="display:none">회원가입</a></li>
+                <li><a href="/member/logout">로그아웃</a></li>
+                <li><a href="/board/write"><i class="material-icons">create</i></a></li>
+                <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+
+                <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="/mypage" data-target="dropdown1"><%= nickname %><i class="material-icons right">keyboard_arrow_down</i></a></li>
+            </ul>
+        <% } else{ %>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/login">로그인</a></li>
+                <li><a href="/register">회원가입</a></li>
+                <li><a href="/board/write"><i class="material-icons">create</i></a></li>
+                <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+            </ul>
+        <% } %>
+  </div>
+  <div class="nav-content">        
+        <ul class="tabs tabs-transparent" id="navlist">
+            <li class="tab"> <% if (active === '/') { %>
+                <a class="active" href="/">홈</a> 
+                <% } %> 
+                <a href="/">홈</a>
+            </li>
+            <li class="tab"> <% if (active === '/board/short') { %>
+                <a class= "active" href="/board/short">짧은글</a> 
+                <% } %> 
+                <a href="/board/short">짧은글</a>
+            </li>
+            <li class="tab"> <% if (active === '/board/long') { %>
+                <a class="active" href="/board/long">긴글</a>
+                <% } %> 
+                <a href="/board/long">긴글</a>
+            </li>
+            <li class="tab"> <% if (active === '/board/best') { %>
+                <a class="active" href="/board/best">Best</a>
+                <% } %> 
+                <a href="/board/best">Best</a>
+            </li> 
+        </ul>
+      
+        <div class="locContainer">
+            <div class="location right">
+                <i class="material-icons" id="locationmark">location_on</i>
+                <span id="location">
+                    서울특별시 종로구 성균관로 25-2
+                    성균관대학교 인문사회과학캠퍼스
+                </span>
+                <button id="modibtn">수정</button>
+            </div>
+        </div>
+    </div>
+  </nav>
+  
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">검색</a></li>
+    <li><a href="badges.html">알림</a></li>
+    <!--마이페이지는 로그인 성공시에만 render-->
+    <li><a href="collapsible.html">마이페이지</a></li>
+  </ul>
