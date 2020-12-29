@@ -347,7 +347,8 @@ margin : 0 3px;
 }
 
 #myinfoCon {
-    padding : 0 2rem 0 0;
+    padding : 0 4rem 0 0;
+    margin-left: -10%;
 }
 
 .myinfo {
@@ -430,6 +431,7 @@ margin : 0 3px;
 #myboardCon {
     padding-left: 4rem;
     border-left: 1px solid #EEEEEE;
+    width: 75%;
 }
 
 .mytitle {
