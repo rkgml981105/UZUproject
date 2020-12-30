@@ -99,6 +99,9 @@ $(document).ready(function() {
       }
   });
 
+  /*search-option*/
+  $('select').formSelect();
+
   /*masonry*/ 
   $('.wrapper').masonry({
     itemSelector: '.itemwrapper',
