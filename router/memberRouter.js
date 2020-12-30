@@ -16,6 +16,13 @@ router.post("/register", async (req, res) => {
         message: "이메일이 중복되었습니다. 새로운 이메일을 입력해주세요.",
         dupYn: "1"
       });
+
+    } else if (User.validationError) {
+      req.flash('passflash', '8자 이상이어야 하고, 숫자와 문자를 혼용해야 합니다.')
+      // req.flash('flash', req.body);
+      // req.flash('errors', parseError(err));
+      return res.redirect('/register');
+      
     } else {
       crypto.randomBytes(64, (err, buf) => {
         if (err) {
@@ -37,6 +44,8 @@ router.post("/register", async (req, res) => {
                   email: req.body.email,
                   name: req.body.name,
                   nickname: req.body.nickname,
+                  dateOfBirth: req.body.dateOfBirth,
+                  address: req.body.address,
                   password: key.toString("base64"),
                   salt: buf.toString("base64")
                 };
@@ -204,3 +213,18 @@ router.post("/getAllMember", async (req, res) => {
 });
 
 module.exports = router;
+
+// functions
+function parseError(errors){
+  var parsed = {};
+  if(errors.name == 'ValidationError'){
+    for(var name in errors.errors){
+      var validationError = errors.errors[name];
+      parsed[name] = { message:validationError.message };
+    }
+  }
+  else {
+    parsed.unhandled = JSON.stringify(errors);
+  }
+  return parsed;
+}

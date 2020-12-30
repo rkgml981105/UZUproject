@@ -59,19 +59,31 @@
         <div class="locContainer">
             <div class="location right">
                 <i class="material-icons" id="locationmark">location_on</i>
-                <span id="location">
+                <span id="roadAddress">
                     서울특별시 종로구 성균관로 25-2
                     성균관대학교 인문사회과학캠퍼스
+                    <!--address정보 받아와서 여기 띄우기-->
                 </span>
-                <button id="modibtn">수정</button>
+                <span id="guide" style="color:#999; display:none"></span>
+                <button onclick="execDaumPostcode()" id="modibtn">수정</button>
             </div>
         </div>
     </div>
   </nav>
   
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">검색</a></li>
-    <li><a href="badges.html">알림</a></li>
+  
     <!--마이페이지는 로그인 성공시에만 render-->
-    <li><a href="collapsible.html">마이페이지</a></li>
-  </ul>
+    <% if(session.email){ %>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="sass.html">검색</a></li>
+            <li><a href="badges.html">알림</a></li>
+            <li><a href="collapsible.html">마이페이지</a></li>
+        </ul>    
+    <% } else{ %>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="sass.html">검색</a></li>
+            <li><a href="badges.html">알림</a></li>
+            <li><a href="collapsible.html" style="display:none">마이페이지</a></li>
+        </ul>      
+    <% } %>    
+  

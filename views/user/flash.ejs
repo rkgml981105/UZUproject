@@ -25,9 +25,6 @@
 
 </head>
 <body>
-    <% if (password == false) { %>
-        <script>alert('비밀번호 형식이 올바르지 않습니다')</script>
-    <% } %> 
     <div class="signin-container">
         <div id="welcome">
             <h1>Welcome!</h1>
@@ -57,8 +54,11 @@
             <div class="row form email">
                 <div class="col s9" id="inputbox">
                     <label for="email">사용할 이메일을 적어주세요</label>
-                    <input class="textinput validate" type='email' name= "email" id = "email" placeholder = "ex. uzu2020@likelion.skku">
+                    <input class="textinput validate" type='email' value="<%= user.email %>" name= "email" id = "email" placeholder = "ex. uzu2020@likelion.skku">
                     <span class="helper-text" data-error="바르지 않은 형식입니다" data-success="바른 형식입니다"></span>
+                    <% if(errors.email){ %>
+                        <span class="invalid-feedback"><%= errors.email.message %></span>
+                    <% } %>
                 </div>
                 <a class = "col s3 waves-effect waves-light btn" id="validatebtn">인증하기</a>
             </div>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="col s9" id="inputbox">
-                    <input class="textinput validate" type='password' name= "password" id = "password">
+                    <input class="textinput validate" type='password' value="" name= "password" id = "password">
                     <span class="helper-text" data-error="비밀번호 설정 형식을 확인해주세요"></span>
                     <% if(flash){ %>
                         <span class="invalid-feedback"><%=  flash %></span>

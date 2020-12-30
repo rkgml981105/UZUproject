@@ -7,7 +7,8 @@ const cookieParser = require('cookie-parser');
 const connect = require("./schemas");
 const { signedCookie } = require("cookie-parser");
 const bodyParser = require('body-parser'); // 1
-const methodOverride = require('method-override'); // delete, update 
+const methodOverride = require('method-override'); // delete, update
+const flash = require('connect-flash'); 
 
 app.use(bodyParser.json()); // 2
 app.use(bodyParser.urlencoded({extended:true})); // 3
@@ -33,6 +34,7 @@ app.use(
   })
 );
 
+app.use(flash());
 app.use(cors(corsOptions));
 
 app.use(express.json());
@@ -48,7 +50,12 @@ app.use(function(req, res, next){
   res.locals.active = req.path; // [0] will be empty since routes start with '/'
   res.locals.session = req.session;
   res.locals.password = req.password;
+  res.locals.email = req.session.email;
   res.locals.nickname = req.session.nickname;
+  res.locals.validator = req.validator;
+  res.locals.address = req.address;
+  res.locals.isDuplicated = req.isDuplicated;
+  res.locals.flash = req.flash('flash');
   next()
 });
 
