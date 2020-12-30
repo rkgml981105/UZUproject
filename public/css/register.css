@@ -68,7 +68,7 @@ input[type=text]:not(.browser-default):disabled {
         margin-left : 20%;
     }
 
-    #dupcheckbtn, #addressbtn, #validatebtn {
+    #dupcheckbtn, #addressbtn, #validatebtn, #validatebtn1 {
          font-size: 13px;
      }
 
@@ -86,7 +86,7 @@ input[type=text]:not(.browser-default):disabled {
         margin-left : 10%;
      }
 
-     #dupcheckbtn, #addressbtn, #validatebtn {
+     #dupcheckbtn, #addressbtn, #validatebtn, #validatebtn1 {
          font-size: 12px;
      }
 }
@@ -109,7 +109,7 @@ input[type=text]:not(.browser-default):disabled {
     grid-template-columns: auto auto;
 }
 
-#dupcheckbtn, #addressbtn, #validatebtn {
+#dupcheckbtn, #addressbtn, #validatebtn, #validatebtn1 {
     background-color: #4c14ee;
     color : #ffffff;
     margin-top : 30px;
