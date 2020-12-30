@@ -7,12 +7,14 @@ const nodemailer = require("nodemailer");
 //회원가입 이메일 인증
 router.post('/sendEmail', async (req, res) => {
   let user_email = req.body.email;
+  let number = req.body.number;
 
-  let number = Math.floor(Math.random() * 1000000)+100000;
-  if(number>1000000){                                      
-     number = number - 100000;                             
-  }
-  console.log(number);
+  
+  //let number = Math.floor(Math.random() * 1000000)+100000;
+  //if(number>1000000){                                      
+  //   number = number - 100000;                             
+  //}
+  //console.log(number);
 
   let transporter = nodemailer.createTransport({
     service : 'gmail',
