@@ -76,7 +76,7 @@ router.get('/short/write', function(req, res) {
 router.post('/long/write', function(req, res){
   const board_long = new Board_long({
     writer: req.session._id,
-    nickname:req.session.nickname,
+    //nickname:req.session.nickname,
     title: req.body.title,
     content: req.body.content
   });
@@ -93,6 +93,10 @@ router.post('/long/write', function(req, res){
       res.send('<script type="text/javascript">alert("작성이 실패하였습니다."); window.location="/board/long/write"; </script>');
   });
  });
+
+ router.post('/long/write/alert', async (req, res) => {
+  res.jsonp({success : true});
+})
 
 
 router.post('/short/write', util.getPostQueryString, function(req, res){
@@ -115,6 +119,10 @@ router.post('/short/write', util.getPostQueryString, function(req, res){
   })
   
 });
+
+router.post('/short/write/alert', async (req, res) => {
+  res.jsonp({success : true});
+})
 
 
 

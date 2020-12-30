@@ -11,9 +11,8 @@ $(function(){
     //이메일 전송 및 유효시간 설정
     var display = $(".time");
     var leftSec = 300;
-    var btn1 = document.querySelector('#validatebtn1');
     
-    btn1.addEventListener('click',function(){
+    $('#validatebtn1').on('click',function(){
         if (isRunning){
             isrunning();
         }else{
@@ -93,10 +92,12 @@ $(function(){
             alert("이메일 인증이 완료되었습니다.");
             if (isRunning){
                 clearInterval(timer);
-                display.html("인증완료");
+                display.html("");
                 $('#validatebtn1:contains()').text("인증완료");
                 $('#validatebtn:contains()').text("인증완료");
-            }
+            };
+            $("#validatebtn").off('click');
+            $("#validatebtn1").off('click');
         }else{
             alert("인증번호가 일치하지 않습니다. 다시 입력하세요.");
             validation_value = null;
