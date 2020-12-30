@@ -1,31 +1,41 @@
-// public/js/script.js
-
 $(document).ready(function() {
 
-  /*text-box*/
-  let inputfield = $(".input-field");
-  let divider = $('.divider');
-  let helper_text = $(".helper-text");
-  let share_cancel = $(".share-cancel");
+/*text-box*/
+const inputfield = $(".input-field");
+const titlefield = $(".materialize-textarea.title");
+const contentfield = $(".materialize-textarea.content");
+const helper_text = $(".helper-text");
+const share_cancel = $(".share-cancel");
+const the_count = $('.the-count');
 
-  $('#cancelbtn').click(function() {
-      divider.hide();
-      $(".helper-text").hide();
-      $(".share-cancel").hide();
-      $(".materialize-textarea").height("50px");
+  $('.cancelbtn').click(function() {
+    titlefield.hide();
+    helper_text.hide();
+    share_cancel.hide();
+    the_count.hide();
+    contentfield.height("50px");
   });
 
   inputfield.focusin(function() {
-      $(".divider").show();
-      $(".helper-text").show();
-      $(".share-cancel").show();
-      inputfield.height("auto");
+    titlefield.show();
+    helper_text.show();
+    share_cancel.show();
+    the_count.show();
+    inputfield.height("auto");
   });
 
-    /*text-box input resize*/
-    M.textareaAutoResize($('#textarea'));
-    $('textarea#textarea').characterCounter();
+/*textarea limit length*/
+$('.materialize-textarea.content').keyup(function() {
+    
+  const characterCount = $(this).val().length,
+      current = $('.count-current'),
+      maximum = $('.count-maximum'),
+      theCount = $('.the-count');
+  
+  current.text(characterCount);     
+});
 
+  /*Date Time -? */
   $(function(){
     function get2digits (num){
       return ('0' + num).slice(-2);
@@ -65,11 +75,13 @@ $(document).ready(function() {
     convertDateTime();
   });
 
+
   /*nav-dropdown*/
   $(document).ready(function() {
-    $(".dropdown-trigger").dropdown();
+    $(".dropdown-trigger").dropdown;
   });
   
+
   /*location*/
   let location = $("#location");
   let locationmark = $('#locationmark');
@@ -99,11 +111,15 @@ $(document).ready(function() {
       }
   });
 
-  /*masonry*/ 
-  $('.wrapper').masonry({
-    itemSelector: '.itemwrapper',
-    columnWidth: 230,
-    isFitWidth: true
-    });
+  
+/*masonry*/ 
+$('.wrapper').masonry({
+  itemSelector: '.itemwrapper',
+  columnWidth: 230,
+  isFitWidth: true
+  });
 
-});
+/*sidenav* */
+
+$('.sidenav').sidenav();
+}); //$(document).ready(function()

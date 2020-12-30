@@ -77,6 +77,44 @@ nav li a {
     }
 }
 
+/*side-nav*/
+.sidenav {
+    color : #424242;
+}
+
+.sidenav .logo {
+    margin : 4rem auto;
+    text-align: center;
+}
+
+.sidenav .logo img {
+    width : 100px;
+}
+
+.sidenav .hello{
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color : #4c14ee;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 32px;
+}
+
+.sidenav .myname {
+    font-size: 1rem;
+}
+
+.sidenav .mylv {
+    font-size: 0.7rem;
+    margin-left: 3px;
+}
+
+.sidenav li>a{
+    height : 55px;
+    line-height: 55px;
+}
+
 /*location*/
 .locContainer{
     display: inline-block;

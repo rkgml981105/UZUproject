@@ -8,17 +8,24 @@
     <div class="row">
         <img id="main_banner" class="col s12" src="/image/uzu_bg.jpg">
     </div>
-    <div class='textContainer'>
-        <div class='input-field'>
-            <textarea class="materialize-textarea" id="textarea" data-length="300" placeholder="여기를 눌러 이야기를 공유해보세요."></textarea>
-            <div class="divider"></div>
-            <span class="helper-text" data-error="너무 길어요! (최대 글자 수 : 300자)"></span>
-            <div class="share-cancel">
-                <a href="#" id="sharebtn">공유</a>
-                <a href="#" id="cancelbtn">취소</a>
+    <form class = "spinput" action="/board/short/write" method="POST">
+        <div class='textContainer'>
+            <div class='input-field'>
+                <div id="writer" name="writer"><%= session.nickname %></div>
+                <textarea class="materialize-textarea title" name="title" placeholder="제목을 입력하세요"></textarea>
+                <textarea class="materialize-textarea content" name="content" maxlength="300" placeholder="여기를 눌러 이야기를 공유해보세요."></textarea>
+                <div class="the-count">
+                    <span class="count-current">0</span>
+                    <span class="count-maximum">/ 300</span>
+                </div>
+                <div class="share-cancel">
+                    <button class="sharebtn" type="submit"><a>공유</a></button>
+                    <button class="cancelbtn"><a>취소</a></button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+
     <div class="container">
         <div class="post-collection" id="col01">
             <div class="collection-title">
@@ -98,6 +105,7 @@
                         <div class="grid-item-image">
                             <img class="image-source" src="/image/sample.jpg">
                         </div>
+
                         <div class="grid-item-content">
                             <div class="lpheader">
                                 <p class="lptitle"><a href="/board/long">드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
