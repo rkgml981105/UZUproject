@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 
+
 const { Schema } = mongoose;
 const userSchema = new Schema({
   email: {
@@ -46,8 +47,8 @@ const userSchema = new Schema({
   role: {
     type: Number,
     default: 0
-    },
-});
+    }
+  })
 
 module.exports = mongoose.model("User", userSchema);
 

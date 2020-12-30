@@ -2,14 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Board = require("../schemas/board");
 const Board_long = require("../schemas/board_long");
-
-//지은 사이트  https://supdev.tistory.com/37  - boardlist, show, new(&mongo에 insert)
+const session = require("express-session");
 
 /* boardlist */
-
 router.get('/long', function (req, res) {
   Board_long.find({})
-  .populate('writer')
+  .populate("writer")
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -19,6 +17,7 @@ router.get('/long', function (req, res) {
 
 router.get('/short', function (req, res) {
   Board.find({})
+  .populate("writer")
   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
@@ -38,31 +37,64 @@ router.get('/best', function (req, res,next) {
 /* write(new)  */
 //전체 글쓰기
 router.get('/write', function (req, res) {
-  res.render('board/write.ejs');
+  if(req.session.email) {
+    res.render('board/write.ejs')}
+  //로그인하지 않은 사용자 접근 차단
+  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')}
 })
+
+
 router.get('/long/write', function(req, res) {
-    res.render('board/long/write.ejs');
+  if(req.session.email) {
+    res.render('board/long/write.ejs')}
+  //로그인하지 않은 사용자 접근 차단
+  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/board/long"; </script>')}
 });
  
+
 router.get('/short/write', function(req, res) {
-  res.render('board/short/write.ejs');
+  if(req.session.email) {
+    res.render('board/short/write.ejs')}
+  //로그인하지 않은 사용자 접근 차단
+  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/board/short"; </script>')}
 });
 
 
 router.post('/long/write', function(req, res){
-  // req.body.writer = req.user._id;
-  Board_long.create(req.body, function(err, board){
-    if(err) return res.json(err);
-    res.redirect('/board/long');
+  const board_long = new Board_long({
+    writer: req.session._id,
+    nickname:req.session.nickname,
+    title: req.body.title,
+    content: req.body.content
   });
-});
+  board_long
+  .save()
+  .then(result => {
+    console.log(result);
+    res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/long"; </script>');
+})
+  .catch(err => {
+      console.log(err);
+      res.send('<script type="text/javascript">alert("작성이 실패하였습니다."); window.location="/board/long/write"; </script>');
+  });
+ });
 
 
 router.post('/short/write', function(req, res){
-  // req.body.writer = req.user._id;
-  Board.create(req.body, function(err, board){
-    if(err) return res.json(err);
-    res.redirect('/board/short');
+  const board = new Board({
+    writer: req.session._id,
+    title: req.body.title,
+    content: req.body.content
+  });
+  board
+  .save()
+  .then(result => {
+    console.log(result);
+    res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
+})
+  .catch(err => {
+      console.log(err);
+      res.send('<script type="text/javascript">alert("작성이 실패하였습니다."); window.location="/board/short/write"; </script>');
   });
 });
 
@@ -74,14 +106,16 @@ router.get('/long/:id', function (req, res) {
     .populate('writer')             // 3
     .exec(function(err, board_longs){
       if(err) return res.json(err);
-      res.render('board/long/show', { boards: board_longs });
+      res.render('board/long/show', {board_longs: board_longs});
   })
 });
 
 
 
 router.get('/short/:id', function (req, res) {
-  Board.findOne({_id: req.params.id}, function (err, boards) {
+  Board.findOne({_id: req.params.id})
+    .populate('writer')
+    .exec(function (err, boards) {
       if(err) return res.json(err);
       res.render('board/short/show', {boards: boards });
   })
@@ -98,17 +132,21 @@ router.get('/best/:id', function (req, res) {
 
 //원경 사이트 https://www.a-mean-blog.com/ko/blog/Node-JS-%EC%B2%AB%EA%B1%B8%EC%9D%8C/%EC%A3%BC%EC%86%8C%EB%A1%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0/%EC%A3%BC%EC%86%8C%EB%A1%9D-Show-Edit-Update-Destroy
 //edit(&mongo에 update),  destroy(삭제)
-
 /* edit */
 router.get('/long/:id/edit', function(req, res){
-  Board_long.findOne({_id:req.params.id}, function(err, boards){
+  Board_long.findOne({_id:req.params.id})
+  .populate('writer')
+  .exec(function(err, board_longs){
     if(err) return res.json(err);
-    res.render('board/long/edit', {boards: boards});
+    res.render('board/long/edit', {board_longs: board_longs});
   });
 });
 
+
 router.get('/short/:id/edit', function(req, res){
-  Board.findOne({_id:req.params.id}, function(err, boards){
+  Board.findOne({_id:req.params.id})
+  .populate('writer')
+  .exec(function(err, boards){
     if(err) return res.json(err);
     res.render('board/short/edit', {boards: boards});
   });

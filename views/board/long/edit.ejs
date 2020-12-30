@@ -17,7 +17,7 @@
           </div>
           <div class="spwriterinput">
             <label for="writer">글쓴이</label>
-            <input type="text" id="writer" name="writer" value="<%= board_longs.writer %>"  autocomplete="off">
+            <span class="spwriter-show"><%= board_longs.writer.nickname %></span>
           </div>
           <label for="content">내용</label>
           <div class="spcontentinput input-field">
@@ -35,4 +35,3 @@
   </body>
   <%- include ("../../partials/footer") %>
 </html>
-

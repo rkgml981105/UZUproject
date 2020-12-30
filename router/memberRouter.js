@@ -101,6 +101,7 @@ router.post("/login", async (req, res) => {
                   //세션설정
                   req.session.email = user.email;
                   req.session.nickname = user.nickname;
+                  req.session._id = user._id;
                   res.redirect('/');
                 } else {
                   //없으면 로그인 실패횟수 추가

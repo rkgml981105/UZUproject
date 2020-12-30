@@ -52,6 +52,7 @@ app.use(function(req, res, next){
   next()
 });
 
+
 app.use(express.static(__dirname + "/public"));
 
 app.use("/member", require("./router/memberRouter"));
