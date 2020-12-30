@@ -3,18 +3,21 @@ const router = express.Router();
 const User = require("../schemas/user");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
+const ejs = require('ejs');
+const path = require('path');
+var appDir = path.dirname(require.main.filename)
 
 //회원가입 이메일 인증
 router.post('/sendEmail', async (req, res) => {
   let user_email = req.body.email;
   let number = req.body.number;
 
-  
-  //let number = Math.floor(Math.random() * 1000000)+100000;
-  //if(number>1000000){                                      
-  //   number = number - 100000;                             
-  //}
-  //console.log(number);
+  //ejs 렌더
+  let emailTemplete;
+  ejs.renderFile(appDir+'/views/emailtemplete.ejs', {code : number}, (err, data) => {
+      if(err){console.log('ejs.renderFile err')};
+      emailTemplete = data;
+  });
 
   let transporter = nodemailer.createTransport({
     service : 'gmail',
@@ -28,21 +31,19 @@ router.post('/sendEmail', async (req, res) => {
     from : 'k2h0395@gmail.com',
     to : user_email,
     subject : 'UZU 회원가입 인증번호입니다.',
-    text : String(number)
+    html : emailTemplete
   };
   
   //메일 발송 함수
   transporter.sendMail(mailOptions, function(error, info){
     if (error){
-      console.log(error);
+      //emailvalidate.js으로 데이터 전달
       res.jsonp({success : false})
     }
     else {
-      console.log('Email sent: ',info.response);
       res.jsonp({success : true})
     }
   });
-
 })
 
 
