@@ -33,6 +33,9 @@ app.use(
   })
 );
 
+app.locals.moment = require('moment');
+app.locals.moment.locale('ko');
+
 app.use(cors(corsOptions));
 
 app.use(express.json());

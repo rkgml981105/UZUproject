@@ -5,6 +5,7 @@
 </head>
 <body>
     <%- include ("../../partials/nav") %>
+
     <div class= "container">
         <div class="boardtitle">
             <div>UZU 짧은글 목록</div>
@@ -34,8 +35,10 @@
                             <div class="spheader">
                                 <span class=item-profile></span>
                                 <span class="spwriter"><%= board.writer.nickname %></span>
-                                <span> ``` </span>
-                                <span class="sptime"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(boards.createdAt) %></span>
+                                <span> - </span>
+                                <span class="sptime">
+                                    <%= moment(board.createdAt).fromNow(); %>
+                                </span>
                             </div>
                             <p class="sptitle"><a href="/board/short/<%= board._id %>"><%= board.title %></a></p>
                             <p class="spcontent"><span data-date><%= board.content %></span></p>

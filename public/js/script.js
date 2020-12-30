@@ -111,14 +111,6 @@ $('.materialize-textarea.content').keyup(function() {
       }
   });
 
-  
-/*masonry*/ 
-$('.wrapper').masonry({
-  itemSelector: '.itemwrapper',
-  columnWidth: 230,
-  isFitWidth: true
-  });
-
 /*sidenav* */
 
 $('.sidenav').sidenav();
