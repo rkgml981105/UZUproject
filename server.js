@@ -10,8 +10,8 @@ const bodyParser = require('body-parser'); // 1
 const methodOverride = require('method-override'); // delete, update
 const flash = require('connect-flash'); 
 
-app.use(bodyParser.json()); // 2
-app.use(bodyParser.urlencoded({extended:true})); // 3
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended:true})); 
 app.use(methodOverride('_method')); // delete, update 
 
 connect();
