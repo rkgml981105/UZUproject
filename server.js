@@ -33,6 +33,9 @@ app.use(
   })
 );
 
+app.locals.moment = require('moment');
+app.locals.moment.locale('ko');
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
@@ -51,7 +54,6 @@ app.use(function(req, res, next){
   res.locals.nickname = req.session.nickname;
   next()
 });
-
 
 app.use(express.static(__dirname + "/public"));
 

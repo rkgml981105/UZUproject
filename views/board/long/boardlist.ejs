@@ -45,6 +45,9 @@
 <body>
     <%- include ("../../partials/nav") %>
     <div class= "container">
+        <div class="boardtitle">
+            <div>UZU 긴 글 목록</div>
+        </div>
         <form action="/board/long" method="GET">
             <div class="search-container">
                 <div class="search-option">
@@ -78,7 +81,7 @@
         </div>
         <div class="btn-container">
             <a class="btn default" href="/board/long/write">글쓰기</a>
-          </div>
+        </div>
         <div class="grid-post">
             <% if(boards == null || boards.length == 0){ %>
                 <div>No data !!!</div>
@@ -104,4 +107,5 @@
         </div> 
     </div>
 </body>
+<%- include ("../../partials/footer") %>
 </html>
