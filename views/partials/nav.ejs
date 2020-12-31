@@ -16,19 +16,33 @@
                 <li><a href="/register" style="display:none">회원가입</a></li>
                 <li><a href="/member/logout">로그아웃</a></li>
                 <li><a href="/board/write"><i class="material-icons">create</i></a></li>
+                <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
                 <li>
-                    <form>
-                        <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <form class="nav-search">
+                        <div class="searchCon">
+                            <i class="material-icons search">search</i>
+                            <input class="searchbox" type="search" required>
                         </div>
                     </form>
                 </li>
-                </li>
-                <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+                <li><a href="/mypage"><%= nickname %><i class="material-icons right">keyboard_arrow_down</i></a></li>
+            </ul>
 
-                <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger" href="/mypage" data-target="dropdown1"><%= nickname %><i class="material-icons right">keyboard_arrow_down</i></a></li>
+            <ul class="sidenav" id="mobile-demo">
+                <li class="logo">
+                    <img src="/image/brand_logo.png">
+                </li>
+                <li class="hello">
+                    <span class="myname"><%=nickname%></span>
+                    <span class="mylv">Lv. 새내기</span>
+                </li>
+                <li><a href="/mypage"><i class="material-icons">looks</i>마이페이지</a></li>
+                <li><a href="/login" style="display:none">로그인</a></li>
+                <li><a href="/register" style="display:none">회원가입</a></li>
+                <li><a href="/board/write"><i class="material-icons">create</i>글쓰기</a></li>
+                <li><a href="sass.html"><i class="material-icons">search</i>검색</a></li>
+                <li><a href="badges.html"><i class="material-icons">notifications_none</i>알림</a></li>
+                <li><a href="/member/logout"><i class="material-icons">clear</i>로그아웃</a></li>
             </ul>
         <% } else{ %>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -36,14 +50,26 @@
                 <li><a href="/register">회원가입</a></li>
                 <li><a href="/board/write"><i class="material-icons">create</i></a></li>
                 <li>
-                    <form>
-                        <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <form class="nav-search">
+                        <div class="searchCon">
+                            <i class="material-icons search">search</i>
+                            <input class="searchbox" type="search" required>
                         </div>
                     </form>
                 </li>
                 <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
+            </ul>
+
+            <ul class="sidenav" id="mobile-demo">
+                <li class="logo">
+                    <img src="/image/brand_logo.png">
+                </li>
+                <li class="hello">
+                    <span class="whoru">로그인 해주세요</span>
+                </li>
+                <li><a href="/login"><i class="material-icons">chevron_right</i>로그인</a></li>
+                <li><a href="/register"><i class="material-icons">chevron_right</i>회원가입</a></li>
+                <li><a href="sass.html"><i class="material-icons">search</i>검색</a></li>
             </ul>
         <% } %>
   </div>
@@ -84,9 +110,3 @@
     </div>
   </nav>
   
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">검색</a></li>
-    <li><a href="badges.html">알림</a></li>
-    <!--마이페이지는 로그인 성공시에만 render-->
-    <li><a href="collapsible.html">마이페이지</a></li>
-  </ul>

@@ -15,7 +15,7 @@
           <label for="title">제목</label>
           <input type="text" id="title" name="title" value="" autocomplete="off">
         </div>
-        <div class="spwriterinput">
+        <div class="spwriterinput" style="display: none;">
           <label for="writer">글쓴이</label>
           <div id="writer" name="writer"><%= session.nickname %></div>
         </div>
@@ -23,9 +23,18 @@
         <div class="spcontentinput input-field">
           <textarea class="materialize-textarea" id="content" name="content"></textarea>
         </div>
-        <div class = "btn-container submit">
-          <button class="btn default" type="submit">게시</button>
-        </div>
+        <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            </div>
+        </div>    
+           <div class = "btn-container submit">
+            <input class="btn default" type="submit"></button>
+           </div>
       </form>
      </div>
   </div>

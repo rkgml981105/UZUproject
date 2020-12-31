@@ -5,6 +5,8 @@ const Board_long = require("../schemas/board_long");
 const session = require("express-session");
 const util = require('../public/js/util');
 
+
+
 /* boardlist */
 router.get('/long', async function (req, res) {
   var searchQuery = createSearchQuery(req.query); // 1
@@ -76,7 +78,6 @@ router.get('/short/write', function(req, res) {
 router.post('/long/write', function(req, res){
   const board_long = new Board_long({
     writer: req.session._id,
-    //nickname:req.session.nickname,
     title: req.body.title,
     content: req.body.content
   });

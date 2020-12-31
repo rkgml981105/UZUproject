@@ -9,8 +9,8 @@ const { signedCookie } = require("cookie-parser");
 const bodyParser = require('body-parser'); // 1
 const methodOverride = require('method-override'); // delete, update 
 
-app.use(bodyParser.json()); // 2
-app.use(bodyParser.urlencoded({extended:true})); // 3
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended:true})); 
 app.use(methodOverride('_method')); // delete, update 
 
 connect();
@@ -33,6 +33,9 @@ app.use(
   })
 );
 
+app.locals.moment = require('moment');
+app.locals.moment.locale('ko');
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
@@ -51,7 +54,6 @@ app.use(function(req, res, next){
   res.locals.nickname = req.session.nickname;
   next()
 });
-
 
 app.use(express.static(__dirname + "/public"));
 

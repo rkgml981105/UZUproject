@@ -21,6 +21,11 @@
 }
 
 /*form*/
+
+#registerform {
+    display : block;
+}
+
 input[type=text].textinput.validate:focus,
 input[type=email].textinput.validate:focus,
 input[type=password].textinput.validate:focus {
@@ -284,5 +289,37 @@ input[type=text]:not(.browser-default):disabled {
     width : 160px;
     padding : 5px;
     margin-top : 15px;
+}
+
+
+html body{
+    min-height: 500px;
+}
+.register-confirmed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+}
+.welcometext{
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+    padding: 40px;
+    display: block;
+    border: solid 3px #4c14ee;
+    border-radius: 4px;
+    max-width: 50%;
+}
+.homebtn{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+#homebtn{
+    background-color: #4c14ee;
+    color: #ffffff;
+    margin-top: 5%;
 }
 
