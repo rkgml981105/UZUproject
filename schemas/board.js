@@ -6,9 +6,9 @@ const {
 } = Schema;
 const boardSchema = new Schema({
   writer: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     required: true,
-    ref: "user"
+    ref: "User"
   },
   title: {
     type: String,

@@ -3,54 +3,57 @@
     <head>
         <%- include ("../partials/head") %>
         <style>
-            html, body{
-                height: 100%;
+            .writeCon {
+                width : 480px;
+                margin : 8rem auto;
             }
-            .container{
-                height: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                margin-left: 10%;
+
+            .writeCon .boardtitle {
+                margin-bottom: 2rem;
             }
-            .title {
-                justify-content: center;
-                align-self: center;
-                font-weight: 600;
-                font-size: 20px;
+
+            .buttons .write {
+                display : block;
+                width : 90%;
+                margin : 1.5rem auto;
+                font-size: 1.2rem;
+                line-height: 1.2rem;
+                height : 50px;
             }
-            .buttons{
-                justify-content: center;
-                align-self: center;
+
+            .btn.write {
+                background : #ffffff;
+                border-radius: 5px;
+                border : 2px solid  #4c1cee;
+                color : #4c1cee
             }
-            form{
-                display: block;
-                
+
+            .btn.write:hover {
+                background : #4c1cee;
+                color : white;
             }
-            .btn {
-                background-color: #4c14ee;
-                margin: 10px;
-                width: 300%;
+
+            .btn.write i.left {
+                margin : 0;
             }
-            
-            .btn:hover {
-                background-color: #bbabeb;
-            }
+
+
         </style>
     </head>
     <body>
         <%- include ("../partials/nav") %>
         <div class="container">
-            <div class="title">글쓰기</div>
-            <div class="buttons"> 
-                <form action="/board/short/write" method="GET">
-                    <button type="submit" class="btn btn-primary">짧은글 쓰기</button>
-                </form>
-                <form action="/board/long/write" method="GET">
-                    <button type="submit" class="btn btn-primary">긴글 쓰기</button>
-                </form>
+            <div class="writeCon">
+                <div class="boardtitle">글쓰기</div>
+                <div class="buttons"> 
+                    <form class="write short" action="/board/short/write" method="GET">
+                        <button type="submit" class="btn write"><i class="material-icons left">chat_bubble_outline</i>짧은글 쓰기</button>
+                    </form>
+                    <form class="write long"action="/board/long/write" method="GET">
+                        <button type="submit" class="btn write"><i class="material-icons left">chat_bubble</i>긴글 쓰기</button>
+                    </form>
+                </div>
             </div>
-    </div>      
+        </div>      
     </body>
 </html>

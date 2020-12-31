@@ -14,7 +14,7 @@
           <div class="sptitle-show"><%= boards.title %></div>
           <div class="sp info">
             <div class = "g1">
-              <span class="spwriter-show"><%= boards.writer %></span>
+              <span class="spwriter-show"><%= boards.writer.nickname %></span>
               <span> - </span>
               <span class="sptime-show"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(boards.createdAt) %></span>
             </div>
@@ -24,12 +24,14 @@
           </div>
           <div class="line"></div>
           <div class="spcontent-show"><%= boards.content %></div>
+          <% if(session.email && session.nickname===boards.writer.nickname){ %>
           <div class="btn-container ud">
             <a class="btn default update" href="/board/short/<%= boards._id %>/edit">수정</a>
             <form action="/board/short/<%= boards._id %>?_method=delete" method="POST">
               <a class="btn default delete" href="javascript:void(0)" onclick="confirm('삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
             </form>
           </div>
+          <% } %>
       </div>
     </div>
   </body>

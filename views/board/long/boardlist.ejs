@@ -4,12 +4,73 @@
 <head>
     <%- include ("../../partials/head") %>
 </head>
+
+<style>
+    form{
+        width: 100%;
+    }
+
+    .search-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0 50px 0;
+    }
+
+    #searchIcon{
+        padding-right: 10px;
+    }
+
+    .main #search{
+        width: 260%;
+        margin-bottom: -10px;
+    }
+
+    .search-option, .search-bar {
+        position: relative;
+        left: -18%;
+    }
+
+    #search-btn{
+        background-color: #4c14ee;
+        color : #ffffff;
+        border-radius: 4px;
+        float: right;
+        left: 205%;
+        top: -24px;
+    }
+
+</style>
+
 <body>
     <%- include ("../../partials/nav") %>
     <div class= "container">
         <div class="boardtitle">
             <div>UZU 긴 글 목록</div>
         </div>
+        <form action="/board/long" method="GET">
+            <div class="search-container">
+                <div class="search-option">
+                    <label id="searchIcon" class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <div class="input-field col s12">
+                        <select id="search" name="searchType">
+                            <option value="title,content" <%= searchType =='title,content'?'selected':'' %>>Title, Content</option>
+                            <option value="title" <%= searchType =='title'?'selected':'' %>>Title</option>
+                            <option value="content" <%= searchType =='content'?'selected':'' %>>Content</option>
+                        </select>
+                    </div>    
+                </div>   
+                <div class="search-bar">
+                    <div class="main input-field">
+                        <input id="search" type="text" name="searchText" value="<%= searchText %>" required>
+                    </div>
+                    <div class="search-button">
+                        <button type="submit" class="waves-effect waves-light btn" id="search-btn">검색</button>
+                    </div>
+                </div> 
+            </div>
+        </form> 
+
         <div class="tag-container">
             <span class="tag all active">all</span>
             <span class="tag t1 all">#111</span>
@@ -20,7 +81,7 @@
         </div>
         <div class="btn-container">
             <a class="btn default" href="/board/long/write">글쓰기</a>
-          </div>
+        </div>
         <div class="grid-post">
             <% if(boards == null || boards.length == 0){ %>
                 <div>No data !!!</div>
@@ -36,7 +97,7 @@
                     </div>
                     <p class="lpcontent"><span data-date><%= board.content %></span></p>
                     <div class="lpfooter">
-                        <span class="lpwriter">글쓴이</span>
+                        <span class="lpwriter"><%= board.writer.nickname %></span> 
                         <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
                         <i class="material-icons">comment</i><span class="lpcomment">6</span>
                     </div>
@@ -46,4 +107,5 @@
         </div> 
     </div>
 </body>
+<%- include ("../../partials/footer") %>
 </html>

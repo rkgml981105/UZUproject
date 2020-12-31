@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 
+
 const { Schema } = mongoose;
 const userSchema = new Schema({
   email: {
@@ -54,12 +55,12 @@ const userSchema = new Schema({
   address: {
     type: [String],
     required: true
-  }
-  // role: {
-  //   type: Number,
-  //   default: 0
-  //   },
-});
+  },
+  role: {
+    type: Number,
+    default: 0
+    }
+  });
 
 // var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/; // 2-1
 // var passwordRegexErrorMessage = '8자 이상이어야 하고, 숫자와 문자를 혼용해야 합니다'; // 2-2
