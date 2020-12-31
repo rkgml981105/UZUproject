@@ -3,11 +3,7 @@ const router = express.Router();
 const Board = require("../schemas/board");
 const Board_long = require("../schemas/board_long");
 const session = require("express-session");
-const multer = require('multer');
-const upload = multer({ 
-  dest : 'public/image',
-  limits: { fileSize: 5 * 1024 * 1024 },
-});
+
 
 
 /* boardlist */
@@ -66,22 +62,12 @@ router.get('/short/write', function(req, res) {
 });
 
 
-router.post('/long/write', upload.array("many"), function(req, res){
+router.post('/long/write', function(req, res){
   const board_long = new Board_long({
     writer: req.session._id,
     title: req.body.title,
-    content: req.body.content,
-    imgPath: req.files
+    content: req.body.content
   });
-      if (req.files) {
-        var file = req.files;
-        for (let i = 0; i < file.length; i++) {
-            var path = appRoot + 'public/image' + req.user._id
-            fs.mkdir(path, () => {})
-            var postImages = path + '/' + file[i].md5 + '-' + Date.now() + '.png'
-            file[i].mv(postImages)
-        }
-    }
   board_long
   .save()
   .then(result => {

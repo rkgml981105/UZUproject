@@ -96,7 +96,6 @@ $(function(){
             alert("이메일 인증이 완료되었습니다.");
             if (isRunning){
                 clearInterval(timer);
-                display.html("인증완료");
                 $('#validatebtn1:contains()').text("인증완료");
                 $('#validatebtn:contains()').text("인증완료");
             }
