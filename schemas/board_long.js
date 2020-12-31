@@ -19,7 +19,7 @@ const board_longSchema = new Schema({
     required: [true,'내용을 입력해주세요.']
   },
   imgPath: {
-    type: String
+    type: Array
   },
   createdAt: {
     type: Date,
