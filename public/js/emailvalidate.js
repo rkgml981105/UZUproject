@@ -1,6 +1,12 @@
 var timer = null;
 var isRunning = false;
 
+function enterkey(){
+    if(window.event.keyCode == 13){
+        
+    }
+}
+
 $(function(){
     //인증번호 생성
     let number = Math.floor(Math.random() * 1000000)+100000;
@@ -20,6 +26,16 @@ $(function(){
         }
     })
 
+    $('#email').on('keydown', function(key){
+        if(key.keyCode == 13){
+            if(isRunning){
+                isrunning();
+            }else{
+                sendmail();
+            }
+        }
+    })
+    
     //이메일 전송 함수
     function sendmail(){
         $.ajax({                        
@@ -82,7 +98,7 @@ $(function(){
         isRunning = true;
     }
 
-    //인증번호 확인
+
     $('#validatebtn').on('click', function(){
         let validation = document.querySelector('#email-validation');
         let validation_value = validation.value;
@@ -102,6 +118,29 @@ $(function(){
             alert("인증번호가 일치하지 않습니다. 다시 입력하세요.");
             validation_value = null;
             validation.focus();
+        }
+    })
+    $('#email-validation').on('keydown', function(key){
+        if(key.keyCode == 13){
+            let validation = document.querySelector('#email-validation');
+            let validation_value = validation.value;
+            let int_value = Number(validation_value);
+            
+            if (number === int_value){
+                alert("이메일 인증이 완료되었습니다.");
+                if (isRunning){
+                    clearInterval(timer);
+                    display.html("");
+                    $('#validatebtn1:contains()').text("인증완료");
+                    $('#validatebtn:contains()').text("인증완료");
+                };
+                $("#validatebtn").off('click');
+                $("#validatebtn1").off('click');
+            }else{
+                alert("인증번호가 일치하지 않습니다. 다시 입력하세요.");
+                validation_value = null;
+                validation.focus();
+            }
         }
     })
 })
