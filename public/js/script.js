@@ -74,12 +74,6 @@ $('.materialize-textarea.content').keyup(function() {
     convertDate();
     convertDateTime();
   });
-
-
-  /*nav-dropdown*/
-  $(document).ready(function() {
-    $(".dropdown-trigger").dropdown;
-  });
   
 
   /*location*/
@@ -111,16 +105,13 @@ $('.materialize-textarea.content').keyup(function() {
       }
   });
 
-/*sidenav* */
-  /*search-option*/
+  /*nav-dropdown*/
+  $(".dropdown-trigger").dropdown;
+
+  /*sidenav* */
+  $('.sidenav').sidenav();
+
+ /*select option* */
   $('select').formSelect();
 
-  /*masonry*/ 
-  $('.wrapper').masonry({
-    itemSelector: '.itemwrapper',
-    columnWidth: 230,
-    isFitWidth: true
-    });
-
-$('.sidenav').sidenav();
 }); //$(document).ready(function()
