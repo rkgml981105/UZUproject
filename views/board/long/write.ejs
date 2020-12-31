@@ -39,7 +39,31 @@
      </div>
   </div>
   <script>
-      M.textareaAutoResize($('#content'));
+    M.textareaAutoResize($('#content'));
+
+    $('.default').on('click',function(){
+        var title = $('#title').val();
+        var content = $('#content').val();
+
+        $.ajax({
+          type:'POST',
+          url : '/board/short/write/alert',
+          success : function(data){
+            if(data['success']){
+              if(!title){
+                console.log("제목 빈칸");
+              }else if(!content){
+                console.log("내용 빈칸");
+              }else{
+                $("body").html('<h1></h1>');
+                setTimeout(function(){
+                  alert("게시글이 업로드되었습니다.");
+                }, 5);              
+              }
+            }
+          }
+        })
+      })  
   </script>
 </body>
 <%- include ("../../partials/footer") %>
