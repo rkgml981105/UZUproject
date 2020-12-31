@@ -33,6 +33,9 @@ app.use(
   })
 );
 
+app.locals.moment = require('moment');
+app.locals.moment.locale('ko');
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
@@ -56,7 +59,6 @@ app.use(express.static(__dirname + "/public"));
 
 app.use("/member", require("./router/memberRouter"));
 app.use("/board", require("./router/boardRouter"));
-
 app.use("/", require('./router/controller'));
 
 app.listen(3000, () => {

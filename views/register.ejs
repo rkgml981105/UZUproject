@@ -1,26 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UZU-register</title>
-
-    <!--materialize-->
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" href="/css/register.css">
-
+    <%- include ("./partials/head") %>
     <script src="/js/duplicationCheck.js" defer></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/roadAddress.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="/css/register.css">
     <script src="/js/emailvalidate.js"></script>
+
 
 </head>
 <body>
@@ -31,7 +18,7 @@
         </div>
 
         <!--forms-->
-        <form action="member/register" method="POST">
+        <form action="member/register" method="POST" id="registerform">
         <div id="forms">
             <!--name-->
             <div class="row form name">
@@ -129,6 +116,5 @@
             <button class= "waves-effect waves-light btn" type="submit" value="회원가입" id="nextbtn">완료</button>
         </div>
         </form> 
-    
 </body>
 </html>
