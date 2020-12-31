@@ -16,16 +16,15 @@
                 <li><a href="/register" style="display:none">회원가입</a></li>
                 <li><a href="/member/logout">로그아웃</a></li>
                 <li><a href="/board/write"><i class="material-icons">create</i></a></li>
+                <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
                 <li>
-                    <form>
-                        <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <form class="nav-search">
+                        <div class="searchCon">
+                            <i class="material-icons search">search</i>
+                            <input class="searchbox" type="search" required>
                         </div>
                     </form>
                 </li>
-                </li>
-                <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
                 <li><a href="/mypage"><%= nickname %><i class="material-icons right">keyboard_arrow_down</i></a></li>
             </ul>
 
@@ -51,10 +50,10 @@
                 <li><a href="/register">회원가입</a></li>
                 <li><a href="/board/write"><i class="material-icons">create</i></a></li>
                 <li>
-                    <form>
-                        <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <form class="nav-search">
+                        <div class="searchCon">
+                            <i class="material-icons search">search</i>
+                            <input class="searchbox" type="search" required>
                         </div>
                     </form>
                 </li>
@@ -112,20 +111,4 @@
         </div>
     </div>
   </nav>
-  
-  
-    <!--마이페이지는 로그인 성공시에만 render-->
-    <% if(session.email){ %>
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="sass.html">검색</a></li>
-            <li><a href="badges.html">알림</a></li>
-            <li><a href="collapsible.html">마이페이지</a></li>
-        </ul>    
-    <% } else{ %>
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="sass.html">검색</a></li>
-            <li><a href="badges.html">알림</a></li>
-            <li><a href="collapsible.html" style="display:none">마이페이지</a></li>
-        </ul>      
-    <% } %>    
   
