@@ -89,7 +89,6 @@ router.post("/register", async (req, res) => {
                   name: req.body.name,
                   nickname: req.body.nickname,
                   dateOfBirth: req.body.dateOfBirth,
-                  address: req.body.roadAddress,
                   password: key.toString("base64"),
                   salt: buf.toString("base64")
                 };

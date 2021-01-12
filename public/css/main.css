@@ -153,6 +153,7 @@ nav li a {
 .location {
     display : grid;
     grid-template-columns: auto auto auto;
+    width: 250px;
     color:#424242;
     align-items : top;
 }
@@ -170,12 +171,14 @@ nav li a {
     }
 }
 
-
-#roadAddress {
+.myaddress{
     font-size: 11px;
-    margin : 0 10px;
-    white-space : pre-line;
-    width : 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    margin: 0 10px;
+    text-align: center;
 }
 
 #modibtn {

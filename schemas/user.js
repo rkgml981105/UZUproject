@@ -52,7 +52,7 @@ const userSchema = new Schema({
       type: Date,
       required: true
   },
-  address: {
+  roadAddress: {
     type: [String],
     required: true
   },
