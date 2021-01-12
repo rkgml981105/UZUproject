@@ -95,6 +95,10 @@ router.post('/long/write', function(req, res){
   });
  });
 
+ router.post('/long/write/alert', async (req, res) => {
+  res.jsonp({success : true});
+})
+
 
 router.post('/short/write', util.getPostQueryString, function(req, res){
   const board = new Board({
@@ -116,6 +120,10 @@ router.post('/short/write', util.getPostQueryString, function(req, res){
   })
   
 });
+
+router.post('/short/write/alert', async (req, res) => {
+  res.jsonp({success : true});
+})
 
 
 

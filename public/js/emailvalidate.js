@@ -7,15 +7,12 @@ $(function(){
     if(number>1000000){                                      
         number = number - 100000;                             
     }
-    console.log('인증번호 생성',number);
 
-
-    //이메일 유효시간 설정
+    //이메일 전송 및 유효시간 설정
     var display = $(".time");
     var leftSec = 300;
-    var btn1 = document.querySelector('#validatebtn1');
     
-    btn1.addEventListener('click',function(){
+    $('#validatebtn1').on('click',function(){
         if (isRunning){
             isrunning();
         }else{
@@ -23,7 +20,7 @@ $(function(){
         }
     })
 
-    //이메일 전송
+    //이메일 전송 함수
     function sendmail(){
         $.ajax({                        
             type:'POST',
@@ -52,12 +49,14 @@ $(function(){
         })
     }
 
+    //유효시간 연장 함수
     function isrunning(){
         clearInterval(timer);
         display.html("");
         startTimer(leftSec, display);
     }    
 
+    //유효시간 생성 함수
     function startTimer(count, display){
         var minutes, seconds;
             timer = setInterval(function () {
@@ -83,29 +82,26 @@ $(function(){
         isRunning = true;
     }
 
-//window.onload = function num(){
+    //인증번호 확인
     $('#validatebtn').on('click', function(){
-        console.log('really',number)
-
         let validation = document.querySelector('#email-validation');
         let validation_value = validation.value;
         let int_value = Number(validation_value);
-        console.log('int_value',int_value); 
         
         if (number === int_value){
             alert("이메일 인증이 완료되었습니다.");
             if (isRunning){
                 clearInterval(timer);
+                display.html("");
                 $('#validatebtn1:contains()').text("인증완료");
                 $('#validatebtn:contains()').text("인증완료");
-            }
-        
+            };
+            $("#validatebtn").off('click');
+            $("#validatebtn1").off('click');
         }else{
             alert("인증번호가 일치하지 않습니다. 다시 입력하세요.");
             validation_value = null;
             validation.focus();
         }
     })
-//}
 })
-
