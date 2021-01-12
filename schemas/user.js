@@ -8,7 +8,9 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    match:[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,'유효한 이메일이 아닙니다'],
+    unique: true,
+    trim: true
   },
   name: {
     type: String,
@@ -21,7 +23,14 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true
+    required: [true,'비밀번호를 입력하세요'],
+  //   validate: {
+  //     validator: function(v) {
+  //         var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  //         return (v == null) || regex.test(v)
+  //     },
+  //     message: '올바른 패스워드 형식이 아닙니다'
+  // }
   },
   salt: {
     type: String,
@@ -41,68 +50,33 @@ const userSchema = new Schema({
   },
   dateOfBirth: {
       type: Date,
-      default: Date.now,
       required: true
+  },
+  address: {
+    type: [String],
+    required: true
   },
   role: {
     type: Number,
     default: 0
     }
-  })
+  });
+
+// var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/; // 2-1
+// var passwordRegexErrorMessage = '8자 이상이어야 하고, 숫자와 문자를 혼용해야 합니다'; // 2-2
+// userSchema.path('password').validate(function(v) {
+//   var user = this;
+
+//   if(!passwordRegex.test(user.password)){ // 2-3
+//       user.invalidate('password', passwordRegexErrorMessage); // 2-4
+//   }
+
+// });
 
 module.exports = mongoose.model("User", userSchema);
 
 
-// const mongoose = require('mongoose');
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
 
-// const userSchema = mongoose.Schema({
-//     name: {
-//         type: String,
-//         maxlength: 50,
-//     },
-//     email: {
-//         type: String,
-//         trim: true, //rkgml 981105 @gmail.com을 rkgml981105@gmail.com으로 trim
-//         unique: 1,
-//     },
-//     password: {
-//         type: String,
-//         validate:[
-//             function(password){
-//              return password&&password.length>6;
-//             },'비밀번호를 입력하거나 길이가 6보다커야합니다.'
-//         ]
-//     },
-//     role: {
-//         type: Number,
-//         default: 0,
-//     },
-//     image: String,
-//     token: String,
-//     tokenExp: Number,
-// });
 
-// //save 메소드가 실행되기 전에 비밀번호를 암호화하는 로직을 짜야함
-// userSchema.pre("save", function(next){
-//     let user = this;
-   
-//     //model 안의 password가 변환될때만 암호화
-//     if (user.isModified("password")){
-//         bcrypt.genSalt(saltRounds,function(err,salt){
-//             if (err) return next(err);
-//             bcrypt.hash(user.password,salt,function(er,hash){
-//                 if (err) return next(err);
-//                 user.password=hash;
-//                 next();
-//             });
-//         });
-//     } else {
-//         next();
-//     }
-// });
 
-// const User = mongoose.model("User", userSchema);
 
-// module.exports = { User };

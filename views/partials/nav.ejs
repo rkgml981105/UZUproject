@@ -100,11 +100,13 @@
         <div class="locContainer">
             <div class="location right">
                 <i class="material-icons" id="locationmark">location_on</i>
-                <span id="location">
+                <span id="roadAddress">
                     서울특별시 종로구 성균관로 25-2
                     성균관대학교 인문사회과학캠퍼스
+                    <!--address정보 받아와서 여기 띄우기-->
                 </span>
-                <button id="modibtn">수정</button>
+                <span id="guide" style="color:#999; display:none"></span>
+                <button onclick="execDaumPostcode()" id="modibtn">수정</button>
             </div>
         </div>
     </div>
