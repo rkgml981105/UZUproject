@@ -108,6 +108,28 @@ $('.materialize-textarea.content').keyup(function() {
   /*nav-dropdown*/
   $(".dropdown-trigger").dropdown;
 
+  /*register-password varification*/
+  $(function(){ 
+    $("#pass-equal").hide(); 
+    $("#pass-unequal").hide(); 
+    $("#password2").on("change keyup paste input", function(){
+        var password1=$("#password1").val(); 
+        var password2=$("#password2").val(); 
+        if(password1 != "" || password2 != ""){ 
+            if(password1 == password2){ 
+                $("#pass-equal").show(); 
+                $("#pass-unequal").hide(); 
+                $("#nextbtn").removeAttr("disabled"); 
+                }else{ 
+                    $("#pass-equal").hide(); 
+                    $("#pass-unequal").show(); 
+                    $("#nextbtn").attr("disabled", "disabled"); 
+                } 
+            }
+        }); 
+    }
+  ); 
+  
   /*sidenav* */
   $('.sidenav').sidenav();
 

@@ -1,7 +1,7 @@
 
-    let modal = document.getElementById("dupcheck");
-    let btn = document.getElementById("dupcheckbtn");
-    let okbtn = document.getElementById("okbtn");
+let modal = document.getElementById("dupcheck");
+let btn = document.getElementById("dupcheckbtn");
+let okbtn = document.getElementById("okbtn");
 
 
     function modalResize() {
@@ -32,3 +32,4 @@
         }
     }
 
+    
