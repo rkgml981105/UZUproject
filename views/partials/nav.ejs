@@ -65,7 +65,7 @@
                     <img src="/image/brand_logo.png">
                 </li>
                 <li class="hello">
-                    <span class="whoru">로그인 해주세요</span>
+                    <span class="whoru">로그인 먼저 해주세요!</span>
                 </li>
                 <li><a href="/login"><i class="material-icons">chevron_right</i>로그인</a></li>
                 <li><a href="/register"><i class="material-icons">chevron_right</i>회원가입</a></li>
@@ -81,22 +81,22 @@
                 <a href="/">홈</a>
             </li>
             <li class="tab"> <% if (active === '/board/short') { %>
-                <a class= "active" href="/board/short">짧은글</a> 
+                <a class= "active" href="/board/short">동네소식</a> 
                 <% } %> 
-                <a href="/board/short">짧은글</a>
+                <a href="/board/short">동네소식</a>
             </li>
             <li class="tab"> <% if (active === '/board/long') { %>
-                <a class="active" href="/board/long">긴글</a>
+                <a class="active" href="/board/long">포스트</a>
                 <% } %> 
-                <a href="/board/long">긴글</a>
+                <a href="/board/long">포스트</a>
             </li>
             <li class="tab"> <% if (active === '/board/best') { %>
-                <a class="active" href="/board/best">Best</a>
+                <a class="active" href="/board/best">모아보기</a>
                 <% } %> 
-                <a href="/board/best">Best</a>
+                <a href="/board/best">모아보기</a>
             </li> 
         </ul>
-      
+        
         <div class="locContainer">
             <div class="location right">
                 <i class="material-icons" id="locationmark">location_on</i>
@@ -105,8 +105,11 @@
                     성균관대학교 인문사회과학캠퍼스
                     <!--address정보 받아와서 여기 띄우기-->
                 </span>
-                <span id="guide" style="color:#999; display:none"></span>
-                <button onclick="execDaumPostcode()" id="modibtn">수정</button>
+                <% if(session.email){ %>
+                    <a href="/mypage" id="modibtn">수정</a>
+                <% } else { %>
+                    <a href="/login" onclick="alert('로그인 먼저 해주세요!')" id="modibtn">수정</a>
+                <% } %>
             </div>
         </div>
     </div>
