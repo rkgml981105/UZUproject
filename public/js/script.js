@@ -110,20 +110,20 @@ $('.materialize-textarea.content').keyup(function() {
 
   /*register-password varification*/
   $(function(){ 
-    $("#alert-success").hide(); 
-    $("#alert-danger").hide(); 
-    $("#password2").keyup(function(){
-        var password=$("#password").val(); 
+    $("#pass-equal").hide(); 
+    $("#pass-unequal").hide(); 
+    $("#password2").on("change keyup paste input", function(){
+        var password1=$("#password1").val(); 
         var password2=$("#password2").val(); 
-        if(password != "" || password2 != ""){ 
-            if(password == password2){ 
-                $("#alert-success").show(); 
-                $("#alert-danger").hide(); 
-                $("#submit").removeAttr("disabled"); 
+        if(password1 != "" || password2 != ""){ 
+            if(password1 == password2){ 
+                $("#pass-equal").show(); 
+                $("#pass-unequal").hide(); 
+                $("#nextbtn").removeAttr("disabled"); 
                 }else{ 
-                    $("#alert-success").hide(); 
-                    $("#alert-danger").show(); 
-                    $("#submit").attr("disabled", "disabled"); 
+                    $("#pass-equal").hide(); 
+                    $("#pass-unequal").show(); 
+                    $("#nextbtn").attr("disabled", "disabled"); 
                 } 
             }
         }); 

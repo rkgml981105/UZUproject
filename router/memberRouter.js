@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const ejs = require('ejs');
 const path = require('path');
-var appDir = path.dirname(require.main.filename)
+var appDir = path.dirname(require.main.filename);
 
 //회원가입 이메일 인증
 router.post('/sendEmail', async (req, res) => {
@@ -89,7 +89,7 @@ router.post("/register", async (req, res) => {
                   name: req.body.name,
                   nickname: req.body.nickname,
                   dateOfBirth: req.body.dateOfBirth,
-                  address: req.body.address,
+                  address: req.body.roadAddress,
                   password: key.toString("base64"),
                   salt: buf.toString("base64")
                 };

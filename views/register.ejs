@@ -3,7 +3,9 @@
 <head>
     <%- include ("./partials/head") %>
     <script src="/js/duplicationCheck.js" defer></script>
-    <script src="../public/js/nicknameDuplication.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/roadAddress.js"></script>
+
     <link rel="stylesheet" href="/css/register.css">
     <script src="/js/emailvalidate.js"></script>
 
@@ -30,7 +32,7 @@
                 </div>
             </div>
 
-            <!--name-->
+            <!--date of birth-->
             <div class="row form dateOfBirth">
                 <div class="col s9" id="inputbox">
                     <label for="dateOfBirth">생년월일을 적어주세요 - 생일마다 혜택이 쏟아져요!</label>
@@ -67,22 +69,17 @@
                 <div class="col s9" id="inputbox">
                     <input class="textinput validate" type='password' name= "password" id = "password1">
                     <span class="helper-text" data-error="비밀번호 설정 형식을 확인해주세요"></span>
-                    <% if(flash){ %>
-                        <span class="invalid-feedback"><%=  flash %></span>
-                    <% } %>
+                        <span class="invalid-feedback"></span>
                 </div>
 
-                <% if(password == false){ %>
-                    <div class="col s3 password invalid">
-                        <i class="material-icons">error</i>
-                        <i class="material-icons" style="display:none">done_all</i>
-                    </div>
-                <% } else{ %>   
-                    <div class="col s3 password invalid">
-                        <i class="material-icons" style="display:none">error</i>
-                        <i class="material-icons">done_all</i>
-                    </div>
-                <% } %>    
+                <div class="col s3 password invalid">
+                    <i class="material-icons">error</i>
+                    <i class="material-icons" style="display:none">done_all</i>
+                </div>
+                <div class="col s3 password invalid">
+                    <i class="material-icons" style="display:none">error</i>
+                    <i class="material-icons">done_all</i>
+                </div>
             </div>
 
 
@@ -94,31 +91,9 @@
                 </div>
             </div>
 
-            <!--password varification message-->
+            <!--password verification message-->
             <div class="alert-pass-equal" id="pass-equal">비밀번호가 일치합니다.</div> 
             <div class="alert-pass-unequal" id="pass-unequal">비밀번호가 일치하지 않습니다.</div>
-
-            <!--register-password varification-->
-            <script>
-                $(function(){ 
-                    $("#pass-equal").hide(); 
-                    $("#pass-unequal").hide(); 
-                    $("#password2").keyup(function(){
-                        var password=$("#password").val(); 
-                        var password2=$("#password2").val(); 
-                        if(password != "" || password2 != ""){ 
-                            if(password == password2){ 
-                                $("#pass-equal").show(); 
-                                $("#pass-unequal").hide(); 
-                                }else{ 
-                                    $("#pass-equal").hide(); 
-                                    $("#pass-unequal").show(); 
-                                } 
-                            }
-                        }); 
-                    }
-                 ); 
-            </script>
 
             <!--modal-->
             <%if (isDuplicated) { %>
@@ -156,7 +131,7 @@
             <div class="row form address">
                 <div class="col s9" id="inputbox">
                     <label for="address">지역을 설정해주세요</label>
-                    <input disabled class="textinput validate" type='text' name="address" id ='roadAddress' placeholder = "도로명주소">
+                    <input disabled class="textinput validate" type='text' name="roadAddress" id ='roadAddress' placeholder = "도로명주소">
                     <input class="textinput validate" type='text' name="detailAddress" id = 'detailAddress' placeholder = "상세주소">
                     <span id="guide" style="color:#999; display:none"></span>
                 </div>

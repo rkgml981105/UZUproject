@@ -44,6 +44,7 @@ $(function(){
                     display.html("");
                     document.querySelector('#email').value = "";
                     document.querySelector('#email').focus();
+                    // $("#nextbtn").attr("disabled", "disabled"); 
                 }
             }
         })
@@ -95,6 +96,7 @@ $(function(){
                 display.html("");
                 $('#validatebtn1:contains()').text("인증완료");
                 $('#validatebtn:contains()').text("인증완료");
+                $("#nextbtn").removeAttr("disabled"); 
             };
             $("#validatebtn").off('click');
             $("#validatebtn1").off('click');
@@ -102,6 +104,7 @@ $(function(){
             alert("인증번호가 일치하지 않습니다. 다시 입력하세요.");
             validation_value = null;
             validation.focus();
+            $("#nextbtn").attr("disabled", "disabled"); 
         }
     })
 })
