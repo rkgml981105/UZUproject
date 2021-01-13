@@ -84,8 +84,7 @@ nav li a {
     transition: border-bottom .28s ease;
 }
 
-.row #main_banner {
-    margin-top : 5px;
+#main_banner {
     height : 450px;
     object-fit: cover;
     padding: 0;
