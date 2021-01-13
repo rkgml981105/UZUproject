@@ -14,18 +14,13 @@ const Board_long = require("../schemas/board_long");
             session : session
         });
     });
+
     router.get('/register', function (req,res) {
-        let passflash = req.flash('passflash');
-        res.render('register.ejs', {passflash : passflash});
+        var user = req.flash('user')[0] || {};
+        var errors = req.flash('errors')[0] || {};
+        res.render('register.ejs', { user:user, errors:errors });
     })
-    // flash
-    // router.get('/flash', function(req, res){
-    //     let passflash = req.flash('passflash');
-    //     res.render('user/flash.ejs', {passflash : passflash})
-        // var user = req.flash('user')[0] || {};
-        // var errors = req.flash('errors')[0] || {};
-        // res.render('user/flash.ejs', { user:user, errors:errors });
-    // });
+
     router.get("/login",function(req,res){
         res.render('login.ejs');
     });

@@ -23,14 +23,8 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: [true,'비밀번호를 입력하세요'],
-  //   validate: {
-  //     validator: function(v) {
-  //         var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  //         return (v == null) || regex.test(v)
-  //     },
-  //     message: '올바른 패스워드 형식이 아닙니다'
-  // }
+    required: true
+    // match: [/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, '8자 이상이어야 하고, 숫자와 문자를 혼용해야 합니다'] 
   },
   salt: {
     type: String,
@@ -52,7 +46,7 @@ const userSchema = new Schema({
       type: Date,
       required: true
   },
-  address: {
+  roadAddress: {
     type: [String],
     required: true
   },
@@ -62,16 +56,16 @@ const userSchema = new Schema({
     }
   });
 
-// var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/; // 2-1
-// var passwordRegexErrorMessage = '8자 이상이어야 하고, 숫자와 문자를 혼용해야 합니다'; // 2-2
-// userSchema.path('password').validate(function(v) {
-//   var user = this;
+  // //password validation 
+  // var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // 2-1
+  // var passwordRegexErrorMessage = '8자 이상이어야 하고, 숫자와 문자를 혼용해야 합니다'; // 2-2
+  // userSchema.path('password').validate(function(v) {
+  //   var user = this;
 
-//   if(!passwordRegex.test(user.password)){ // 2-3
-//       user.invalidate('password', passwordRegexErrorMessage); // 2-4
-//   }
-
-// });
+  //   if(!passwordRegex.test(user.password)){ // 2-3
+  //      user.invalidate('password', passwordRegexErrorMessage); // 2-4
+  //   } 
+  // });
 
 module.exports = mongoose.model("User", userSchema);
 
