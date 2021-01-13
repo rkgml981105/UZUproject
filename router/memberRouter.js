@@ -66,7 +66,7 @@ router.post("/register", async (req, res) => {
         if (err) {
           console.log(err);
           req.flash('user', req.body);
-          req.flash('errors', parseError(err));
+          // req.flash('errors', parseError(err));
           return res.redirect('register.ejs');
         } else {
           crypto.pbkdf2(
@@ -86,6 +86,7 @@ router.post("/register", async (req, res) => {
                   name: req.body.name,
                   nickname: req.body.nickname,
                   dateOfBirth: req.body.dateOfBirth,
+                  roadAddress: req.body.roadAddress,
                   password: key.toString("base64"),
                   salt: buf.toString("base64")
                 };
@@ -256,16 +257,16 @@ router.post("/getAllMember", async (req, res) => {
 module.exports = router;
 
 // functions
-function parseError(errors){
-  var parsed = {};
-  if(errors.name == 'ValidationError'){
-    for(var name in errors.errors){
-      var validationError = errors.errors[name];
-      parsed[name] = { message:validationError.message };
-    }
-  }
-  else {
-    parsed.unhandled = JSON.stringify(errors);
-  }
-  return parsed;
-}
+// function parseError(errors){
+//   var parsed = {};
+//   if(errors.name == 'ValidationError'){
+//     for(var name in errors.errors){
+//       var validationError = errors.errors[name];
+//       parsed[name] = { message:validationError.message };
+//     }
+//   }
+//   else {
+//     parsed.unhandled = JSON.stringify(errors);
+//   }
+//   return parsed;
+// }
