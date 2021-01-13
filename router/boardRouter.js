@@ -10,14 +10,14 @@ const util = require('../public/js/util');
 /* boardlist */
 router.get('/long', async function (req, res) {
   var searchQuery = createSearchQuery(req.query); // 1
-  var count = await Board.countDocuments(searchQuery); // 1-1
-  var boards = await Board_long.find(searchQuery) // 1-2
+  var count = await Board_long.countDocuments(searchQuery); // 1-1
+  var boards_long = await Board_long.find(searchQuery) // 1-2
   .populate("writer")
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
-  .exec(function (err, boards) {
+  .exec(function (err, boards_long) {
     if(err) return res.json(err);
     res.render('board/long/boardlist.ejs', { 
-      boards: boards,
+      boards_long: boards_long,
       searchType:req.query.searchType,
       searchText:req.query.searchText 
     });
@@ -40,6 +40,7 @@ router.get('/short', async function (req, res) {
   })
 })
 
+/* 모아보기 - 짧은글 */
 router.get('/best', async function (req, res) {
   // Board.find({})
   // .sort('likeCnt')    // 좋아요 순으로 내림차순
@@ -57,6 +58,24 @@ router.get('/best', async function (req, res) {
     });
   })
 })
+/* 모아보기 - 긴글 */
+// router.get('/best', async function (req, res) {
+//   // Board.find({})
+//   // .sort('likeCnt')    // 좋아요 순으로 내림차순
+//   var searchQuery = createSearchQuery(req.query); // 1
+//   var count = await Board_long.countDocuments(searchQuery); // 1-1
+//   var boards_long = await Board_long.find(searchQuery) // 1-2
+//   .populate("writer")
+//   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
+//   .exec(function (err, boards_long) {
+//     if(err) return res.json(err);
+//     res.render('board/best/boardlist.ejs', { 
+//       boards_long: boards_long, 
+//       searchType:req.query.searchType,
+//       searchText:req.query.searchText 
+//     });
+//   })
+// })
 
 
 /* write(new)  */
