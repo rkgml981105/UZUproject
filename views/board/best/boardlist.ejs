@@ -5,22 +5,31 @@
 </head>
 <body>
     <%- include ("../../partials/nav") %>
-    <div class="row">
-        <img id="main_banner" class="col s12" src="/image/uzu_bg.jpg">
+    <div class="banner-col">
+        <div class="banner-text">
+            <div class="banner-text-main">현재 UZU에는 <br /> <span style="color: #FFD811">15,423개의</span>  <br /> 동네 정보가 등록되어 있어요!</div>
+            <% if(session.email){ %>
+                <div class="banner-text-sub">그 중 <%=nickname%>님이 공유한 정보는 8개!</div>
+            <% } else { %>
+                <div class="banner-text-sub">로그인 후 우리 동네 소식을 함께 공유해요!</div>
+            <% } %>    
+        </div>
+        <div class="banner-image">
+            <img id="main_banner" class="col s12" src="/image/neighbor.jpg">
+        </div>
     </div>
-    <form class = "spinput" action="/board/short/write" method="POST">
+    <form class = "spinput" action="/board/best/short/write" method="POST">
         <div class='textContainer'>
             <div class='input-field'>
-                <div id="writer" name="writer"><%= session.nickname %></div>
-                <textarea class="materialize-textarea title" name="title" placeholder="제목을 입력하세요"></textarea>
-                <textarea class="materialize-textarea content" name="content" maxlength="300" placeholder="여기를 눌러 이야기를 공유해보세요."></textarea>
+                <textarea class="materialize-textarea title" name="title" placeholder="제목을 정해주세요"></textarea>
+                <textarea class="materialize-textarea content" name="content" maxlength="300" placeholder="반가워요 <%= session.nickname %>님, 오늘의 소식을 알려주세요!"></textarea>
                 <div class="the-count">
                     <span class="count-current">0</span>
                     <span class="count-maximum">/ 300</span>
                 </div>
                 <div class="share-cancel">
                     <button class="sharebtn" type="submit"><a>공유</a></button>
-                    <button class="cancelbtn"><a>취소</a></button>
+                    <button class="cancelbtn" type="button"><a>취소</a></button>
                 </div>
             </div>
         </div>
@@ -32,66 +41,73 @@
                 <span>우리동네 짧은생각<i class="material-icons">chevron_right</i></span>
                 <a class="movetoboard" href="/board/short">전체 짧은글 보기</a>
             </div>
-            <div class="collection-content">
-                <div class="col short grid-post">
-                    <article class="col short grid-item">
-                        <div class="grid-item-content">
-                            <div class="spheader">
-                                <p class="sptitle"><a href="/board/short">드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
-                                <div class="grid-item-image">
-                                    <img class="image-source" src="/image/sample.jpg">
+            <% boards.forEach(function(board) { %>
+                <div class="collection-content">
+                    <div class="col short grid-post">
+                        <article class="col short grid-item">
+                            <div class="grid-item-content">
+                                <div class="spheader">
+                                    <span class="spwriter"><%= board.writer.nickname %></span>
+                                    <span class="sptime">
+                                        <%= moment(board.createdAt).fromNow(); %>
+                                    </span>
+                                    <p class="sptitle"><a href="/board/short/<%= board._id %>"><%= board.title %></a></p>
+                                    <p class="spcontent"><span data-date><%= board.content %></span></p>
+                                    <div class="grid-item-image">
+                                        <img class="image-source" src="/image/sample.jpg">
+                                    </div>
+                                </div>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike"><%= board.likeCnt %></span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
                                 </div>
                             </div>
-                            <div class="spfooter">
-                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                <i class="material-icons">comment</i><span class="spcomment">6</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col short grid-item">
-                        <div class="grid-item-content">
-                            <div class="spheader">
-                                <p class="sptitle"><a href="/board/short">드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. </a></p>
-                                <div class="grid-item-image">
-                                    <img class="image-source" src="/image/sample.jpg">
+                        </article>
+                        <!-- <article class="col short grid-item">
+                            <div class="grid-item-content">
+                                <div class="spheader">
+                                    <p class="sptitle"><a href="/board/short">드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. </a></p>
+                                    <div class="grid-item-image">
+                                        <img class="image-source" src="/image/sample.jpg">
+                                    </div>
+                                </div>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
                                 </div>
                             </div>
-                            <div class="spfooter">
-                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                <i class="material-icons">comment</i><span class="spcomment">6</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col short grid-item">
-                        <div class="grid-item-content">
-                            <div class="spheader">
-                                <p class="sptitle"><a href="/board/short">우리집은 붕세권이 아니야 ㅜㅡㅜ 드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
-                                <div class="grid-item-image">
-                                    <img class="image-source" src="/image/sample.jpg">
+                        </article>
+                        <article class="col short grid-item">
+                            <div class="grid-item-content">
+                                <div class="spheader">
+                                    <p class="sptitle"><a href="/board/short">우리집은 붕세권이 아니야 ㅜㅡㅜ 드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
+                                    <div class="grid-item-image">
+                                        <img class="image-source" src="/image/sample.jpg">
+                                    </div>
+                                </div>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
                                 </div>
                             </div>
-                            <div class="spfooter">
-                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                <i class="material-icons">comment</i><span class="spcomment">6</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col short grid-item">
-                        <div class="grid-item-content">
-                            <div class="spheader">
-                                <p class="sptitle"><a href="/board/short">우리집은 붕세권이 아니야 ㅜㅡㅜ 엉엉엉 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. </a></p>
-                                <div class="grid-item-image">
-                                    <img class="image-source" src="/image/sample.jpg">
+                        </article>
+                        <article class="col short grid-item">
+                            <div class="grid-item-content">
+                                <div class="spheader">
+                                    <p class="sptitle"><a href="/board/short">우리집은 붕세권이 아니야 ㅜㅡㅜ 엉엉엉 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. </a></p>
+                                    <div class="grid-item-image">
+                                        <img class="image-source" src="/image/sample.jpg">
+                                    </div>
+                                </div>
+                                <div class="spfooter">
+                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
+                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
                                 </div>
                             </div>
-                            <div class="spfooter">
-                                <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                <i class="material-icons">comment</i><span class="spcomment">6</span>
-                            </div>
-                        </div>
-                    </article>
+                        </article> -->
+                    </div>
                 </div>
-            </div>
+            <% }) %>
         </div>
 
         <div class="post-collection">
@@ -99,26 +115,29 @@
                 <span class="coltitle">우리동네 긴생각<i class="material-icons">chevron_right</i></span>
                 <a class="movetoboard" href="/board/long">전체 긴글 보기</a>
             </div>
-            <div class="collection-content">
-                <div class="col grid-post">
-                    <article class="col grid-item">
-                        <div class="grid-item-image">
-                            <img class="image-source" src="/image/sample.jpg">
-                        </div>
+            <% boards.forEach(function(board) { %>
+                <div class="collection-content">
+                    <div class="col grid-post">
+                        <article class="col grid-item">
+                            <div class="grid-item-image">
+                                <img class="image-source" src="/image/sample.jpg">
+                            </div>
 
-                        <div class="grid-item-content">
-                            <div class="lpheader">
-                                <p class="lptitle"><a href="/board/long">드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
+                            <div class="grid-item-content">
+                                <div class="lpheader">
+                                    <p class="lptitle"><a href="/board/long/<%= board._id %>"><%= board.title %></a></p>
+                                </div>
+                                <p class="lpcontent"><span data-date><%= board.content %></span></p>
+                                <div class="lpfooter">
+                                    <span class="lpwriter"><%= board.writer.nickname %></span> 
+                                    <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
+                                    <i class="material-icons">comment</i><span class="lpcomment">6</span>
+                                </div>
                             </div>
-                            <p class="lpcontent"><span data-date>내용은 여기에 고구마 붕어빵이 생겼다 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo odio eius, numquam aut aliquid sint. Minus, nostrum vitae, quis explicabo id obcaecati ratione provident similique sed temporibus ex aut eaque.</span></p>
-                            <div class="lpfooter">
-                                <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
-                                <i class="material-icons">comment</i><span class="lpcomment">6</span>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
                 </div>
-            </div>
+            <% }) %>
         </div>
     </div>
 </body>

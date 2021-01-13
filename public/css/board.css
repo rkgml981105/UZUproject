@@ -340,7 +340,6 @@
 .grid-post {
     width : 100%;
     align-items: center;
-    display : inline-block;
 }
 
 /* clearfix */
@@ -632,6 +631,39 @@
 }
 
 /*best*/
+
+/* 모아보기 banner */
+.banner-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.banner-text{
+    text-align: right;
+    display: grid;
+    padding-right: 12%;
+    background: rgba(70, 13, 204, 0.9);
+}
+
+.banner-text-main{
+    font-size: 32px;
+    font-weight: 600;
+    align-self: end;
+    margin-top: -10%;
+    color: #FFF;
+}
+
+.banner-text-sub{
+    font-size: 18px;
+    padding-top: 10px;
+    color: rgb(219, 219, 219);
+}
+
+#main_banner{
+    min-width: 720px;
+    
+}
+
 /*textbox*/
 .textContainer {
     background-color:#ffffff;
@@ -768,7 +800,8 @@
 /*collection - shorts*/
 .col.short.grid-item{
     width : 32%;
-    float : right;
+    height: 180px;
+    float : left;
     margin : 0.6% 0.6%
 }
 

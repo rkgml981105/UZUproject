@@ -40,11 +40,21 @@ router.get('/short', async function (req, res) {
   })
 })
 
-router.get('/best', function (req, res,next) {
-  Board.find({})
-  .sort('likeCnt')    // 좋아요 순으로 내림차순
+router.get('/best', async function (req, res) {
+  // Board.find({})
+  // .sort('likeCnt')    // 좋아요 순으로 내림차순
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = await Board.countDocuments(searchQuery); // 1-1
+  var boards = await Board.find(searchQuery) // 1-2
+  .populate("writer")
+  .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
-      res.render('board/best/boardlist.ejs', { title: 'Board', boards: boards });
+    if(err) return res.json(err);
+    res.render('board/best/boardlist.ejs', { 
+      boards: boards, 
+      searchType:req.query.searchType,
+      searchText:req.query.searchText 
+    });
   })
 })
 
@@ -122,6 +132,32 @@ router.post('/short/write', util.getPostQueryString, function(req, res){
 });
 
 router.post('/short/write/alert', async (req, res) => {
+  res.jsonp({success : true});
+})
+
+/* 모아보기 페이지에서 짧은글 바로 쓰기 */
+router.post('/best/short/write', util.getPostQueryString, function(req, res){
+  const board = new Board({
+    writer: req.session._id,
+    title: req.body.title,
+    content: req.body.content
+  });
+  board
+  .save()
+  .then(result => {
+    console.log(result);
+    res.redirect('/board/best'+res.locals.getPostQueryString(false, { searchText:'' })) // 3
+    // res.redirect & send는 동시에 쓸 수 없음
+    // res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
+})
+  .catch(err => {
+      console.log(err);
+      res.send('<script type="text/javascript">alert("작성이 실패하였습니다."); window.location="/board/short/write"; </script>');
+  })
+  
+});
+
+router.post('/best/short/write/alert', async (req, res) => {
   res.jsonp({success : true});
 })
 
