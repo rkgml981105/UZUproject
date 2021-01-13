@@ -40,11 +40,21 @@ router.get('/short', async function (req, res) {
   })
 })
 
-router.get('/best', function (req, res,next) {
-  Board.find({})
-  .sort('likeCnt')    // 좋아요 순으로 내림차순
+router.get('/best', async function (req, res) {
+  // Board.find({})
+  // .sort('likeCnt')    // 좋아요 순으로 내림차순
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = await Board.countDocuments(searchQuery); // 1-1
+  var boards = await Board.find(searchQuery) // 1-2
+  .populate("writer")
+  .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
-      res.render('board/best/boardlist.ejs', { title: 'Board', boards: boards });
+    if(err) return res.json(err);
+    res.render('board/best/boardlist.ejs', { 
+      boards: boards, 
+      searchType:req.query.searchType,
+      searchText:req.query.searchText 
+    });
   })
 })
 
