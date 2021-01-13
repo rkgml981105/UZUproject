@@ -135,6 +135,32 @@ router.post('/short/write/alert', async (req, res) => {
   res.jsonp({success : true});
 })
 
+/* 모아보기 페이지에서 짧은글 바로 쓰기 */
+router.post('/best/short/write', util.getPostQueryString, function(req, res){
+  const board = new Board({
+    writer: req.session._id,
+    title: req.body.title,
+    content: req.body.content
+  });
+  board
+  .save()
+  .then(result => {
+    console.log(result);
+    res.redirect('/board/best'+res.locals.getPostQueryString(false, { searchText:'' })) // 3
+    // res.redirect & send는 동시에 쓸 수 없음
+    // res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
+})
+  .catch(err => {
+      console.log(err);
+      res.send('<script type="text/javascript">alert("작성이 실패하였습니다."); window.location="/board/short/write"; </script>');
+  })
+  
+});
+
+router.post('/best/short/write/alert', async (req, res) => {
+  res.jsonp({success : true});
+})
+
 
 
 /* board find by board id - show */  
