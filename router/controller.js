@@ -28,10 +28,6 @@ const Board_long = require("../schemas/board_long");
               searchText:req.query.searchText 
             });
           })
-        
-        // res.render('main.ejs', {
-        //     session : session
-        // });
     });
 
     router.get('/register', function (req,res) {
@@ -62,7 +58,6 @@ const Board_long = require("../schemas/board_long");
               searchText:req.query.searchText 
             });
           })
-        // res.render('user/mypage.ejs');
     })
 
     router.get("/logout",function(req,res){

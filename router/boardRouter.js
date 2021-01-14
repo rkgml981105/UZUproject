@@ -41,7 +41,6 @@ router.get('/short', async function (req, res) {
 })
 
 router.get('/best', async function (req, res) {
-  // Board.find({})
   // .sort('likeCnt')    // 좋아요 순으로 내림차순
   var searchQuery = createSearchQuery(req.query); // 1
   
@@ -76,6 +75,7 @@ router.get('/search', async function (req, res) {
     });
   })
 
+  // 긴 글도 렌더링하기.. 어떻게 같이 하는걸까
   // var countLong = await Board_long.countDocuments(searchQuery); 
   // var boardsLong = await Board_long.find(searchQuery) 
   // .populate("writer")
@@ -152,8 +152,6 @@ router.post('/short/write', util.getPostQueryString, function(req, res){
   .then(result => {
     console.log(result);
     res.redirect('/board/short'+res.locals.getPostQueryString(false, { searchText:'' })) // 3
-    // res.redirect & send는 동시에 쓸 수 없음
-    // res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
 })
   .catch(err => {
       console.log(err);
@@ -178,8 +176,6 @@ router.post('/best/short/write', util.getPostQueryString, function(req, res){
   .then(result => {
     console.log(result);
     res.redirect('/board/best'+res.locals.getPostQueryString(false, { searchText:'' })) // 3
-    // res.redirect & send는 동시에 쓸 수 없음
-    // res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
 })
   .catch(err => {
       console.log(err);
