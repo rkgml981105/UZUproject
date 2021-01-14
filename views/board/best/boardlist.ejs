@@ -14,9 +14,7 @@
                 <div class="banner-text-sub">로그인 후 우리 동네 소식을 함께 공유해요!</div>
             <% } %>    
         </div>
-        <div class="banner-image">
-            <img id="main_banner" class="col s12" src="/image/neighbor.jpg">
-        </div>
+        <img class="main_banner" src="/image/neighbor2.jpg">
     </div>
     <form class = "spinput" action="/board/best/short/write" method="POST">
         <div class='textContainer'>
@@ -45,7 +43,7 @@
                 <div class="col short grid-post">
                     <% boards.forEach(function(board) { %>
                         <article class="col short grid-item">
-                            <span class="spprofile"><i class="material-icons">account_circle</i></span>
+                            <span class="spprofile"><i class="material-icons">favorite_border</i></span>
                             <span class="spwriter"><%= board.writer.nickname %></span>
                             <span class="sptime">
                                 <%= moment(board.createdAt).fromNow(); %>
