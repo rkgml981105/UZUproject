@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("../../partials/head") %>
+</head>
+
+<body>
+    <%- include ("../../partials/nav") %>
+    <div class= "container">
+        <form class="searchform" action="/board/search" method="GET">
+            <div class="search-container">
+                <div class="input-field search option">
+                    <select id="search" name="searchType">
+                        <option value="title,content" <%= searchType =='title,content'?'selected':'' %>>전체</option>
+                        <option value="title" <%= searchType =='title'?'selected':'' %>>제목</option>
+                        <option value="content" <%= searchType =='content'?'selected':'' %>>내용</option>
+                    </select>
+                </div>    
+                <div class="search-bar">
+                    <div class="input search">
+                        <input id="search" type="text" name="searchText" value="<%= searchText %>" required>
+                    </div>
+                </div>
+                <div class="search-button">
+                    <button type="submit" class="btn" id="search-btn"><i class="material-icons search">search</i></button>
+                </div>
+            </div>
+        </form> 
+
+        <div class="tag-container">
+            <span class="tag all active">all</span>
+            <span class="tag t1 all">#111</span>
+            <span class="tag t2 all">#222</span>
+            <span class="tag t3 all">#333</span>
+            <span class="tag t4 all">#444</span>
+            <span class="tag t5 all">#555</span>
+        </div>
+        <div class="btn-container">
+          <a class="btn default" href="/board/write">글 쓰러가기</a>
+        </div>
+        <div class="spcontainer">
+            <table class="sptable">
+                <tbody class="sptbody">
+                  <% if(boards == null || boards.length == 0){ %>
+                    <tr>
+                      <td colspan=2> 정보를 찾을 수 없어요 :( </td>
+                    </tr>
+                  <% } %>
+
+                  <div id="search-result" class="collection-title">
+                    <span>동네소식 검색결과 <i class="material-icons">chevron_right</i></span>
+                    <a class="movetoboard" href="/board/short">전체 짧은글 보기</a>
+                </div>
+                  <% boards.forEach(function(board) { %>
+                    <tr>
+                        <td class="sptd">
+                            <div class="spheader">
+                                <span class=item-profile></span>
+                                <span class="spwriter"><%= board.writer.nickname %></span>
+                                <span> - </span>
+                                <span class="sptime">
+                                    <%= moment(board.createdAt).fromNow(); %>
+                                </span>
+                            </div>
+                            <p class="sptitle"><a href="/board/short/<%= board._id %>"><%= board.title %></a></p>
+                            <p class="spcontent"><span data-date><%= board.content %></span></p>
+                            <div class="spfooter">
+                                <i class="material-icons">favorite_border</i><span class="splike"><%= board.likeCnt %></span> 
+                                <i class="material-icons">comment</i><span class="spcomment">6</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 긴 글 -->
+        <div id="search-result" class="grid-post">
+            <div class="collection-title" id="col02" style="padding: 0 22px">
+                <span class="coltitle">포스트 검색결과<i class="material-icons">chevron_right</i></span>
+                <a class="movetoboard" href="/board/long">전체 긴글 보기</a>
+            </div>
+            <% if(boards == null || boards.length == 0){ %>
+                <div class="no-search-data">정보를 찾을 수 없어요 :( </div>
+            <% } %>
+
+            <% boards.forEach(function(board) { %>
+            <article class="grid-item">
+                <div class="grid-item-image">
+                    <img class="image-source" src="<%= board.imgPath %>">
+                </div>
+                <div class="grid-item-content">
+                    <div class="lpheader">
+                        <p class="lptitle"><a href="/board/long/<%= board._id %>"><%= board.title %></a></p>
+                    </div>
+                    <p class="lpcontent"><span data-date><%= board.content %></span></p>
+                    <div class="lpfooter">
+                        <span class="lpwriter"><%= board.writer.nickname %></span> 
+                        <i class="material-icons">favorite_border</i><span class="lplike">17</span> 
+                        <i class="material-icons">comment</i><span class="lpcomment">6</span>
+                    </div>
+                </div>
+            </article>
+            <% }) %>
+        </div> 
+    </div>
+</body>
+<%- include ("../../partials/footer") %>
+</html>

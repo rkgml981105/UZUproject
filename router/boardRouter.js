@@ -10,7 +10,7 @@ const util = require('../public/js/util');
 /* boardlist */
 router.get('/long', async function (req, res) {
   var searchQuery = createSearchQuery(req.query); // 1
-  var count = await Board.countDocuments(searchQuery); // 1-1
+  var count = await Board_long.countDocuments(searchQuery); // 1-1
   var boards = await Board_long.find(searchQuery) // 1-2
   .populate("writer")
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
@@ -44,20 +44,51 @@ router.get('/best', async function (req, res) {
   // Board.find({})
   // .sort('likeCnt')    // 좋아요 순으로 내림차순
   var searchQuery = createSearchQuery(req.query); // 1
+  
   var count = await Board.countDocuments(searchQuery); // 1-1
-  var boards = await Board.find(searchQuery) // 1-2
+  await Board.find(searchQuery) 
   .populate("writer")
   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
     res.render('board/best/boardlist.ejs', { 
-      boards: boards, 
+      boards: boards,
       searchType:req.query.searchType,
       searchText:req.query.searchText 
     });
   })
 })
 
+router.get('/search', async function (req, res) {
+  var searchQuery = createSearchQuery(req.query); // 1
+  
+  var count = await Board.countDocuments(searchQuery); // 1-1
+  var boards = await Board.find(searchQuery) // 1-2
+  
+  .populate("writer")
+  .sort('-createdAt')  // 최신 날짜 순으로 내림차순
+  .exec(function (err, boards) {
+    if(err) return res.json(err);
+    res.render('board/best/searchResult.ejs', { 
+      boards: boards, 
+      searchType:req.query.searchType,
+      searchText:req.query.searchText 
+    });
+  })
+
+  // var countLong = await Board_long.countDocuments(searchQuery); 
+  // var boardsLong = await Board_long.find(searchQuery) 
+  // .populate("writer")
+  // .sort('-createdAt') 
+  // .exec(function (err, boardsLong) {
+  //   if(err) return res.json(err);
+  //   res.render('board/best/searchResult.ejs', { 
+  //     boardsLong: boardsLong, 
+  //     searchType:req.query.searchType,
+  //     searchText:req.query.searchText 
+  //   });
+  // })
+})
 
 /* write(new)  */
 //전체 글쓰기

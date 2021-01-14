@@ -33,12 +33,23 @@ nav li a {
 }
 
 .nav-search {
-    padding : 0 15px;
+    padding-left: 7.5px;
+}
+
+.nav-search .search-button {
+    margin-top: -10px;
+    text-align: center;
 }
 
 .nav-search .material-icons {
-    position : absolute;
-    color: #424242;
+    color: #fff;
+    margin-top: -15px;
+    font-size: 20px;
+}
+
+.searchCon{
+    display: grid;
+    grid-template-columns: 4em 10em 4em;
 }
 
 .searchCon input[type=search]{
