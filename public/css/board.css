@@ -340,6 +340,7 @@
 .grid-post {
     width : 100%;
     align-items: center;
+    display: inline-block;
 }
 
 /* clearfix */
