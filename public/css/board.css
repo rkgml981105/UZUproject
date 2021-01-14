@@ -800,15 +800,31 @@
 /*post collection*/
 /*collection - shorts*/
 .col.short.grid-item{
+    display : grid;
+    grid-template-columns: 30px auto auto;
+    grid-template-rows: 25px auto 25px;
     width : 32%;
     height: 180px;
     float : left;
-    margin : 0.6% 0.6%
+    margin : 0.6% 0.6%;
+    padding: 10px 20px;
 }
 
-.col.short.grid-item .spheader {
-    display : grid;
-    grid-template-columns: auto auto;
+.col.short.grid-item .spwriter {
+    font-size: 90%;
+}
+
+.col.short.grid-item .sptime {
+    text-align: right;
+    font-size: 80%;
+}
+
+.col.short.grid-item .spmid {
+    grid-column: 2 / span 2;
+}
+
+.col.short.grid-item .spfooter {
+    grid-column: 2 / span 2;
 }
 
 .col.short.grid-item .image-source {
@@ -817,7 +833,8 @@
     object-fit: cover;
 }
 
-.col.short.grid-item .sptitle {
+.col.short.grid-item .spcontent {
+    margin-top : 0.5rem;
     font-size: 13px;
     text-overflow: ellipsis;
     white-space: normal;
@@ -843,7 +860,6 @@
 
     .col.short.grid-item .spcontent {
         margin: 5px 0;
-        height: 40px;
     }
 }
 
