@@ -41,73 +41,28 @@
                 <span>우리동네 짧은생각<i class="material-icons">chevron_right</i></span>
                 <a class="movetoboard" href="/board/short">전체 짧은글 보기</a>
             </div>
-            <% boards.forEach(function(board) { %>
-                <div class="collection-content">
-                    <div class="col short grid-post">
+            <div class="collection-content">
+                <div class="col short grid-post">
+                    <% boards.forEach(function(board) { %>
                         <article class="col short grid-item">
-                            <div class="grid-item-content">
-                                <div class="spheader">
-                                    <span class="spwriter"><%= board.writer.nickname %></span>
-                                    <span class="sptime">
-                                        <%= moment(board.createdAt).fromNow(); %>
-                                    </span>
-                                    <p class="sptitle"><a href="/board/short/<%= board._id %>"><%= board.title %></a></p>
-                                    <p class="spcontent"><span data-date><%= board.content %></span></p>
-                                    <div class="grid-item-image">
-                                        <img class="image-source" src="/image/sample.jpg">
-                                    </div>
-                                </div>
-                                <div class="spfooter">
-                                    <i class="material-icons">favorite_border</i><span class="splike"><%= board.likeCnt %></span> 
-                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
-                                </div>
+                            <span class="spprofile"><i class="material-icons">account_circle</i></span>
+                            <span class="spwriter"><%= board.writer.nickname %></span>
+                            <span class="sptime">
+                                <%= moment(board.createdAt).fromNow(); %>
+                            </span>
+                            <div></div>
+                            <div class='spmid'>
+                                <p class="sptitle"><a href="/board/short/<%= board._id %>"><%= board.title %></a></p>
+                                <p class="spcontent"><span data-date><%= board.content %></span></p>
+                            </div>
+                            <div class="spfooter">
+                                <i class="material-icons">favorite_border</i><span class="splike"><%= board.likeCnt %></span> 
+                                <i class="material-icons">comment</i><span class="spcomment">6</span>
                             </div>
                         </article>
-                        <!-- <article class="col short grid-item">
-                            <div class="grid-item-content">
-                                <div class="spheader">
-                                    <p class="sptitle"><a href="/board/short">드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. </a></p>
-                                    <div class="grid-item-image">
-                                        <img class="image-source" src="/image/sample.jpg">
-                                    </div>
-                                </div>
-                                <div class="spfooter">
-                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col short grid-item">
-                            <div class="grid-item-content">
-                                <div class="spheader">
-                                    <p class="sptitle"><a href="/board/short">우리집은 붕세권이 아니야 ㅜㅡㅜ 드디어 우리 동네에도 고구마 붕어빵이 생겼다</a></p>
-                                    <div class="grid-item-image">
-                                        <img class="image-source" src="/image/sample.jpg">
-                                    </div>
-                                </div>
-                                <div class="spfooter">
-                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col short grid-item">
-                            <div class="grid-item-content">
-                                <div class="spheader">
-                                    <p class="sptitle"><a href="/board/short">우리집은 붕세권이 아니야 ㅜㅡㅜ 엉엉엉 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. 드디어 우리 동네에도 고구마 붕어빵이 생겼다. </a></p>
-                                    <div class="grid-item-image">
-                                        <img class="image-source" src="/image/sample.jpg">
-                                    </div>
-                                </div>
-                                <div class="spfooter">
-                                    <i class="material-icons">favorite_border</i><span class="splike">17</span> 
-                                    <i class="material-icons">comment</i><span class="spcomment">6</span>
-                                </div>
-                            </div>
-                        </article> -->
-                    </div>
+                    <% }) %>
                 </div>
-            <% }) %>
+            </div>
         </div>
 
         <div class="post-collection">
@@ -115,9 +70,9 @@
                 <span class="coltitle">우리동네 긴생각<i class="material-icons">chevron_right</i></span>
                 <a class="movetoboard" href="/board/long">전체 긴글 보기</a>
             </div>
-            <% boards.forEach(function(board) { %>
-                <div class="collection-content">
-                    <div class="col grid-post">
+            <div class="collection-content">
+                <div class="col grid-post">
+                    <% boards.forEach(function(board) { %>
                         <article class="col grid-item">
                             <div class="grid-item-image">
                                 <img class="image-source" src="/image/sample.jpg">
@@ -135,9 +90,9 @@
                                 </div>
                             </div>
                         </article>
-                    </div>
+                    <% }) %>
                 </div>
-            <% }) %>
+            </div>
         </div>
     </div>
 </body>
