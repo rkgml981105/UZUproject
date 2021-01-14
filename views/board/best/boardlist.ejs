@@ -7,7 +7,7 @@
     <%- include ("../../partials/nav") %>
     <div class="banner-col">
         <div class="banner-text">
-            <div class="banner-text-main">현재 UZU에는 <br /> <span style="color: #FFD811">15,423개의</span>  <br /> 동네 정보가 등록되어 있어요!</div>
+            <div class="banner-text-main">현재 UZU에는 <br /> <span style="color: #000000">15,423개의</span>  <br /> 동네 정보가 등록되어 있어요!</div>
             <% if(session.email){ %>
                 <div class="banner-text-sub">그 중 <%=nickname%>님이 공유한 정보는 8개!</div>
             <% } else { %>
@@ -43,7 +43,7 @@
                 <div class="col short grid-post">
                     <% boards.forEach(function(board) { %>
                         <article class="col short grid-item">
-                            <span class="spprofile"><i class="material-icons">favorite_border</i></span>
+                            <span class="spprofile"><i class="material-icons">account_circle</i></span>
                             <span class="spwriter"><%= board.writer.nickname %></span>
                             <span class="sptime">
                                 <%= moment(board.createdAt).fromNow(); %>
