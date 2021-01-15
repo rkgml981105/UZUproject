@@ -341,6 +341,7 @@
     width : 100%;
     align-items: center;
     display: inline-block;
+    margin-bottom: 20%;
 }
 
 /* clearfix */
@@ -700,7 +701,7 @@
 }
 
 .input-field input[type=text]:focus {
- border-bottom: 1px solid #000;
+ border-bottom: 1px solid #4c14ee;
  box-shadow: 0 1px 0 0 #000;
 }
 
@@ -757,6 +758,17 @@
     display : none;
 }
 
+/*searchResult 짧은글 검색 결과*/
+#search-result {
+    width: 88%;
+    margin-top: 40px;
+    margin-left: 6%;
+}
+
+.no-search-data {
+    padding-left: 22px;
+}
+
 /*board titles*/
 .collection-title {
     display : grid;
@@ -786,6 +798,9 @@
     text-align: right;
 }
 
+#col01 .collection-content {
+    margin-bottom: -20%;
+}
 @media screen and (max-width:601px) {
 
     .collection-title {

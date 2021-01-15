@@ -22,7 +22,11 @@
         <div class='textContainer'>
             <div class='input-field'>
                 <textarea class="materialize-textarea title" name="title" placeholder="제목을 정해주세요"></textarea>
-                <textarea class="materialize-textarea content" name="content" maxlength="300" placeholder="반가워요 <%= session.nickname %>님, 오늘의 소식을 알려주세요!"></textarea>
+                <% if(session.email){ %>
+                    <textarea class="materialize-textarea content" name="content" maxlength="300" placeholder="반가워요 <%= session.nickname %>님, 오늘의 소식을 알려주세요!"></textarea>
+                <% } else { %>
+                    <textarea class="materialize-textarea content" name="content" maxlength="300" placeholder="반가워요. 로그인 후 오늘의 소식을 알려주세요!"></textarea>
+                <% } %> 
                 <div class="the-count">
                     <span class="count-current">0</span>
                     <span class="count-maximum">/ 300</span>

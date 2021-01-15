@@ -93,7 +93,6 @@ router.post("/register", async (req, res) => {
                 user = new User(obj);
                 await user.save();
                 res.render('register-success.ejs')
-                // res.json({ message: "회원가입 되었습니다!", dupYn: "0" });
               }
             }
           );
@@ -179,9 +178,6 @@ router.post("/login", async (req, res) => {
                           "아이디나 패스워드가 5회 이상 일치하지 않아 잠겼습니다.\n고객센터에 문의 바랍니다."
                       });
                     } else {
-                      // res.json({
-                      //   message: "아이디나 패스워드가 일치하지 않습니다."
-                      // });
                       res.render('login.ejs', {title: '비밀번호 조회', password: false});
                     }
                   }
@@ -190,7 +186,6 @@ router.post("/login", async (req, res) => {
             }
           );
         } else {
-          // res.json({ message: "아이디나 패스워드가 일치하지 않습니다." });
           res.render('login.ejs', {title: '비밀번호 조회', password: false});
         }
       }

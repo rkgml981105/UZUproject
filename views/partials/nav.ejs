@@ -18,10 +18,19 @@
                 <li><a href="/board/write"><i class="material-icons">create</i></a></li>
                 <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
                 <li>
-                    <form class="nav-search">
+                    <form class="nav-search" action="/board/search" method="GET">
                         <div class="searchCon">
-                            <i class="material-icons search">search</i>
-                            <input class="searchbox" type="search" required>
+                            <div class="nav-search input-field search option">
+                                <select id="search" name="searchType">
+                                    <option value="title,content" <%= searchType =='title,content'?'selected':'' %>>전체</option>
+                                    <option value="title" <%= searchType =='title'?'selected':'' %>>제목</option>
+                                    <option value="content" <%= searchType =='content'?'selected':'' %>>내용</option>
+                                </select>
+                            </div> 
+                            <input class="nav-search-input" id="search" type="text" name="searchText" value="<%= searchText %>" style="width:auto" required >
+                            <div class="search-button">
+                                <button type="submit" class="btn" id="search-btn"><i class="material-icons search">search</i></button>
+                            </div>
                         </div>
                     </form>
                 </li>
@@ -50,12 +59,21 @@
                 <li><a href="/register">회원가입</a></li>
                 <li><a href="/board/write"><i class="material-icons">create</i></a></li>
                 <li>
-                    <form class="nav-search">
+                    <form class="nav-search" action="/board/search" method="GET">
                         <div class="searchCon">
+                            <div class="input-field search option">
+                                <select id="search" name="searchType">
+                                    <option value="title,content" <%= searchType =='title,content'?'selected':'' %>>전체</option>
+                                    <option value="title" <%= searchType =='title'?'selected':'' %>>제목</option>
+                                    <option value="content" <%= searchType =='content'?'selected':'' %>>내용</option>
+                                </select>
+                            </div>  
                             <i class="material-icons search">search</i>
-                            <input class="searchbox" type="search" required>
+                            <!-- <input class="searchbox" type="search" required> -->
+                            <input id="search" type="text" name="searchText" value="<%= searchText %>" required style="width: auto">
                         </div>
                     </form>
+
                 </li>
                 <li><a href="badges.html"><i class="material-icons">notifications_none</i></a></li>
             </ul>
