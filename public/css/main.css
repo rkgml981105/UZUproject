@@ -68,6 +68,17 @@ nav li a {
     box-shadow: none;
 }
 
+.select-wrapper input.select-dropdown{
+    color: #424242;
+    font-size: 14px;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    font-size: 14px;
+    color: #4c14ee;
+    text-align: center;
+}
+
 #nav-mobile li a:hover {
     background-color: rgb(0,0,0,0);
     color : #ffe96c;
