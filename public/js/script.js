@@ -106,7 +106,7 @@ $('.materialize-textarea.content').keyup(function() {
   });
 
   /*nav-dropdown*/
-  $(".dropdown-trigger").dropdown;
+  $(".dropdown-trigger").dropdown();
 
   /*register-password varification*/
   $(function(){ 
