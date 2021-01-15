@@ -45,7 +45,7 @@ router.get('/best', async function (req, res) {
   // .sort('likeCnt')    // 좋아요 순으로 내림차순
   var searchQuery = createSearchQuery(req.query); // 1
   
-  var count = await Board.countDocuments(searchQuery); // 1-1
+  await Board.countDocuments(searchQuery); // 1-1
   await Board.find(searchQuery) 
   .populate("writer")
   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
