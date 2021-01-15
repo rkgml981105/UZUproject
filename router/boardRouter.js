@@ -42,17 +42,17 @@ router.get('/short', async function (req, res) {
 
 /* 모아보기 - 짧은글 */
 router.get('/best', async function (req, res) {
-  // Board.find({})
   // .sort('likeCnt')    // 좋아요 순으로 내림차순
   var searchQuery = createSearchQuery(req.query); // 1
+  
   var count = await Board.countDocuments(searchQuery); // 1-1
-  var boards = await Board.find(searchQuery) // 1-2
+  await Board.find(searchQuery) 
   .populate("writer")
   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
   .exec(function (err, boards) {
     if(err) return res.json(err);
     res.render('board/best/boardlist.ejs', { 
-      boards: boards, 
+      boards: boards,
       searchType:req.query.searchType,
       searchText:req.query.searchText 
     });
@@ -77,6 +77,37 @@ router.get('/best', async function (req, res) {
 //   })
 // })
 
+router.get('/search', async function (req, res) {
+  var searchQuery = createSearchQuery(req.query); // 1
+  
+  var count = await Board.countDocuments(searchQuery); // 1-1
+  var boards = await Board.find(searchQuery) // 1-2
+  
+  .populate("writer")
+  .sort('-createdAt')  // 최신 날짜 순으로 내림차순
+  .exec(function (err, boards) {
+    if(err) return res.json(err);
+    res.render('board/best/searchResult.ejs', { 
+      boards: boards, 
+      searchType:req.query.searchType,
+      searchText:req.query.searchText 
+    });
+  })
+
+  // 긴 글도 렌더링하기.. 어떻게 같이 하는걸까
+  // var countLong = await Board_long.countDocuments(searchQuery); 
+  // var boardsLong = await Board_long.find(searchQuery) 
+  // .populate("writer")
+  // .sort('-createdAt') 
+  // .exec(function (err, boardsLong) {
+  //   if(err) return res.json(err);
+  //   res.render('board/best/searchResult.ejs', { 
+  //     boardsLong: boardsLong, 
+  //     searchType:req.query.searchType,
+  //     searchText:req.query.searchText 
+  //   });
+  // })
+})
 
 /* write(new)  */
 //전체 글쓰기
@@ -140,8 +171,6 @@ router.post('/short/write', util.getPostQueryString, function(req, res){
   .then(result => {
     console.log(result);
     res.redirect('/board/short'+res.locals.getPostQueryString(false, { searchText:'' })) // 3
-    // res.redirect & send는 동시에 쓸 수 없음
-    // res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
 })
   .catch(err => {
       console.log(err);
@@ -166,8 +195,6 @@ router.post('/best/short/write', util.getPostQueryString, function(req, res){
   .then(result => {
     console.log(result);
     res.redirect('/board/best'+res.locals.getPostQueryString(false, { searchText:'' })) // 3
-    // res.redirect & send는 동시에 쓸 수 없음
-    // res.send('<script type="text/javascript">alert("게시글이 업로드되었습니다"); window.location="/board/short"; </script>');
 })
   .catch(err => {
       console.log(err);

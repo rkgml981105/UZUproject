@@ -1,5 +1,6 @@
 var util = {};
 
+//search bar
 util.getPostQueryString = function(req, res, next){
     res.locals.getPostQueryString = function(isAppended=false, overwrites={}){    
       var queryString = '';
