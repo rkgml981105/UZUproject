@@ -11,13 +11,13 @@ const util = require('../public/js/util');
 router.get('/long', async function (req, res) {
   var searchQuery = createSearchQuery(req.query); // 1
   var count = await Board_long.countDocuments(searchQuery); // 1-1
-  var boards_long = await Board_long.find(searchQuery) // 1-2
+  var boards = await Board_long.find(searchQuery) // 1-2
   .populate("writer")
   .sort('-createdAt')            // 최신 날짜 순으로 내림차순
-  .exec(function (err, boards_long) {
+  .exec(function (err, boardLongs) {
     if(err) return res.json(err);
     res.render('board/long/boardlist.ejs', { 
-      boards_long: boards_long,
+      boardLongs: boardLongs,
       searchType:req.query.searchType,
       searchText:req.query.searchText 
     });
@@ -40,98 +40,153 @@ router.get('/short', async function (req, res) {
   })
 })
 
-/* 모아보기 - 짧은글 */
 router.get('/best', async function (req, res) {
   // .sort('likeCnt')    // 좋아요 순으로 내림차순
   var searchQuery = createSearchQuery(req.query); // 1
-  
-  await Board.countDocuments(searchQuery); // 1-1
-  await Board.find(searchQuery) 
-  .populate("writer")
-  .sort('-createdAt')   // 최신 날짜 순으로 내림차순
-  .exec(function (err, boards) {
-    if(err) return res.json(err);
-    res.render('board/best/boardlist.ejs', { 
-      boards: boards,
+  var count =  Board.countDocuments(searchQuery); // 1-1
+
+  try {
+    const [boards, boardLongs] = await Promise.all([
+      Board.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt'),
+      Board_long.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt')
+    ])
+
+    return res.render('board/best/boardlist.ejs', { 
+      boards,
+      boardLongs,
       searchType:req.query.searchType,
       searchText:req.query.searchText 
     });
-  })
+  } catch (error) {
+    return res.json(error)
+  }
 })
-/* 모아보기 - 긴글 */
-// router.get('/best', async function (req, res) {
-//   // Board.find({})
-//   // .sort('likeCnt')    // 좋아요 순으로 내림차순
-//   var searchQuery = createSearchQuery(req.query); // 1
-//   var count = await Board_long.countDocuments(searchQuery); // 1-1
-//   var boards_long = await Board_long.find(searchQuery) // 1-2
-//   .populate("writer")
-//   .sort('-createdAt')   // 최신 날짜 순으로 내림차순
-//   .exec(function (err, boards_long) {
-//     if(err) return res.json(err);
-//     res.render('board/best/boardlist.ejs', { 
-//       boards_long: boards_long, 
-//       searchType:req.query.searchType,
-//       searchText:req.query.searchText 
-//     });
-//   })
-// })
 
 router.get('/search', async function (req, res) {
   var searchQuery = createSearchQuery(req.query); // 1
   
-  var count = await Board.countDocuments(searchQuery); // 1-1
-  var boards = await Board.find(searchQuery) // 1-2
-  
-  .populate("writer")
-  .sort('-createdAt')  // 최신 날짜 순으로 내림차순
-  .exec(function (err, boards) {
-    if(err) return res.json(err);
-    res.render('board/best/searchResult.ejs', { 
-      boards: boards, 
+  var count = Board.countDocuments(searchQuery); // 1-1
+  try {
+    const [boards, boardLongs] = await Promise.all([
+      Board.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt'),
+      Board_long.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt')
+    ])
+
+    return res.render('board/best/searchResult.ejs', { 
+      boards,
+      boardLongs,
       searchType:req.query.searchType,
       searchText:req.query.searchText 
     });
-  })
-
-  // 긴 글도 렌더링하기.. 어떻게 같이 하는걸까
-  // var countLong = await Board_long.countDocuments(searchQuery); 
-  // var boardsLong = await Board_long.find(searchQuery) 
-  // .populate("writer")
-  // .sort('-createdAt') 
-  // .exec(function (err, boardsLong) {
-  //   if(err) return res.json(err);
-  //   res.render('board/best/searchResult.ejs', { 
-  //     boardsLong: boardsLong, 
-  //     searchType:req.query.searchType,
-  //     searchText:req.query.searchText 
-  //   });
-  // })
+  } catch (error) {
+    return res.json(error)
+  }
 })
 
 /* write(new)  */
 //전체 글쓰기
-router.get('/write', function (req, res) {
-  if(req.session.email) {
-    res.render('board/write.ejs')}
-  //로그인하지 않은 사용자 접근 차단
-  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')}
+router.get('/write', async function (req, res) {
+
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = Board.countDocuments(searchQuery); // 1-1
+  try {
+    const [boards, boardLongs] = await Promise.all([
+      Board.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt'),
+      Board_long.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt')
+    ])
+
+    if(req.session.email){
+      return res.render('board/write.ejs', { 
+        boards,
+        boardLongs,
+        searchType:req.query.searchType,
+        searchText:req.query.searchText 
+      });
+
+    } //로그인하지 않은 사용자 접근 차단 
+    else {
+      res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')
+    }
+
+  } catch (error) {
+      return res.json(error)
+    }
 })
 
 
-router.get('/long/write', function(req, res) {
-  if(req.session.email) {
-    res.render('board/long/write.ejs')}
-  //로그인하지 않은 사용자 접근 차단
-  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')}
+router.get('/long/write', async function(req, res) {
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = Board.countDocuments(searchQuery); // 1-1
+  try {
+    const [boards, boardLongs] = await Promise.all([
+      Board.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt'),
+      Board_long.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt')
+    ])
+
+    if(req.session.email){
+      return res.render('board/long/write.ejs', { 
+        boards,
+        boardLongs,
+        searchType:req.query.searchType,
+        searchText:req.query.searchText 
+      });
+
+    } //로그인하지 않은 사용자 접근 차단 
+    else {
+      res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')
+    }
+
+  } catch (error) {
+      return res.json(error)
+    }
 });
  
 
-router.get('/short/write', function(req, res) {
-  if(req.session.email) {
-    res.render('board/short/write.ejs')}
-  //로그인하지 않은 사용자 접근 차단
-  else{res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')}
+router.get('/short/write', async function(req, res) {
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = Board.countDocuments(searchQuery); // 1-1
+  try {
+    const [boards, boardLongs] = await Promise.all([
+      Board.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt'),
+      Board_long.find(searchQuery) 
+      .populate("writer")
+      .sort('-createdAt')
+    ])
+
+    if(req.session.email){
+      return res.render('board/short/write.ejs', { 
+        boards,
+        boardLongs,
+        searchType:req.query.searchType,
+        searchText:req.query.searchText 
+      });
+
+    } //로그인하지 않은 사용자 접근 차단 
+    else {
+      res.send('<script type="text/javascript">alert("로그인한 사용자만 작성할 수 있습니다."); window.location="/login"; </script>')
+    }
+
+  } catch (error) {
+      return res.json(error)
+    }
 });
 
 
@@ -210,54 +265,67 @@ router.post('/best/short/write/alert', async (req, res) => {
 
 
 /* board find by board id - show */  
-router.get('/long/:id', function (req, res) {
+router.get('/long/:id', async function (req, res) {
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = Board.countDocuments(searchQuery); // 1-1
+
   Board_long.findOne({_id: req.params.id})
     .populate('writer')             // 3
     .exec(function(err, board_longs){
       if(err) return res.json(err);
-      res.render('board/long/show', {board_longs: board_longs});
+      res.render('board/long/show', {board_longs: board_longs,
+        searchType:req.query.searchType,
+        searchText:req.query.searchText });
   })
 });
 
 
 
-router.get('/short/:id', function (req, res) {
+router.get('/short/:id', async function (req, res) {
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = Board.countDocuments(searchQuery); // 1-1
+
   Board.findOne({_id: req.params.id})
     .populate('writer')
     .exec(function (err, boards) {
       if(err) return res.json(err);
-      res.render('board/short/show', {boards: boards });
+      res.render('board/short/show', {boards: boards,
+        searchType:req.query.searchType,
+        searchText:req.query.searchText });
   })
 });
 
-
-router.get('/best/:id', function (req, res) {
-  Board.findOne({_id: req.params.id}, function (err, boards) {
-      if(err) return res.json(err);
-      res.render('board/best/show', {boards: boards });
-  })
-});
 
 
 //원경 사이트 https://www.a-mean-blog.com/ko/blog/Node-JS-%EC%B2%AB%EA%B1%B8%EC%9D%8C/%EC%A3%BC%EC%86%8C%EB%A1%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0/%EC%A3%BC%EC%86%8C%EB%A1%9D-Show-Edit-Update-Destroy
 //edit(&mongo에 update),  destroy(삭제)
 /* edit */
-router.get('/long/:id/edit', function(req, res){
+router.get('/long/:id/edit', async function(req, res){
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = Board.countDocuments(searchQuery); // 1-1
+
   Board_long.findOne({_id:req.params.id})
   .populate('writer')
   .exec(function(err, board_longs){
     if(err) return res.json(err);
-    res.render('board/long/edit', {board_longs: board_longs});
+    res.render('board/long/edit', {board_longs: board_longs,
+      searchType:req.query.searchType,
+      searchText:req.query.searchText });
   });
 });
 
 
-router.get('/short/:id/edit', function(req, res){
+router.get('/short/:id/edit', async function(req, res){
+  var searchQuery = createSearchQuery(req.query); // 1
+  var count = Board.countDocuments(searchQuery); // 1-1
+
   Board.findOne({_id:req.params.id})
   .populate('writer')
   .exec(function(err, boards){
     if(err) return res.json(err);
-    res.render('board/short/edit', {boards: boards});
+    res.render('board/short/edit', {boards: boards,
+      searchType:req.query.searchType,
+      searchText:req.query.searchText});
   });
 });
 

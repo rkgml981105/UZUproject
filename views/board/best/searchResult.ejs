@@ -81,11 +81,11 @@
                 <span class="coltitle">포스트 검색결과<i class="material-icons">chevron_right</i></span>
                 <a class="movetoboard" href="/board/long">전체 긴글 보기</a>
             </div>
-            <% if(boards == null || boards.length == 0){ %>
+            <% if(boardLongs == null || boardLongs.length == 0){ %>
                 <div class="no-search-data">정보를 찾을 수 없어요 :( </div>
             <% } %>
 
-            <% boards.forEach(function(board) { %>
+            <% boardLongs.forEach(function(board) { %>
             <article class="grid-item">
                 <div class="grid-item-image">
                     <img class="image-source" src="<%= board.imgPath %>">
