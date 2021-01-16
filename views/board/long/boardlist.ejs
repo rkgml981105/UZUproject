@@ -39,10 +39,10 @@
             <a class="btn default" href="/board/long/write">글쓰기</a>
         </div>
         <div class="grid-post">
-            <% if(boards == null || boards.length == 0){ %>
+            <% if(boardLongs == null || boardLongs.length == 0){ %>
                 <div>No data to show :(</div>
             <% } %>
-            <% boards.forEach(function(board) { %>
+            <% boardLongs.forEach(function(board) { %>
             <article class="grid-item">
                 <div class="grid-item-image">
                     <img class="image-source" src="<%= board.imgPath %>">
